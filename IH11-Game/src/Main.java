@@ -5,5 +5,4 @@ public class Main {
 		System.out.println("Test: Philipp");
 		System.out.println("Test: Hi!");
 	}
-	
 }
