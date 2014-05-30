@@ -41,8 +41,8 @@ public class LevelTexture {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		for (int x = 0; x < 3; x++) {
-			for (int y = 0; y < 3; y++) {
+		for (int y = 0; y < 3; y++) {
+			for (int x = 0; x < 3; x++) {
 				tileArray[x * 3 + y] = image.getSubimage(x * 32, y * 32, 32, 32);
 			}
 		}
