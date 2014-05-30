@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import level.Level;
 import main.GamePanel;
 
 public class EntityPlayer extends Entity{
@@ -17,12 +18,13 @@ public class EntityPlayer extends Entity{
 	private boolean keyUp;
 	private boolean keyDown;
 	
-	public EntityPlayer(double x, double y){
+	public EntityPlayer(Level level, double x, double y){
+		this.level = level;
 		xPos = x;
 		yPos = y;
-		speed = 1;
-		jumpSpeed = 2;
-		falingSpeed = 0.5;
+		speed = 2.5;
+		jumpSpeed = -5;
+		falingSpeed = 0.1;
 		width = 32;
 		height = 32;
 		try {
@@ -42,7 +44,10 @@ public class EntityPlayer extends Entity{
 			xMoveMent = speed;
 		} else if(keyLeft){
 			xMoveMent = -speed;
+		} else {
+			xMoveMent = 0;
 		}
+		tryMove();
 	}
 	
 	public void draw(Graphics2D g2) {
