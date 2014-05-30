@@ -12,34 +12,36 @@ public class Level {
 	private byte[][] tileSet;
 	private LevelTexture levelTexture;
 	private int tileSize = 32;
-	
+
 	private double startPositionX;
 	private double startPositionY;
-	
-	public Level(){
+
+	public Level() {
 		tileSet = new byte[1][1];
-		levelTexture = new LevelTexture("/graphics/level/DummySetGreen.png", "Test");
+		levelTexture = new LevelTexture("/graphics/level/DirtGrassTileSet.png",
+				"Test");
 	}
-	
-	public void draw(Graphics2D g2){
-		for(int x = 0; x < tileSet.length; x++){
-			for(int y = 0; y < tileSet[x].length; y++){
-				if(tileSet[x][y] != LevelTexture.AIR){
-					g2.drawImage(levelTexture.getTile(tileSet[x][y]), x * tileSize, y * tileSize, tileSize, tileSize, null);
+
+	public void draw(Graphics2D g2) {
+		for (int x = 0; x < tileSet.length; x++) {
+			for (int y = 0; y < tileSet[x].length; y++) {
+				if (tileSet[x][y] != LevelTexture.AIR) {
+					g2.drawImage(levelTexture.getTile(tileSet[x][y]), x
+							* tileSize, y * tileSize, tileSize, tileSize, null);
 				}
 			}
 		}
 	}
-	
-	public int getWidth(){
+
+	public int getWidth() {
 		return tileSet.length;
 	}
-	
-	public int getHeight(){
+
+	public int getHeight() {
 		return tileSet[0].length;
 	}
-	
-	public byte getTileID(int x, int y){
+
+	public byte getTileID(int x, int y) {
 		return tileSet[x][y];
 	}
 
@@ -66,5 +68,5 @@ public class Level {
 	public void setStartPositionY(double startPositionY) {
 		this.startPositionY = startPositionY;
 	}
-	
+
 }
