@@ -24,10 +24,12 @@ public class GamePanel extends JPanel implements KeyListener {
 	public static final int FPS_MAX = 60;
 
 	public GamePanel() {
-		requestFocus();
 		setBorder(null);
 		Dimension size = new Dimension(WIDTH * 2, HEIGHT * 2);
 		setPreferredSize(size);
+		setFocusable(true);
+		requestFocus();
+		addKeyListener(this);
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		graphics = (Graphics2D) image.getGraphics();
 		stageManager = new StageManager(StageManager.STAGE_MENUE);
@@ -64,15 +66,15 @@ public class GamePanel extends JPanel implements KeyListener {
 	}
 
 	public void keyPressed(KeyEvent e) {
-		keyPressed(e);
+		stageManager.keyPressed(e);
 	}
 
 	public void keyReleased(KeyEvent e) {
-		keyReleased(e);
+		stageManager.keyReleased(e);
 	}
 
 	public void keyTyped(KeyEvent e) {
-		keyTyped(e);
+		stageManager.keyTyped(e);
 	}
 
 }
