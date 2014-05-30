@@ -48,7 +48,12 @@ public class Level {
 	}
 
 	public byte getTileID(int x, int y) {
-		return tileSet[x][y];
+		try{
+			return tileSet[x][y];
+		} catch (IndexOutOfBoundsException e){
+			return LevelTexture.AIR;
+		}
+		
 	}
 
 	@XmlElement(name = "TileSet")
