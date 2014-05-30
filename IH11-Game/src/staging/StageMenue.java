@@ -14,8 +14,9 @@ import main.GamePanel;
 public class StageMenue extends Stage {
 
 	private int selectedItem = 0;
+	private int pressedItem = -1;
 	private int items = 2;
-	private BufferedImage[][] buttons = new BufferedImage[items][2];
+	private BufferedImage[][] buttons = new BufferedImage[items][3];
 	private BufferedImage background;
 	private AudioPlayer audio;
 
@@ -24,11 +25,20 @@ public class StageMenue extends Stage {
 		audio = new AudioPlayer();
 		audio.play("Example");
 		try {
-			background = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/MenueBackground.png"));
-			buttons[0][0] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/PlayButtonPressed.png"));
-			buttons[0][1] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/PlayButtonUnpressed.png"));
-			buttons[1][0] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/QuitButtonPressed.png"));
-			buttons[1][1] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/QuitButtonUnpressed.png"));
+			background = ImageIO.read(getClass().getResourceAsStream(
+					"/graphics/menue/MenueBackground.png"));
+			buttons[0][0] = ImageIO.read(getClass().getResourceAsStream(
+					"/graphics/menue/PlayButtonSelected.png"));
+			buttons[0][1] = ImageIO.read(getClass().getResourceAsStream(
+					"/graphics/menue/PlayButtonUnpressed.png"));
+			buttons[0][2] = ImageIO.read(getClass().getResourceAsStream(
+					"/graphics/menue/PlayButtonPressed.png"));
+			buttons[1][0] = ImageIO.read(getClass().getResourceAsStream(
+					"/graphics/menue/QuitButtonSelected.png"));
+			buttons[1][1] = ImageIO.read(getClass().getResourceAsStream(
+					"/graphics/menue/QuitButtonUnpressed.png"));
+			buttons[1][2] = ImageIO.read(getClass().getResourceAsStream(
+					"/graphics/menue/QuitButtonPressed.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -43,12 +53,18 @@ public class StageMenue extends Stage {
 		g2.drawImage(background, 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, null);
 
 		for (int i = 0; i < items; i++) {
-			Rectangle rect = new Rectangle((GamePanel.WIDTH / 2) - (90 / 2), (GamePanel.HEIGHT / 2) + (20 + i * 50),
-					90, 46);
+			Rectangle rect = new Rectangle((GamePanel.WIDTH / 2) - (90 / 2),
+					(GamePanel.HEIGHT / 2) + (20 + i * 50), 90, 46);
 			if (i == selectedItem) {
-				g2.drawImage(buttons[i][0], rect.x, rect.y, rect.width, rect.height, null);
+				g2.drawImage(buttons[i][0], rect.x, rect.y, rect.width,
+						rect.height, null);
 			} else {
-				g2.drawImage(buttons[i][1], rect.x, rect.y, rect.width, rect.height, null);
+				g2.drawImage(buttons[i][1], rect.x, rect.y, rect.width,
+						rect.height, null);
+			}
+			if (i == pressedItem) {
+				g2.drawImage(buttons[i][2], rect.x, rect.y, rect.width,
+						rect.height, null);
 			}
 		}
 	}
@@ -76,8 +92,15 @@ public class StageMenue extends Stage {
 		}
 
 		if (e.getKeyChar() == ' ') {
+			pressedItem = selectedItem;
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			}
 			switch (selectedItem) {
 			case 0:
+
 				audio.stop("Example");
 				getStageManager().setStatge(StageManager.STAGE_LEVEL);
 				break;
