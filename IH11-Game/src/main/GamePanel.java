@@ -37,11 +37,14 @@ public class GamePanel extends JPanel implements KeyListener {
 					startTime = System.currentTimeMillis();
 					draw(graphics);
 					delay = waitTime - (System.currentTimeMillis() - startTime);
-					try {
-						Thread.sleep(delay);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
+					if (delay > 0) {
+						try {
+							Thread.sleep(delay);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
 					}
+
 				}
 			}
 		}).start();
@@ -51,7 +54,7 @@ public class GamePanel extends JPanel implements KeyListener {
 		stageManager.draw(g2);
 		g2.dispose();
 		Graphics g = this.getGraphics();
-		if(g != null){
+		if (g != null) {
 			g.drawImage(image, 0, 0, WIDTH * 2, HEIGHT * 2, null);
 			g.dispose();
 		}
