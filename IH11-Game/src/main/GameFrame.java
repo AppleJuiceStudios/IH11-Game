@@ -11,11 +11,11 @@ public class GameFrame extends JFrame{
 	}
 	
 	public void init(){
-		setSize(800, 600);
-		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gamePanel = new GamePanel();
 		setContentPane(gamePanel);
+		pack();
+		setResizable(false);
 		setVisible(true);
 	}
 	
