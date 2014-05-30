@@ -94,7 +94,7 @@ public class StageMenue extends Stage {
 		if (e.getKeyChar() == ' ') {
 			pressedItem = selectedItem;
 			try {
-				Thread.sleep(100);
+				Thread.sleep(200);
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}
