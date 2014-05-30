@@ -32,7 +32,7 @@ public class GamePanel extends JPanel implements KeyListener {
 		addKeyListener(this);
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		graphics = (Graphics2D) image.getGraphics();
-		stageManager = new StageManager(StageManager.STAGE_MENUE);
+		stageManager = new StageManager(StageManager.STAGE_LEVEL);
 		new Thread(new Runnable() {
 			public void run() {
 				long startTime = 0;
@@ -57,7 +57,6 @@ public class GamePanel extends JPanel implements KeyListener {
 
 	public void draw(Graphics2D g2) {
 		stageManager.draw(g2);
-		g2.dispose();
 		Graphics g = this.getGraphics();
 		if (g != null) {
 			g.drawImage(image, 0, 0, WIDTH * 2, HEIGHT * 2, null);
@@ -75,6 +74,7 @@ public class GamePanel extends JPanel implements KeyListener {
 
 	public void keyTyped(KeyEvent e) {
 		stageManager.keyTyped(e);
+		System.out.println(e.getKeyCode());
 	}
 
 }
