@@ -35,10 +35,10 @@ public class StageMenue extends Stage {
 
 	@Override
 	public void draw(Graphics2D g2) {
-		g2.drawImage(background, 0, 0, background.getHeight(), background.getWidth(), null);
+		g2.drawImage(background, 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, null);
 
 		for (int i = 0; i < items; i++) {
-			Rectangle rect = new Rectangle(GamePanel.WIDTH / 2 - 90 / 2, GamePanel.HEIGHT + 20 + i * 50, 90, 46);
+			Rectangle rect = new Rectangle((GamePanel.WIDTH / 2) - (90 / 2), GamePanel.HEIGHT + 20 + i * 50, 90, 46);
 
 			if (i == selectedItem) {
 				g2.drawImage(buttons[i][0], rect.x, rect.y, rect.width, rect.height, null);
