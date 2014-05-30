@@ -17,8 +17,8 @@ public class GamePanel extends JPanel implements KeyListener {
 	private Graphics2D graphics;
 	private StageManager stageManager;
 
-	public final int WIDTH = 400;
-	public final int HEIGHT = 300;
+	public final static int WIDTH = 400;
+	public final static int HEIGHT = 300;
 
 	public static final int FPS_MAX = 60;
 
