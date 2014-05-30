@@ -25,7 +25,9 @@ public class GamePanel extends JPanel implements KeyListener {
 
 	public GamePanel() {
 		requestFocus();
-		setPreferredSize(new Dimension(WIDTH * 2, HEIGHT * 2));
+		setBorder(null);
+		Dimension size = new Dimension(WIDTH * 2, HEIGHT * 2);
+		setPreferredSize(size);
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		graphics = (Graphics2D) image.getGraphics();
 		stageManager = new StageManager(StageManager.STAGE_MENUE);
