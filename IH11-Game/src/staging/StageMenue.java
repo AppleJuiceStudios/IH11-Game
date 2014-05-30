@@ -17,7 +17,8 @@ public class StageMenue extends Stage {
 	private BufferedImage[][] buttons = new BufferedImage[items][2];
 	private BufferedImage background;
 
-	public StageMenue() {
+	public StageMenue(StageManager stageManager) {
+		super(stageManager);
 		try {
 			background = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/MenueBackground.png"));
 			buttons[0][0] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/PlayButtonPressed.png"));
@@ -40,7 +41,6 @@ public class StageMenue extends Stage {
 		for (int i = 0; i < items; i++) {
 			Rectangle rect = new Rectangle((GamePanel.WIDTH / 2) - (90 / 2), (GamePanel.HEIGHT / 2) + (20 + i * 50),
 					90, 46);
-
 			if (i == selectedItem) {
 				g2.drawImage(buttons[i][0], rect.x, rect.y, rect.width, rect.height, null);
 			} else {
@@ -60,27 +60,24 @@ public class StageMenue extends Stage {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		if (e.getKeyChar() == KeyEvent.VK_UP || e.getKeyChar() == KeyEvent.VK_W) {
-			if (selectedItem < items - 1) {
-				selectedItem++;
-			} else {
-				selectedItem = 0;
-			}
+		if (e.getKeyChar() == 'w') {
+			selectedItem = (selectedItem + 1) % items;
 		}
-		if (e.getKeyChar() == KeyEvent.VK_DOWN || e.getKeyChar() == KeyEvent.VK_S) {
-			if (selectedItem < 0) {
+
+		if (e.getKeyChar() == 's') {
+			if (selectedItem > 0) {
 				selectedItem--;
 			} else {
-				selectedItem = items;
+				selectedItem = items - 1;
 			}
 		}
-		if (e.getKeyChar() == KeyEvent.VK_ENTER || e.getKeyChar() == KeyEvent.VK_SPACE) {
+		if (e.getKeyChar() == ' ') {
 			switch (selectedItem) {
 			case 0:
-				//Play
+				getStageManager().setStatge(StageManager.STAGE_LEVEL);
 				break;
 			case 1:
-				//Quit
+				System.out.println("Quit");
 				break;
 			}
 		}

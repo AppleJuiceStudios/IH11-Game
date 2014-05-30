@@ -17,8 +17,7 @@ public class StageManager {
 	public StageManager(int startStage) {
 		setStatge(startStage);
 		try {
-			loadingScreen = ImageIO.read(getClass().getResourceAsStream(
-					"/graphics/loading/DummyLoading.png"));
+			loadingScreen = ImageIO.read(getClass().getResourceAsStream("/graphics/loading/DummyLoading.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -30,7 +29,7 @@ public class StageManager {
 			stage = null;
 		}
 		if (stageID == STAGE_MENUE) {
-			stage = new StageMenue();
+			stage = new StageMenue(this);
 		} else if (stageID == STAGE_LEVEL) {
 			stage = new StageLevel(this);
 		}
