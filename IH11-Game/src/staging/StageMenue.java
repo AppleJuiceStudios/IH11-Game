@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import sound.AudioPlayer;
 import main.GamePanel;
 
 public class StageMenue extends Stage {
@@ -16,9 +17,12 @@ public class StageMenue extends Stage {
 	private int items = 2;
 	private BufferedImage[][] buttons = new BufferedImage[items][2];
 	private BufferedImage background;
+	private AudioPlayer audio;
 
 	public StageMenue(StageManager stageManager) {
 		super(stageManager);
+		audio = new AudioPlayer();
+		audio.play("Example");
 		try {
 			background = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/MenueBackground.png"));
 			buttons[0][0] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/PlayButtonPressed.png"));
@@ -74,6 +78,7 @@ public class StageMenue extends Stage {
 		if (e.getKeyChar() == ' ') {
 			switch (selectedItem) {
 			case 0:
+				audio.stop("Example");
 				getStageManager().setStatge(StageManager.STAGE_LEVEL);
 				break;
 			case 1:

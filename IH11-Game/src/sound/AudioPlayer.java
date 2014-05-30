@@ -18,7 +18,7 @@ public class AudioPlayer {
 	public AudioPlayer() {
 
 		clips = new HashMap<String, Clip>();
-		clips.put("grass", loadClip("/sounds/grass2.wav"));
+		clips.put("Example", loadClip("/sounds/Example.wav"));
 
 	}
 
