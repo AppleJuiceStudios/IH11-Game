@@ -4,7 +4,6 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.SimpleTimeZone;
 
 import javax.imageio.ImageIO;
 
@@ -18,9 +17,9 @@ public class StageManager {
 	public StageManager(int startStage) {
 		setStatge(startStage);
 		try {
-			loadingScreen = ImageIO.read(getClass().getResourceAsStream("/graphics/loading/DummyLoading.png"));
+			loadingScreen = ImageIO.read(getClass().getResourceAsStream(
+					"/graphics/loading/DummyLoading.png"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -32,7 +31,7 @@ public class StageManager {
 		}
 		if (stageID == STAGE_MENUE) {
 			stage = new StageMenue();
-		} else if(stageID == STAGE_LEVEL){
+		} else if (stageID == STAGE_LEVEL) {
 			stage = new StageLevel(this);
 		}
 	}
