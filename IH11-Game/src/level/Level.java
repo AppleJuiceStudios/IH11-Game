@@ -21,7 +21,7 @@ public class Level {
 
 	public Level() {
 		tileSet = new byte[1][1];
-		levelTexture = new LevelTexture("/graphics/level/DummySetGreen.png", "Test");
+		levelTexture = new LevelTexture("/graphics/level/DirtGrassTileSet.png", "Test");
 	}
 
 	public void draw(Graphics2D g2) {
@@ -34,11 +34,11 @@ public class Level {
 			}
 		}
 	}
-
+	
 	public void save(String name) {
 		JAXB.marshal(this, new File(name + ".xml"));
 	}
-
+	
 	public int getWidth() {
 		return tileSet.length;
 	}
