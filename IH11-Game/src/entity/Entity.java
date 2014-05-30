@@ -76,4 +76,13 @@ public abstract class Entity {
 		}
 		xPos += xMoveMent;
 	}
+
+	public double getxPos() {
+		return xPos;
+	}
+
+	public double getyPos() {
+		return yPos;
+	}
+	
 }
