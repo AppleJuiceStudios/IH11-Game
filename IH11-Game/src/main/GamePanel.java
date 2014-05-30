@@ -3,6 +3,7 @@ package main;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Window;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
@@ -21,6 +22,7 @@ public class GamePanel extends JPanel implements KeyListener {
 	public final static int WIDTH = 400;
 	public final static int HEIGHT = 300;
 
+	public static int fps = 0;
 	public static final int FPS_MAX = 60;
 
 	public GamePanel() {
@@ -38,8 +40,21 @@ public class GamePanel extends JPanel implements KeyListener {
 				long startTime = 0;
 				long delay = 0;
 				long waitTime = 1000 / FPS_MAX;
+
+				long lastTime = 0;
+				int frames = 0;
+				long time = 0;
+				long fps = 0;
+
 				while (true) {
-					startTime = System.currentTimeMillis();
+					frames++;
+					time = System.nanoTime();
+					if (time > lastTime) {
+						fps = (time - lastTime) / 100000 * frames;
+						lastTime = time;
+						frames = 0;
+					}
+					System.out.println("FPS: " + fps);
 					draw(graphics);
 					delay = waitTime - (System.currentTimeMillis() - startTime);
 					if (delay > 0) {
@@ -49,7 +64,6 @@ public class GamePanel extends JPanel implements KeyListener {
 							e.printStackTrace();
 						}
 					}
-
 				}
 			}
 		}).start();
