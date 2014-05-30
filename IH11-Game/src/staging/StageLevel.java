@@ -35,7 +35,7 @@ public class StageLevel extends Stage {
 			public void run() {
 				long startTime = 0;
 				long delay = 0;
-				long waitTime = 1000 / 40;
+				long waitTime = 1000 / 60;
 				while (true) {
 					startTime = System.currentTimeMillis();
 					update();

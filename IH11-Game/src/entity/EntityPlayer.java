@@ -22,9 +22,9 @@ public class EntityPlayer extends Entity{
 		this.level = level;
 		xPos = x;
 		yPos = y;
-		speed = 2.5;
-		jumpSpeed = -5;
-		falingSpeed = 0.1;
+		speed = 2.0;
+		jumpSpeed = -6.5;
+		falingSpeed = 0.20;
 		width = 32;
 		height = 32;
 		try {
@@ -35,7 +35,7 @@ public class EntityPlayer extends Entity{
 	}
 	
 	public void update(){
-		if(keyUp & yMoveMent == 0){
+		if(keyUp & onGround){
 			yMoveMent = jumpSpeed;
 		} else {
 			yMoveMent += falingSpeed;
