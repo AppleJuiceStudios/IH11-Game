@@ -47,7 +47,6 @@ public class StageMenue extends Stage {
 				g2.drawImage(buttons[i][1], rect.x, rect.y, rect.width, rect.height, null);
 			}
 		}
-
 	}
 
 	@Override
@@ -71,6 +70,7 @@ public class StageMenue extends Stage {
 				selectedItem = items - 1;
 			}
 		}
+
 		if (e.getKeyChar() == ' ') {
 			switch (selectedItem) {
 			case 0:

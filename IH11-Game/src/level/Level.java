@@ -13,6 +13,9 @@ public class Level {
 	private LevelTexture levelTexture;
 	private int tileSize = 32;
 	
+	private double startPositionX;
+	private double startPositionY;
+	
 	public Level(){
 		tileSet = new byte[1][1];
 		levelTexture = new LevelTexture("/graphics/level/DummySetGreen.png", "Test");
@@ -46,6 +49,22 @@ public class Level {
 
 	public void setTileSet(byte[][] tileSet) {
 		this.tileSet = tileSet;
+	}
+
+	public double getStartPositionX() {
+		return startPositionX;
+	}
+
+	public void setStartPositionX(double startPositionX) {
+		this.startPositionX = startPositionX;
+	}
+
+	public double getStartPositionY() {
+		return startPositionY;
+	}
+
+	public void setStartPositionY(double startPositionY) {
+		this.startPositionY = startPositionY;
 	}
 	
 }
