@@ -76,4 +76,8 @@ public class Level {
 		this.startPositionY = startPositionY;
 	}
 
+	public double getTileSize() {
+		return tileSize;
+	}
+
 }
