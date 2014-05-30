@@ -44,7 +44,7 @@ public class GamePanel extends JPanel implements KeyListener {
 					}
 				}
 			}
-		});
+		}).start();
 	}
 
 	public void draw(Graphics2D g2) {

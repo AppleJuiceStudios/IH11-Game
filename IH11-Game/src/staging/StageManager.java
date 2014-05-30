@@ -13,8 +13,8 @@ public class StageManager {
 	private BufferedImage loadingScreen;
 	public static final int STAGE_MENUE = 1;
 	public static final int STAGE_LEVEL = 2;
-	
-	public StageManager(int startStage){
+
+	public StageManager(int startStage) {
 		setStatge(startStage);
 		try {
 			loadingScreen = ImageIO.read(getClass().getResourceAsStream("/graphics/loading/DummyLoading.png"));
@@ -23,39 +23,39 @@ public class StageManager {
 			e.printStackTrace();
 		}
 	}
-	
-	public void setStatge(int stageID){
-		if(stage != null){
+
+	public void setStatge(int stageID) {
+		if (stage != null) {
 			stage.close();
 			stage = null;
 		}
-		if(stageID == STAGE_MENUE){
-			//stage = new StageMenue();
+		if (stageID == STAGE_MENUE) {
+			stage = new StageMenue();
 		}
 	}
-	
-	public void draw(Graphics2D g2){
-		if(stage != null){
+
+	public void draw(Graphics2D g2) {
+		if (stage != null) {
 			stage.draw(g2);
 		} else {
 			g2.drawImage(loadingScreen, 0, 0, 400, 300, null);
 		}
 	}
-	
+
 	public void keyPressed(KeyEvent e) {
-		if(stage != null){
+		if (stage != null) {
 			stage.keyPressed(e);
 		}
 	}
 
 	public void keyReleased(KeyEvent e) {
-		if(stage != null){
+		if (stage != null) {
 			stage.keyReleased(e);
 		}
 	}
-	
+
 	public void keyTyped(KeyEvent e) {
-		if(stage != null){
+		if (stage != null) {
 			stage.keyTyped(e);
 		}
 	}
