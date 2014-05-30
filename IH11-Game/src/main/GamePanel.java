@@ -47,7 +47,7 @@ public class GamePanel extends JPanel implements KeyListener{
 	
 	public void draw(Graphics2D g2) {
 		stageManager.draw(g2);
-		
+		g2.dispose();
 		Graphics g = this.getGraphics();
 		g.drawImage(image, 0, 0, 800, 600, null);
 		g.dispose();

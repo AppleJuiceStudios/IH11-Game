@@ -1,4 +1,4 @@
-package level.graphics;
+package graphics.level;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -63,7 +63,7 @@ public class LevelTexture {
 		this.name = name;
 	}
 
-	public BufferedImage getTile(int tileNumber) {
+	public BufferedImage getTile(byte tileNumber) {
 		return tileArray[tileNumber];
 	}
 }
