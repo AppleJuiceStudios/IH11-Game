@@ -92,6 +92,7 @@ public class StageMenue extends Stage {
 		}
 
 		if (e.getKeyChar() == ' ') {
+			audio.play("Hit");
 			pressedItem = selectedItem;
 			try {
 				Thread.sleep(200);
