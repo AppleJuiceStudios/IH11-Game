@@ -21,7 +21,9 @@ public class Level {
 	public void draw(Graphics2D g2){
 		for(int x = 0; x < tileSet.length; x++){
 			for(int y = 0; y < tileSet[x].length; y++){
-				g2.drawImage(levelTexture.getTile(tileSet[x][y]), x * tileSize, y * tileSize, tileSize, tileSize, null);
+				if(tileSet[x][y] != LevelTexture.AIR){
+					g2.drawImage(levelTexture.getTile(tileSet[x][y]), x * tileSize, y * tileSize, tileSize, tileSize, null);
+				}
 			}
 		}
 	}

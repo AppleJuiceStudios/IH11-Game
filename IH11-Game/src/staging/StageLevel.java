@@ -11,6 +11,13 @@ public class StageLevel extends Stage{
 	
 	public StageLevel(){
 		level = new Level();
+		level.setTileSet(new byte[][]{
+				new byte[]{},
+				new byte[]{},
+				new byte[]{},
+				new byte[]{},
+				new byte[]{}
+		});
 	}
 
 	public void close() {
@@ -18,7 +25,7 @@ public class StageLevel extends Stage{
 	}
 
 	public void draw(Graphics2D g2) {
-		
+		level.draw(g2);
 	}
 
 	public void keyPressed(KeyEvent e) {
