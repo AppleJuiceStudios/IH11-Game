@@ -21,7 +21,6 @@ public class GamePanel extends JPanel implements KeyListener{
 	public static final int FPS_MAX = 60;
 	
 	public GamePanel(){
-		setBackground(Color.BLACK);
 		requestFocus();
 		
 		image = new BufferedImage(400, 300, BufferedImage.TYPE_INT_RGB);
@@ -35,7 +34,7 @@ public class GamePanel extends JPanel implements KeyListener{
 				while(true){
 					startTime = System.currentTimeMillis();
 					draw(graphics);
-					delay = System.currentTimeMillis() - startTime;
+					delay = waitTime - (System.currentTimeMillis() - startTime);
 					try {
 						Thread.sleep(delay);
 					} catch (InterruptedException e) {
