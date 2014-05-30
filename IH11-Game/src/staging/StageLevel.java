@@ -3,9 +3,11 @@ package staging;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.xml.bind.JAXB;
 
 import level.Level;
 import main.GamePanel;
@@ -17,24 +19,8 @@ public class StageLevel extends Stage {
 
 	public StageLevel(StageManager stageManager) {
 		super(stageManager);
-		level = new Level();
-		level.setTileSet(new byte[][] { 
-				new byte[] { 5, 5, 5, 5, 5, 5, 5, 5, 5, 4 },
-				new byte[] { 9, 9, 9, 9, 9, 9, 9, 9, 9, 1 },
-				new byte[] { 9, 9, 9, 9, 9, 9, 9, 9, 9, 1 },
-				new byte[] { 9, 9, 9, 9, 9, 9, 9, 9, 9, 1 },
-				new byte[] { 9, 9, 9, 9, 9, 9, 9, 9, 9, 1 },
-				new byte[] { 9, 9, 9, 9, 9, 9, 9, 9, 9, 1 },
-				new byte[] { 9, 9, 9, 9, 9, 9, 9, 9, 9, 1 },
-				new byte[] { 9, 9, 9, 9, 9, 9, 9, 9, 9, 1 },
-				new byte[] { 9, 9, 9, 9, 9, 9, 9, 9, 9, 1 },
-				new byte[] { 9, 9, 9, 9, 9, 9, 9, 9, 0, 4 },
-				new byte[] { 9, 9, 9, 9, 9, 9, 9, 0, 4, 4 },
-				new byte[] { 9, 9, 9, 9, 9, 9, 9, 1, 4, 4 },
-				new byte[] { 9, 9, 9, 9, 9, 9, 9, 1, 4, 4 },
-				new byte[] { 9, 9, 9, 9, 9, 9, 9, 1, 4, 4 },
-				new byte[] { 3, 3, 3, 3, 3, 3, 3, 3, 4, 4 }
-		});
+		level = JAXB.unmarshal(new File("ExampleLevel.xml"), Level.class);
+		
 		try {
 			background = ImageIO.read(getClass().getResourceAsStream("/graphics/level/DummyBackgroundPixel.png"));
 		} catch (IOException e) {
