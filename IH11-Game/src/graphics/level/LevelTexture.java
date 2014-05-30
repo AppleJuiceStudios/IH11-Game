@@ -63,7 +63,7 @@ public class LevelTexture {
 		this.name = name;
 	}
 
-	public BufferedImage getTile(int tileNumber) {
+	public BufferedImage getTile(byte tileNumber) {
 		return tileArray[tileNumber];
 	}
 }
