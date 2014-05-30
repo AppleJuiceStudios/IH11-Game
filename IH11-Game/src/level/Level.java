@@ -15,7 +15,7 @@ public class Level {
 	
 	public Level(){
 		tileSet = new byte[1][1];
-		levelTexture = new LevelTexture("/graphics/level/DummySetGreen001.png", "Test");
+		levelTexture = new LevelTexture("/graphics/level/DummySetGreen.png", "Test");
 	}
 	
 	public void draw(Graphics2D g2){

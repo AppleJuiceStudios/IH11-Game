@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.SimpleTimeZone;
 
 import javax.imageio.ImageIO;
 
@@ -31,6 +32,8 @@ public class StageManager {
 		}
 		if (stageID == STAGE_MENUE) {
 			stage = new StageMenue();
+		} else if(stageID == STAGE_LEVEL){
+			stage = new StageLevel(this);
 		}
 	}
 
