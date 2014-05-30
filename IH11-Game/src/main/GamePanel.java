@@ -1,6 +1,5 @@
 package main;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
@@ -11,19 +10,22 @@ import javax.swing.JPanel;
 
 import staging.StageManager;
 
-public class GamePanel extends JPanel implements KeyListener{
+public class GamePanel extends JPanel implements KeyListener {
 	private static final long serialVersionUID = 1L;
-	
+
 	private BufferedImage image;
 	private Graphics2D graphics;
 	private StageManager stageManager;
-	
+
+	public final int WIDTH = 400;
+	public final int HEIGHT = 300;
+
 	public static final int FPS_MAX = 60;
-	
-	public GamePanel(){
+
+	public GamePanel() {
 		requestFocus();
-		
-		image = new BufferedImage(400, 300, BufferedImage.TYPE_INT_RGB);
+
+		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		graphics = (Graphics2D) image.getGraphics();
 		stageManager = new StageManager(StageManager.STAGE_MENUE);
 		new Thread(new Runnable() {
@@ -31,7 +33,7 @@ public class GamePanel extends JPanel implements KeyListener{
 				long startTime = 0;
 				long delay = 0;
 				long waitTime = 1000 / FPS_MAX;
-				while(true){
+				while (true) {
 					startTime = System.currentTimeMillis();
 					draw(graphics);
 					delay = waitTime - (System.currentTimeMillis() - startTime);
@@ -44,12 +46,12 @@ public class GamePanel extends JPanel implements KeyListener{
 			}
 		});
 	}
-	
+
 	public void draw(Graphics2D g2) {
 		stageManager.draw(g2);
-		
+
 		Graphics g = this.getGraphics();
-		g.drawImage(image, 0, 0, 800, 600, null);
+		g.drawImage(image, 0, 0, WIDTH * 2, HEIGHT * 2, null);
 		g.dispose();
 	}
 
@@ -64,5 +66,5 @@ public class GamePanel extends JPanel implements KeyListener{
 	public void keyTyped(KeyEvent e) {
 		keyTyped(e);
 	}
-	
+
 }
