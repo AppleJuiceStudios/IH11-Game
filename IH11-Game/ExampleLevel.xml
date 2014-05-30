@@ -2,14 +2,17 @@
 <level>
     <startPositionX>0.0</startPositionX>
     <startPositionY>0.0</startPositionY>
-    <TileSet>CQkJCQkJCQkJCQkJCQkD</TileSet>
-    <TileSet>CQkJCQkJCQkJCQkJCQkD</TileSet>
-    <TileSet>CQkJCQkJCQkJCQkJCQkD</TileSet>
-    <TileSet>CQADBgkJCQkJCQkJCQkD</TileSet>
-    <TileSet>CQEEBwkJCQkJCQkJCQkD</TileSet>
-    <TileSet>CQIICQkJCQkJCQkJCQkD</TileSet>
-    <TileSet>CQkJCQkJCQkJCQkJCQkD</TileSet>
-    <TileSet>CQkJCQkJCQkJCQABAQED</TileSet>
-    <TileSet>CQkJCQkJCQkJAAQEBAQE</TileSet>
-    <TileSet>CQkJCQkJAQEBBAQEBAQE</TileSet>
+    <TileSet>BQUFBQUFBQQEBA==</TileSet>
+    <TileSet>CQkJCQkJCQIEBA==</TileSet>
+    <TileSet>CQkJCQkJCQkBBA==</TileSet>
+    <TileSet>CQADBgkJCQkBBA==</TileSet>
+    <TileSet>CQEEBwkJCQkBBA==</TileSet>
+    <TileSet>CQIFCAkJCQkBBA==</TileSet>
+    <TileSet>CQkJCQkJCQkBBA==</TileSet>
+    <TileSet>CQkJCQkJCQkBBA==</TileSet>
+    <TileSet>CQkJCQkJCQkBBA==</TileSet>
+    <TileSet>CQkJCQkJCQAEBA==</TileSet>
+    <TileSet>CQkJCQkJAAQEBA==</TileSet>
+    <TileSet>CQkJCQkJAQQEBA==</TileSet>
+    <TileSet>CQkJCQkJAQQEBA==</TileSet>
 </level>
