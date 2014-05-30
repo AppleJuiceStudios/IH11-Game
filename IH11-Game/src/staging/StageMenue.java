@@ -92,17 +92,24 @@ public class StageMenue extends Stage {
 		}
 
 		if (e.getKeyChar() == ' ') {
+			audio.stop("Example");
+			try {
+				Thread.sleep(150);
+			} catch (InterruptedException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
 			audio.play("Hit");
 			pressedItem = selectedItem;
 			try {
-				Thread.sleep(200);
+				Thread.sleep(250);
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}
 			switch (selectedItem) {
 			case 0:
 
-				audio.stop("Example");
+				
 				getStageManager().setStatge(StageManager.STAGE_LEVEL);
 				break;
 			case 1:
