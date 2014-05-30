@@ -24,6 +24,7 @@ public class LevelTexture {
 	public final int SOUTHWEST = 6;
 	public final int SOUTH = 7;
 	public final int SOUTHEAST = 8;
+	public final int AIR = 9;
 
 	public LevelTexture() {
 
