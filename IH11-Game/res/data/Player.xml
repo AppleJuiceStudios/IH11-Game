@@ -13,7 +13,7 @@
     <level>res/data/levels/Level2.xml</level>
     <level>res/data/levels/Level3.xml</level>
     <level>res/data/levels/Level4.xml</level>
-    <level>res/data/levels/Level4.xml</level>
+    <level>res/data/levels/Level6.xml</level>
     <name>Peter</name>
     <tileSet>/graphics/level/tileSets/DirtGrassTileSet.png</tileSet>
     <tileSet>/graphics/level/tileSets/DirtGrassTileSet2.png</tileSet>
