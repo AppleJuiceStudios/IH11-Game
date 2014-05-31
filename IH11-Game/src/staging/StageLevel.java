@@ -85,7 +85,7 @@ public class StageLevel extends Stage {
 		String str = fileArray[(int) (Math.random() * 10) % fileArray.length].getPath();
 		str = str.substring(mainPath.length() + 4);
 		str = str.replace('\\', '/');
-		System.out.println("[StageLevel] Loading Backgrund: " + str);
+		System.out.println("[StageLevel] Loading Backgrund: " + str.substring(str.lastIndexOf("/") + 1));
 		return str;
 	}
 
@@ -96,7 +96,7 @@ public class StageLevel extends Stage {
 		String str = fileArray[(int) (Math.random() * 10) % fileArray.length].getPath();
 		str = str.substring(mainPath.length() + 1);
 		str = str.replace('\\', '/');
-		System.out.println("[StageLevel] Loading Level: " + str);
+		System.out.println("[StageLevel] Loading Level: " + str.substring(str.lastIndexOf("/") + 1));
 		return str;
 	}
 
