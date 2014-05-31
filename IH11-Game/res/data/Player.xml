@@ -8,16 +8,12 @@
     <background>/graphics/level/background/SkyBackgroundPixel.png</background>
     <character>/graphics/entity/TetrisPlayerAnimation.xml</character>
     <character>/graphics/entity/MCPlayerAnimation.xml</character>
-    <coins>0</coins>
+    <coins>20</coins>
     <level>res/data/levels/Level1.xml</level>
     <level>res/data/levels/Level2.xml</level>
     <level>res/data/levels/Level3.xml</level>
     <level>res/data/levels/Level4.xml</level>
-<<<<<<< HEAD
     <level>res/data/levels/Level5.xml</level>
-=======
-    <level>res/data/levels/Level4.xml</level>
->>>>>>> branch 'master' of https://github.com/TobiasBodewig/IH11-Game.git
     <name>Peter</name>
     <tileSet>/graphics/level/tileSets/DirtGrassTileSet.png</tileSet>
     <tileSet>/graphics/level/tileSets/DirtGrassTileSet2.png</tileSet>
