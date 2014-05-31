@@ -12,6 +12,15 @@ import main.GamePanel;
 
 public class EntityPlayer extends Entity{
 
+	//Animation
+	public boolean lookingRight;
+	private int action;
+	public static final int ACTION_IDEL = 0;
+	public static final int ACTION_MOVE = 1;
+	public static final int ACTION_JUMP = 2;
+	public static final int ACTION_FALL = 3;
+	public static final int ACTION_WINN = 4;
+	
 	private BufferedImage image;
 	private boolean keyRight;
 	private boolean keyLeft;
@@ -23,8 +32,8 @@ public class EntityPlayer extends Entity{
 		xPos = x;
 		yPos = y;
 		speed = 2.0;
-		jumpSpeed = -6.5;
-		falingSpeed = 0.20;
+		jumpSpeed = -5.0;
+		falingSpeed = 0.15;
 		width = 32;
 		height = 32;
 		try {
