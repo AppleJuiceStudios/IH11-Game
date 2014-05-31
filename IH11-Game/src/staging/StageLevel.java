@@ -26,8 +26,7 @@ public class StageLevel extends Stage {
 		level = JAXB.unmarshal(new File("ExampleLevel.xml"), Level.class);
 		player = new EntityPlayer(level, level.getStartPositionX(), level.getStartPositionY());
 		try {
-			background = ImageIO.read(getClass().getResourceAsStream(
-					"/graphics/level/DummyBackgroundPixel.png"));
+			background = ImageIO.read(getClass().getResourceAsStream("/graphics/level/DummyBackgroundPixel.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
