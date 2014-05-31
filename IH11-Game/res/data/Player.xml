@@ -4,10 +4,9 @@
     <background>/graphics/level/background/CaribbeanBackgroundPixel.png</background>
     <background>/graphics/level/background/DummyBackgroundPixel.png</background>
     <background>/graphics/level/background/SkyBackgroundPixel.png</background>
-    <background>/graphics/level/background/LandBackgroundPixel.png</background>
     <character>/graphics/entity/TetrisPlayerAnimation.xml</character>
     <character>/graphics/entity/MCPlayerAnimation.xml</character>
-    <coins>185</coins>
+    <coins>220</coins>
     <level>res/data/levels/Level1.xml</level>
     <level>res/data/levels/Level2.xml</level>
     <level>res/data/levels/Level3.xml</level>
