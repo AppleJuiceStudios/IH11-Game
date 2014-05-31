@@ -4,13 +4,14 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import data.PlayerData;
-import sound.AudioPlayer;
 import main.GamePanel;
+import sound.AudioPlayer;
+import data.PlayerData;
 
 public class StageMenue extends Stage {
 
@@ -36,13 +37,13 @@ public class StageMenue extends Stage {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		PlayerData.load("res/data/Player.xml");
+		PlayerData.load();
 	}
 
 	@Override
 	public void close() {
 		audio.close();
-		PlayerData.save("res/data/Player.xml");
+		PlayerData.save();
 	}
 
 	@Override
