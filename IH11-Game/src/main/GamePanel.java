@@ -26,6 +26,7 @@ public class GamePanel extends JPanel implements KeyListener {
 	private int _fps;
 	public static int fps = 0;
 	public static final int FPS_MAX = 60;
+	public static boolean showFps = false;
 
 	public GamePanel() {
 		setBorder(null);
@@ -78,7 +79,9 @@ public class GamePanel extends JPanel implements KeyListener {
 				calcs = 0;
 				_fps = fps;
 			}
-			g2.drawString("FPS: " + _fps, WIDTH - 55, 15);
+			if (showFps) {
+				g2.drawString("FPS: " + _fps, WIDTH - 55, 15);
+			}
 			Graphics g = this.getGraphics();
 			if (g != null) {
 				g.drawImage(image, 0, 0, WIDTH * 2, HEIGHT * 2, null);
@@ -99,7 +102,11 @@ public class GamePanel extends JPanel implements KeyListener {
 	}
 
 	public void keyTyped(KeyEvent e) {
-		stageManager.keyTyped(e);
+		if (e.getKeyChar() == 'f') {
+			showFps = !showFps;
+		} else {
+			stageManager.keyTyped(e);
+		}
 	}
 
 }

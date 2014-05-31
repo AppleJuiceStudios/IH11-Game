@@ -16,6 +16,7 @@ public class StageManager {
 	private BufferedImage loadingScreen;
 	public static final int STAGE_MENUE = 1;
 	public static final int STAGE_LEVEL = 2;
+	public static final int STAGE_SHOP = 4;
 
 	public StageManager(int startStage) {
 		setStatge(startStage);
@@ -36,6 +37,8 @@ public class StageManager {
 			stage = new StageMenue(this);
 		} else if (stageID == STAGE_LEVEL) {
 			stage = new StageLevel(this);
+		} else if (stageID == STAGE_SHOP) {
+			stage = new StageShop(this);
 		}
 	}
 
