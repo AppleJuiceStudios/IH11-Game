@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playerData>
+    <background>/graphics/level/background/BlueBackgroundPixel.png</background>
+    <coins>0</coins>
+    <name>Peter</name>
+</playerData>

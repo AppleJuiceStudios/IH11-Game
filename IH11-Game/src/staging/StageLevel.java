@@ -164,9 +164,7 @@ public class StageLevel extends Stage {
 				audio.play("Orb");
 				items.remove(i);
 				if (collectedItems == itemCount) {
-					audio.play("Win");
-					hasWinn = true;
-					player.setWinn(true);
+					winn();
 				}
 			}
 		}
@@ -222,6 +220,22 @@ public class StageLevel extends Stage {
 
 	public void keyTyped(KeyEvent e) {
 		player.keyTyped(e);
+	}
+	
+	public void winn(){
+		audio.play("Win");
+		hasWinn = true;
+		player.setWinn(true);
+		new Thread(new Runnable() {
+			public void run() {
+				try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				getStageManager().setStatge(StageManager.STAGE_MENUE);
+			}
+		}).start();
 	}
 
 }
