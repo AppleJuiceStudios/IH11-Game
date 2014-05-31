@@ -86,7 +86,6 @@ public class StageMenue extends Stage {
 			try {
 				Thread.sleep(150);
 			} catch (InterruptedException e2) {
-				// TODO Auto-generated catch block
 				e2.printStackTrace();
 			}
 			audio.play("Hit");
