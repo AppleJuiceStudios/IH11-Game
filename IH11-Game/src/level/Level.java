@@ -21,7 +21,17 @@ public class Level {
 
 	public Level() {
 		tileSet = new byte[1][1];
-		levelTexture = new LevelTexture("/graphics/level/DirtGrassTileSet.png", "Test");
+		levelTexture = new LevelTexture(chooseTileSet(), "TileSet");
+	}
+
+	private String chooseTileSet() {
+		String mainPath = new File("").getAbsolutePath();
+		File file = new File(mainPath + "/bin/graphics/level/tileSets/");
+		File[] fileArray = file.listFiles();
+		String str = fileArray[(int) (Math.random() * 10) % fileArray.length].getPath();
+		str = str.substring(mainPath.length() + 4);
+		str = str.replace('\\', '/');
+		return str;
 	}
 
 	public void draw(Graphics2D g2) {
@@ -34,11 +44,11 @@ public class Level {
 			}
 		}
 	}
-	
+
 	public void save(String name) {
 		JAXB.marshal(this, new File(name + ".xml"));
 	}
-	
+
 	public int getWidth() {
 		return tileSet.length;
 	}
@@ -48,12 +58,12 @@ public class Level {
 	}
 
 	public byte getTileID(int x, int y) {
-		try{
+		try {
 			return tileSet[x][y];
-		} catch (IndexOutOfBoundsException e){
+		} catch (IndexOutOfBoundsException e) {
 			return LevelTexture.AIR;
 		}
-		
+
 	}
 
 	@XmlElement(name = "TileSet")

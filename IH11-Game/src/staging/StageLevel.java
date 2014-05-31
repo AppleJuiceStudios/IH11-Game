@@ -52,8 +52,7 @@ public class StageLevel extends Stage {
 			yMovement = maxYMovement;
 		}
 		try {
-			background = ImageIO.read(getClass().getResourceAsStream(
-					"/graphics/level/DummyBackgroundPixel.png"));
+			background = ImageIO.read(getClass().getResourceAsStream("/graphics/level/DummyBackgroundPixel.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
