@@ -51,7 +51,7 @@ public class StageLevel extends Stage {
 			yMovement = maxYMovement;
 		}
 		try {
-			background = ImageIO.read(getClass().getResourceAsStream("/graphics/level/DummyBackgroundPixel.png"));
+			background = ImageIO.read(getClass().getResourceAsStream(chooseBackGround()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -78,6 +78,17 @@ public class StageLevel extends Stage {
 		updateThread.start();
 	}
 
+	private String chooseBackGround() {
+		String mainPath = new File("").getAbsolutePath();
+		File file = new File(mainPath + "/bin/graphics/level/background/");
+		File[] fileArray = file.listFiles();
+		String str = fileArray[(int) (Math.random() * 10) % fileArray.length].getPath();
+		str = str.substring(mainPath.length() + 4);
+		str = str.replace('\\', '/');
+		System.out.println("[StageLevel] Loading Backgrund: " + str);
+		return str;
+	}
+
 	private String chooseLevel() {
 		String mainPath = new File("").getAbsolutePath();
 		File file = new File(mainPath + "/bin/data/levels/");
@@ -85,6 +96,7 @@ public class StageLevel extends Stage {
 		String str = fileArray[(int) (Math.random() * 10) % fileArray.length].getPath();
 		str = str.substring(mainPath.length() + 1);
 		str = str.replace('\\', '/');
+		System.out.println("[StageLevel] Loading Level: " + str);
 		return str;
 	}
 

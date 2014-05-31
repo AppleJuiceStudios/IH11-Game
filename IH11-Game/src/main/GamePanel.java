@@ -54,7 +54,7 @@ public class GamePanel extends JPanel implements KeyListener {
 						lastTime = time;
 						frames = 0;
 					}
-					System.out.println("FPS: " + fps);
+					//					System.out.println("FPS: " + fps);
 					draw(graphics);
 					delay = waitTime - (System.currentTimeMillis() - startTime);
 					if (delay > 0) {

@@ -31,6 +31,7 @@ public class Level {
 		String str = fileArray[(int) (Math.random() * 10) % fileArray.length].getPath();
 		str = str.substring(mainPath.length() + 4);
 		str = str.replace('\\', '/');
+		System.out.println("[Level] Loading TileSet: " + str);
 		return str;
 	}
 
