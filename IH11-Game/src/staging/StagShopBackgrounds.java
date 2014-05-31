@@ -68,7 +68,9 @@ public class StagShopBackgrounds extends Stage {
 
 	private void addBackground(String path) {
 		try {
-			backgrounds.add(new Background(ImageIO.read(getClass().getResourceAsStream(path)), PlayerData.playerData.getBackground().contains(path), path));
+			backgrounds.add(new Background(ImageIO.read(getClass()
+					.getResourceAsStream(path)), PlayerData.playerData
+					.getBackground().contains(path), path));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -154,16 +156,17 @@ public class StagShopBackgrounds extends Stage {
 			if (selectedButton < 0) {
 				selectedButton = 2;
 			}
-		} if (e.getKeyChar() == ' '){
-			if(selectedButton == 0){
+		}
+		if (e.getKeyChar() == ' ') {
+			if (selectedButton == 0) {
 				getStageManager().setStatge(StageManager.STAGE_LEVEL);
-			} else if(selectedButton == 1){
-				getStageManager().setStatge(StageManager.STAGE_MENUE);
+			} else if (selectedButton == 1) {
+				getStageManager().setStatge(StageManager.STAGE_SHOP);
 			} else {
 				Background bg = backgrounds.get(selectedBackground);
-				if(!bg.isOwend()){
+				if (!bg.isOwend()) {
 					int coins = PlayerData.playerData.getCoins();
-					if(coins >= 75){
+					if (coins >= 75) {
 						coins -= 75;
 						PlayerData.playerData.setCoins(coins);
 						PlayerData.playerData.getBackground().add(bg.getPath());
@@ -191,8 +194,8 @@ public class StagShopBackgrounds extends Stage {
 		public boolean isOwend() {
 			return owend;
 		}
-		
-		public String getPath(){
+
+		public String getPath() {
 			return path;
 		}
 
