@@ -4,7 +4,6 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +11,12 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.xml.bind.JAXB;
 
-import data.PlayerData;
-import sound.AudioPlayer;
 import level.Item;
 import level.Level;
 import level.graphics.LevelTexture;
 import main.GamePanel;
+import sound.AudioPlayer;
+import data.PlayerData;
 import entity.EntityPlayer;
 
 public class StageLevel extends Stage {
@@ -48,7 +47,7 @@ public class StageLevel extends Stage {
 	public StageLevel(StageManager stageManager) {
 		super(stageManager);
 		audio = new AudioPlayer();
-		level = JAXB.unmarshal(getClass().getResourceAsStream("/data/levels/Level1.xml"), Level.class);
+		level = JAXB.unmarshal(getClass().getResourceAsStream(chooseLevel()), Level.class);
 		player = new EntityPlayer(level, level.getStartPositionX(), level.getStartPositionY());
 		initItems(itemCount);
 		startTime = System.currentTimeMillis();
