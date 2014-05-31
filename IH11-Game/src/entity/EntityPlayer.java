@@ -28,6 +28,7 @@ public class EntityPlayer extends Entity {
 	private boolean keyLeft;
 	private boolean keyUp;
 	private boolean keyDown;
+	private boolean hasWinn;
 
 	public EntityPlayer(Level level, double x, double y) {
 		lookingRight = true;
@@ -68,7 +69,7 @@ public class EntityPlayer extends Entity {
 		} else if (yMoveMent > 0) {
 			action = ACTION_FALL;
 		}
-		if (keyDown) {
+		if (hasWinn) {
 			action = ACTION_WINN;
 		}
 	}
@@ -109,6 +110,10 @@ public class EntityPlayer extends Entity {
 
 	public void keyTyped(KeyEvent e) {
 
+	}
+	
+	public void setWinn(boolean hasWinn){
+		this.hasWinn = hasWinn;
 	}
 
 }

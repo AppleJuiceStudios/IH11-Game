@@ -30,11 +30,12 @@ public class StageLevel extends Stage {
 	private Level level;
 	private BufferedImage background;
 	private BufferedImage clock;
-	private BufferedImage coin;
 	private Thread updateThread;
 	private List<Item> items;
 	private BufferedImage itemImage;
 	private int collectedItems;
+	private int itemCount = 20;
+	private boolean hasWinn;
 
 	private EntityPlayer player;
 
@@ -42,6 +43,7 @@ public class StageLevel extends Stage {
 		super(stageManager);
 		level = JAXB.unmarshal(new File(chooseLevel()), Level.class);
 		player = new EntityPlayer(level, level.getStartPositionX(), level.getStartPositionY());
+		initItems(itemCount);
 		//Movement
 		maxXMovement = level.getWidth() * level.getTileSize() - GamePanel.WIDTH;
 		maxYMovement = level.getHeight() * level.getTileSize() - GamePanel.HEIGHT;
@@ -59,6 +61,7 @@ public class StageLevel extends Stage {
 		}
 		try {
 			background = ImageIO.read(getClass().getResourceAsStream(chooseBackGround()));
+			clock = ImageIO.read(getClass().getResourceAsStream("/graphics/entity/Clock.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -161,6 +164,10 @@ public class StageLevel extends Stage {
 			if (items.get(i).canCollectCoin(player)) {
 				collectedItems++;
 				items.remove(i);
+				if(collectedItems == itemCount){
+					hasWinn = true;
+					player.setWinn(true);
+				}
 			}
 		}
 	}
@@ -185,9 +192,9 @@ public class StageLevel extends Stage {
 		player.draw(g2);
 		g2.setTransform(new AffineTransform());
 
-		g2.drawImage(coin, 5, 5, clock.getWidth(), clock.getHeight(), null);
-		g2.drawString("00/00", coin.getWidth() + 10, coin.getHeight() / 2 + 10);
-		g2.drawImage(clock, 5, coin.getHeight() + 10, clock.getWidth(), clock.getHeight(), null);
+		g2.drawImage(itemImage, 5, 5, clock.getWidth(), clock.getHeight(), null);
+		g2.drawString(collectedItems + " / " + itemCount, itemImage.getWidth() + 10, itemImage.getHeight() / 2 + 10);
+		g2.drawImage(clock, 5, itemImage.getHeight() + 10, clock.getWidth(), clock.getHeight(), null);
 		g2.drawString("00:00", clock.getWidth() + 10, clock.getHeight() / 2 + clock.getHeight() + 15);
 	}
 
