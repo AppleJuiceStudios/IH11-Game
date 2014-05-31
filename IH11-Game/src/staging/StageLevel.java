@@ -86,7 +86,6 @@ public class StageLevel extends Stage {
 						}
 					}
 				}
-				System.out.println("Close");
 			}
 		});
 		updateThread.start();

@@ -2,6 +2,7 @@
 <playerData>
     <background>/graphics/level/background/BlueBackgroundPixel.png</background>
     <character>/graphics/entity/TetrisPlayerAnimation.xml</character>
+    <character>/graphics/entity/MCPlayerAnimation.xml</character>
     <coins>0</coins>
     <level>res/data/levels/Level1.xml</level>
     <name>Peter</name>
