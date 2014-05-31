@@ -12,6 +12,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.xml.bind.JAXB;
 
+import data.PlayerData;
 import sound.AudioPlayer;
 import level.Item;
 import level.Level;
@@ -112,14 +113,8 @@ public class StageLevel extends Stage {
 	}
 
 	private String chooseBackGround() {
-		String mainPath = new File("").getAbsolutePath();
-		File file = new File(mainPath + "/bin/graphics/level/background/");
-		File[] fileArray = file.listFiles();
-		String str = fileArray[(int) (Math.random() * 10) % fileArray.length].getPath();
-		str = str.substring(mainPath.length() + 4);
-		str = str.replace('\\', '/');
-		System.out.println("[StageLevel] Loading Backgrund: " + str.substring(str.lastIndexOf("/") + 1));
-		return str;
+		List<String> background = PlayerData.playerData.getBackground();
+		return background.get((int) (Math.random() * background.size()));
 	}
 
 	private String chooseLevel() {
