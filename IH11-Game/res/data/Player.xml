@@ -3,8 +3,6 @@
     <background>/graphics/level/background/BlueBackgroundPixel.png</background>
     <background>/graphics/level/background/CaribbeanBackgroundPixel.png</background>
     <background>/graphics/level/background/DummyBackgroundPixel.png</background>
-    <background>/graphics/level/background/LandBackgroundPixel.png</background>
-    <background>/graphics/level/background/RainbowBackgroundPixel.png</background>
     <background>/graphics/level/background/SkyBackgroundPixel.png</background>
     <character>/graphics/entity/TetrisPlayerAnimation.xml</character>
     <character>/graphics/entity/MCPlayerAnimation.xml</character>
