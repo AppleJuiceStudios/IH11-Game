@@ -48,7 +48,7 @@ public class StageLevel extends Stage {
 	public StageLevel(StageManager stageManager) {
 		super(stageManager);
 		audio = new AudioPlayer();
-		level = JAXB.unmarshal(new File(chooseLevel()), Level.class);
+		level = JAXB.unmarshal(getClass().getResourceAsStream(chooseLevel()), Level.class);
 		player = new EntityPlayer(level, level.getStartPositionX(),
 				level.getStartPositionY());
 		initItems(itemCount);
@@ -255,7 +255,7 @@ public class StageLevel extends Stage {
 			}
 		}).start();
 		PlayerData.playerData.setCoins(PlayerData.playerData.getCoins() + 20);
-		PlayerData.playerData.save("res/data/Player.xml");
+		PlayerData.playerData.save();
 	}
 
 }

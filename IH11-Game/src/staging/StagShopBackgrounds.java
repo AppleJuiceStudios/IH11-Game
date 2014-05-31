@@ -32,7 +32,7 @@ public class StagShopBackgrounds extends Stage {
 
 	public StagShopBackgrounds(StageManager stageManager) {
 		super(stageManager);
-		PlayerData.load("res/data/Player.xml");
+		PlayerData.load();
 		backgrounds = new ArrayList<>();
 		buttons = new BufferedImage[2][2];
 		addBackground("/graphics/level/background/BlueBackgroundPixel.png");

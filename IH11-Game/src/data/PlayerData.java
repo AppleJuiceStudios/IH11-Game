@@ -26,12 +26,12 @@ public class PlayerData {
 		PlayerData.playerData = playerData;
 	}
 
-	public static void load(String path) {
-		playerData = JAXB.unmarshal(new File(path), PlayerData.class);
+	public static void load() {
+		playerData = JAXB.unmarshal(new File("./Player.xml"), PlayerData.class);
 	}
 
-	public static void save(String path) {
-		JAXB.marshal(playerData, new File(path));
+	public static void save() {
+		JAXB.marshal(playerData, new File("./Player.xml"));
 	}
 
 	public int getCoins() {

@@ -5,7 +5,7 @@ import data.PlayerData;
 public class LevelEditor {
 
 	public static void main(String[] args) {
-		PlayerData.load("res/data/Player.xml");
+		PlayerData.load();
 		Level level = new Level();
 
 		byte[][] byteArr = new byte[][] {
