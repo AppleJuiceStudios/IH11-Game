@@ -118,14 +118,8 @@ public class StageLevel extends Stage {
 	}
 
 	private String chooseLevel() {
-		String mainPath = new File("").getAbsolutePath();
-		File file = new File(mainPath + "/bin/data/levels/");
-		File[] fileArray = file.listFiles();
-		String str = fileArray[(int) (Math.random() * 10) % fileArray.length].getPath();
-		str = str.substring(mainPath.length() + 1);
-		str = str.replace('\\', '/');
-		System.out.println("[StageLevel] Loading Level: " + str.substring(str.lastIndexOf("/") + 1));
-		return str;
+		List<String> level = PlayerData.playerData.getLevel();
+		return level.get((int) (Math.random() * level.size()));
 	}
 
 	private BufferedImage getItemImage() {
@@ -135,7 +129,6 @@ public class StageLevel extends Stage {
 		String str = fileArray[(int) (Math.random() * 10) % fileArray.length].getPath();
 		str = str.substring(mainPath.length() + 4);
 		str = str.replace('\\', '/');
-		System.out.println("[StageLevel] Loading Backgrund: " + str.substring(str.lastIndexOf("/") + 1));
 		try {
 			return ImageIO.read(getClass().getResourceAsStream(str));
 		} catch (IOException e) {

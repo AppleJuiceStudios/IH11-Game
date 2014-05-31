@@ -2,11 +2,13 @@ package level;
 
 import java.awt.Graphics2D;
 import java.io.File;
+import java.util.List;
 
 import javax.xml.bind.JAXB;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import data.PlayerData;
 import level.graphics.LevelTexture;
 
 @XmlRootElement
@@ -25,14 +27,8 @@ public class Level {
 	}
 
 	private String chooseTileSet() {
-		String mainPath = new File("").getAbsolutePath();
-		File file = new File(mainPath + "/bin/graphics/level/tileSets/");
-		File[] fileArray = file.listFiles();
-		String str = fileArray[(int) (Math.random() * 10) % fileArray.length].getPath();
-		str = str.substring(mainPath.length() + 4);
-		str = str.replace('\\', '/');
-		System.out.println("[Level] Loading TileSet: " + str.substring(str.lastIndexOf("/") + 1));
-		return str;
+		List<String> tileSet = PlayerData.playerData.getTileSet();
+		return tileSet.get((int) (Math.random() * tileSet.size()));
 	}
 
 	public void draw(Graphics2D g2) {
