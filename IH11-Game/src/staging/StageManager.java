@@ -28,8 +28,9 @@ public class StageManager {
 
 	public void setStatge(int stageID) {
 		if (stage != null) {
-			stage.close();
+			Stage s = stage;
 			stage = null;
+			s.close();
 		}
 		if (stageID == STAGE_MENUE) {
 			stage = new StageMenue(this);
