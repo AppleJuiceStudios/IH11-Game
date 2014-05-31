@@ -57,10 +57,10 @@ public class StageShop extends Stage {
 
 			recs[0] = new Rectangle(20, GamePanel.HEIGHT - 50, buttons[0][0].getWidth(), buttons[0][0].getHeight());
 			recs[1] = new Rectangle(220, GamePanel.HEIGHT - 50, buttons[0][0].getWidth(), buttons[0][0].getHeight());
-			recs[2] = new Rectangle((GamePanel.WIDTH / 4) - (buttons[2][0].getWidth() / 2), GamePanel.HEIGHT - 100, buttons[2][0].getWidth(), buttons[2][0].getHeight());
-			recs[3] = new Rectangle((GamePanel.WIDTH / 2) + (buttons[2][0].getWidth() / 2), GamePanel.HEIGHT - 100, buttons[2][0].getWidth(), buttons[2][0].getHeight());
-			recs[4] = new Rectangle((GamePanel.WIDTH / 4) - (buttons[2][0].getWidth() / 2), GamePanel.HEIGHT - 200, buttons[2][0].getWidth(), buttons[2][0].getHeight());
-			recs[5] = new Rectangle((GamePanel.WIDTH / 2) + (buttons[2][0].getWidth() / 2), GamePanel.HEIGHT - 200, buttons[2][0].getWidth(), buttons[2][0].getHeight());
+			recs[2] = new Rectangle(20, GamePanel.HEIGHT - 150, 164, buttons[2][0].getHeight() + 25);
+			recs[3] = new Rectangle(220, GamePanel.HEIGHT - 150, 164, buttons[2][0].getHeight() + 25);
+			recs[4] = new Rectangle(20, GamePanel.HEIGHT - 240, 164, buttons[2][0].getHeight() + 25);
+			recs[5] = new Rectangle(220, GamePanel.HEIGHT - 240, 164, buttons[2][0].getHeight() + 25);
 
 		} catch (IOException e) {
 			e.printStackTrace();
