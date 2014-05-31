@@ -27,6 +27,8 @@ public class StageLevel extends Stage {
 
 	private Level level;
 	private BufferedImage background;
+	private BufferedImage clock;
+	private BufferedImage coin;
 	private Thread updateThread;
 
 	private EntityPlayer player;
@@ -35,6 +37,12 @@ public class StageLevel extends Stage {
 		super(stageManager);
 		level = JAXB.unmarshal(new File(chooseLevel()), Level.class);
 		player = new EntityPlayer(level, level.getStartPositionX(), level.getStartPositionY());
+		try {
+			clock = ImageIO.read(getClass().getResourceAsStream("/graphics/entity/Clock.png"));
+			coin = ImageIO.read(getClass().getResourceAsStream("/graphics/entity/coin/coin.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 		//Movement
 		maxXMovement = level.getWidth() * level.getTileSize() - GamePanel.WIDTH;
 		maxYMovement = level.getHeight() * level.getTileSize() - GamePanel.HEIGHT;
@@ -148,6 +156,11 @@ public class StageLevel extends Stage {
 		level.draw(g2);
 		player.draw(g2);
 		g2.setTransform(new AffineTransform());
+
+		g2.drawImage(coin, 5, 5, clock.getWidth(), clock.getHeight(), null);
+		g2.drawString("00/00", coin.getWidth() + 10, coin.getHeight() / 2 + 10);
+		g2.drawImage(clock, 5, coin.getHeight() + 10, clock.getWidth(), clock.getHeight(), null);
+		g2.drawString("00:00", clock.getWidth() + 10, clock.getHeight() / 2 + clock.getHeight() + 15);
 	}
 
 	public void keyPressed(KeyEvent e) {
