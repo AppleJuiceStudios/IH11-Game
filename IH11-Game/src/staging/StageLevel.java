@@ -3,7 +3,6 @@ package staging;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
-import java.awt.font.TransformAttribute;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -12,9 +11,9 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.xml.bind.JAXB;
 
-import entity.EntityPlayer;
 import level.Level;
 import main.GamePanel;
+import entity.EntityPlayer;
 
 public class StageLevel extends Stage {
 
@@ -25,7 +24,7 @@ public class StageLevel extends Stage {
 	private double maxYMovement;
 	private double xMovement;
 	private double yMovement;
-	
+
 	private Level level;
 	private BufferedImage background;
 	private Thread updateThread;
@@ -34,21 +33,21 @@ public class StageLevel extends Stage {
 
 	public StageLevel(StageManager stageManager) {
 		super(stageManager);
-		level = JAXB.unmarshal(new File("ExampleLevel.xml"), Level.class);
+		level = JAXB.unmarshal(new File(chooseLevel()), Level.class);
 		player = new EntityPlayer(level, level.getStartPositionX(), level.getStartPositionY());
 		//Movement
 		maxXMovement = level.getWidth() * level.getTileSize() - GamePanel.WIDTH;
 		maxYMovement = level.getHeight() * level.getTileSize() - GamePanel.HEIGHT;
 		xMovement = player.getxPos() - (GamePanel.WIDTH / 2);
 		yMovement = player.getxPos() - (GamePanel.HEIGHT / 2);
-		if(xMovement < 0){
+		if (xMovement < 0) {
 			xMovement = 0;
-		} else if(xMovement > maxXMovement){
+		} else if (xMovement > maxXMovement) {
 			xMovement = maxXMovement;
 		}
-		if(yMovement < 0){
+		if (yMovement < 0) {
 			yMovement = 0;
-		} else if(yMovement > maxYMovement){
+		} else if (yMovement > maxYMovement) {
 			yMovement = maxYMovement;
 		}
 		try {
@@ -79,18 +78,28 @@ public class StageLevel extends Stage {
 		updateThread.start();
 	}
 
+	private String chooseLevel() {
+		String mainPath = new File("").getAbsolutePath();
+		File file = new File(mainPath + "/bin/data/levels/");
+		File[] fileArray = file.listFiles();
+		String str = fileArray[(int) (Math.random() * 10) % fileArray.length].getPath();
+		str = str.substring(mainPath.length() + 1);
+		str = str.replace('\\', '/');
+		return str;
+	}
+
 	public void update() {
 		player.update();
 		xMovement += (player.getxPos() - (GamePanel.WIDTH / 2) - xMovement) * movementSpeed;
 		yMovement += (player.getyPos() - (GamePanel.HEIGHT / 3) - yMovement) * movementSpeed;
-		if(xMovement < 0){
+		if (xMovement < 0) {
 			xMovement = 0;
-		} else if(xMovement > maxXMovement){
+		} else if (xMovement > maxXMovement) {
 			xMovement = maxXMovement;
 		}
-		if(yMovement < 0){
+		if (yMovement < 0) {
 			yMovement = 0;
-		} else if(yMovement > maxYMovement){
+		} else if (yMovement > maxYMovement) {
 			yMovement = maxYMovement;
 		}
 	}

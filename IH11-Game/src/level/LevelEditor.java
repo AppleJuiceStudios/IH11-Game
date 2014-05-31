@@ -24,6 +24,8 @@ public class LevelEditor {
 			}
 		}
 		level.setTileSet(byteArrNew);
-		level.save("ExampleLevel");
+		level.setStartPositionX(32.0);
+		level.setStartPositionY(32.0);
+		level.save("res/data/levels/Level1");
 	}
 }
