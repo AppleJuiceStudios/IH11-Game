@@ -6,6 +6,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -13,6 +14,7 @@ import javax.xml.bind.JAXB;
 
 import level.Item;
 import level.Level;
+import level.graphics.LevelTexture;
 import main.GamePanel;
 import entity.EntityPlayer;
 
@@ -29,6 +31,8 @@ public class StageLevel extends Stage {
 	private BufferedImage background;
 	private Thread updateThread;
 	private List<Item> items;
+	private BufferedImage itemImage;
+	private int collectedItems;
 
 	private EntityPlayer player;
 
@@ -36,7 +40,7 @@ public class StageLevel extends Stage {
 		super(stageManager);
 		level = JAXB.unmarshal(new File(chooseLevel()), Level.class);
 		player = new EntityPlayer(level, level.getStartPositionX(), level.getStartPositionY());
-		initItems();
+		initItems(20);
 		//Movement
 		maxXMovement = level.getWidth() * level.getTileSize() - GamePanel.WIDTH;
 		maxYMovement = level.getHeight() * level.getTileSize() - GamePanel.HEIGHT;
@@ -81,7 +85,23 @@ public class StageLevel extends Stage {
 	}
 	
 	private void initItems(int count){
-		
+		items = new ArrayList<>();
+		BufferedImage image = getItemImage();
+		itemImage = image;
+		for(int i = 0; i < count; i++){
+			int xPos = (int) ((Math.random() * (level.getWidth() - 4)) + 2);
+			List<Integer> posibalYpos = new ArrayList<>();
+			boolean wasLastAir = false;
+			for(int j = 0; j < level.getHeight(); j++){
+				boolean isAir = level.getTileID(xPos, j) == LevelTexture.AIR;
+				if(wasLastAir && !isAir){
+					posibalYpos.add(j - 1);
+				}
+				wasLastAir = isAir;
+			}
+			int yPos = posibalYpos.get((int) (Math.random() * posibalYpos.size()));
+			items.add(new Item(image, xPos, yPos));
+		}
 	}
 
 	private String chooseBackGround() {
@@ -106,7 +126,7 @@ public class StageLevel extends Stage {
 		return str;
 	}
 
-	private BufferedImage getCoin() {
+	private BufferedImage getItemImage() {
 		String mainPath = new File("").getAbsolutePath();
 		File file = new File(mainPath + "/bin/graphics/entity/coin/");
 		File[] fileArray = file.listFiles();
@@ -136,6 +156,12 @@ public class StageLevel extends Stage {
 		} else if (yMovement > maxYMovement) {
 			yMovement = maxYMovement;
 		}
+		for(int i = 0; i < items.size(); i++){
+			if(items.get(i).canCollectCoin(player)){
+				collectedItems++;
+				items.remove(i);
+			}
+		}
 	}
 
 	public void close() {
@@ -152,6 +178,9 @@ public class StageLevel extends Stage {
 		tx.translate(-xMovement, -yMovement);
 		g2.setTransform(tx);
 		level.draw(g2);
+		for(int i = 0; i < items.size(); i++){
+			items.get(i).draw(g2);
+		}
 		player.draw(g2);
 		g2.setTransform(new AffineTransform());
 	}
