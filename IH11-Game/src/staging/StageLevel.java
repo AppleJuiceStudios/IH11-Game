@@ -1,16 +1,17 @@
 package staging;
 
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.xml.bind.JAXB;
 
+import level.Item;
 import level.Level;
 import main.GamePanel;
 import entity.EntityPlayer;
@@ -19,7 +20,6 @@ public class StageLevel extends Stage {
 
 	//Movement
 	private double movementSpeed = 0.7;
-	private Rectangle movementArea;
 	private double maxXMovement;
 	private double maxYMovement;
 	private double xMovement;
@@ -28,6 +28,7 @@ public class StageLevel extends Stage {
 	private Level level;
 	private BufferedImage background;
 	private Thread updateThread;
+	private List<Item> items;
 
 	private EntityPlayer player;
 
@@ -35,6 +36,7 @@ public class StageLevel extends Stage {
 		super(stageManager);
 		level = JAXB.unmarshal(new File(chooseLevel()), Level.class);
 		player = new EntityPlayer(level, level.getStartPositionX(), level.getStartPositionY());
+		initItems();
 		//Movement
 		maxXMovement = level.getWidth() * level.getTileSize() - GamePanel.WIDTH;
 		maxYMovement = level.getHeight() * level.getTileSize() - GamePanel.HEIGHT;
@@ -76,6 +78,10 @@ public class StageLevel extends Stage {
 			}
 		});
 		updateThread.start();
+	}
+	
+	private void initItems(int count){
+		
 	}
 
 	private String chooseBackGround() {
