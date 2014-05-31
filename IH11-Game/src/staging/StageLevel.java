@@ -169,6 +169,7 @@ public class StageLevel extends Stage {
 				audio.play("Orb");
 				items.remove(i);
 				if (collectedItems == itemCount) {
+					audio.play("Win");
 					hasWinn = true;
 					player.setWinn(true);
 				}

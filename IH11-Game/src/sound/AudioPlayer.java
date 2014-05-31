@@ -20,6 +20,8 @@ public class AudioPlayer {
 		clips.put("Example", loadClip("/sounds/Example.wav"));
 		clips.put("Hit", loadClip("/sounds/Hit.wav"));
 		clips.put("Orb", loadClip("/sounds/orb.wav"));
+		clips.put("Jump", loadClip("/sounds/Jump.wav"));
+		clips.put("Win", loadClip("/sounds/AirHorn.wav"));
 
 	}
 
