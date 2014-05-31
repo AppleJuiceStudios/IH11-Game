@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.xml.bind.JAXB;
 
 import level.Level;
 import main.GamePanel;
@@ -13,21 +14,22 @@ import main.GamePanel;
 public class EntityPlayer extends Entity{
 
 	//Animation
+	private AnimationPlayer animation;
 	public boolean lookingRight;
 	private int action;
-	public static final int ACTION_IDEL = 0;
+	public static final int ACTION_IDLE = 0;
 	public static final int ACTION_MOVE = 1;
 	public static final int ACTION_JUMP = 2;
 	public static final int ACTION_FALL = 3;
 	public static final int ACTION_WINN = 4;
 	
-	private BufferedImage image;
 	private boolean keyRight;
 	private boolean keyLeft;
 	private boolean keyUp;
 	private boolean keyDown;
 	
 	public EntityPlayer(Level level, double x, double y){
+		lookingRight = true;
 		this.level = level;
 		xPos = x;
 		yPos = y;
@@ -36,11 +38,8 @@ public class EntityPlayer extends Entity{
 		falingSpeed = 0.15;
 		width = 32;
 		height = 32;
-		try {
-			image = ImageIO.read(getClass().getResourceAsStream("/graphics/entity/TetrisPlayer.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		animation = JAXB.unmarshal(getClass().getResourceAsStream("/graphics/entity/PlayerAnimation.xml"), AnimationPlayer.class);
+		animation.load();
 	}
 	
 	public void update(){
@@ -51,16 +50,35 @@ public class EntityPlayer extends Entity{
 		}
 		if(keyRight){
 			xMoveMent = speed;
+			lookingRight = true;
+			action = ACTION_MOVE;
 		} else if(keyLeft){
 			xMoveMent = -speed;
+			lookingRight = false;
+			action = ACTION_MOVE;
 		} else {
 			xMoveMent = 0;
+			action = ACTION_IDLE;
 		}
 		tryMove();
+		if(yMoveMent < 0){
+			action = ACTION_JUMP;
+		} else if(yMoveMent > 0){
+			action = ACTION_FALL;
+		}
+		if(keyDown){
+			action = ACTION_WINN;
+		}
 	}
 	
 	public void draw(Graphics2D g2) {
-		g2.drawImage(image, (int) xPos, (int) yPos, width, height, null);
+		BufferedImage image = animation.getImage(action);
+		if(lookingRight){
+			g2.drawImage(image, (int) xPos, (int) yPos, width, height, null);
+		} else {
+			g2.drawImage(image, (int) xPos + width, (int) yPos, -width, height, null);
+		}
+		
 	}
 
 	public void keyPressed(KeyEvent e) {

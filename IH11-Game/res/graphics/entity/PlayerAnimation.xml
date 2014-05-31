@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<animationPlayer>
+	<path>/graphics/entity/TetrisPlayerSprite.png</path>
+	<delay>250</delay>
+	<delay>50</delay>
+	<delay>70</delay>
+	<delay>100</delay>
+	<delay>150</delay>
+	<length>5</length>
+	<length>4</length>
+	<length>4</length>
+	<length>5</length>
+	<length>5</length>
+</animationPlayer>
