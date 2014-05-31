@@ -22,6 +22,8 @@ public class GamePanel extends JPanel implements KeyListener {
 	public final static int WIDTH = 400;
 	public final static int HEIGHT = 300;
 
+	private int calcs = 0;
+	private int _fps;
 	public static int fps = 0;
 	public static final int FPS_MAX = 60;
 
@@ -44,17 +46,16 @@ public class GamePanel extends JPanel implements KeyListener {
 				long lastTime = 0;
 				int frames = 0;
 				long time = 0;
-				long fps = 0;
 
 				while (true) {
 					frames++;
 					time = System.nanoTime();
 					if (time > lastTime) {
-						fps = (time - lastTime) / 100000 * frames;
+						calcs++;
+						fps = (int) (time - lastTime) / 100000 * frames;
 						lastTime = time;
 						frames = 0;
 					}
-					//					System.out.println("FPS: " + fps);
 					draw(graphics);
 					delay = waitTime - (System.currentTimeMillis() - startTime);
 					if (delay > 0) {
@@ -71,6 +72,12 @@ public class GamePanel extends JPanel implements KeyListener {
 
 	public void draw(Graphics2D g2) {
 		stageManager.draw(g2);
+
+		if (calcs == 50) {
+			calcs = 0;
+			_fps = fps;
+		}
+		g2.drawString("FPS: " + _fps, 5, 15);
 		Graphics g = this.getGraphics();
 		if (g != null) {
 			g.drawImage(image, 0, 0, WIDTH * 2, HEIGHT * 2, null);
