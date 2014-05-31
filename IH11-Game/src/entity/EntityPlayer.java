@@ -3,11 +3,13 @@ package entity;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.util.List;
 
 import javax.xml.bind.JAXB;
 
-import sound.AudioPlayer;
 import level.Level;
+import sound.AudioPlayer;
+import data.PlayerData;
 
 public class EntityPlayer extends Entity {
 
@@ -40,7 +42,7 @@ public class EntityPlayer extends Entity {
 		falingSpeed = 0.15;
 		width = 32;
 		height = 32;
-		animation = JAXB.unmarshal(getClass().getResourceAsStream("/graphics/entity/PlayerAnimation.xml"),
+		animation = JAXB.unmarshal(getClass().getResourceAsStream(choosecharacter()),
 				AnimationPlayer.class);
 		animation.load();
 	}
@@ -73,6 +75,11 @@ public class EntityPlayer extends Entity {
 		if (hasWinn) {
 			action = ACTION_WINN;
 		}
+	}
+	
+	private String choosecharacter(){
+		List<String> character = PlayerData.playerData.getCharacter();
+		return character.get((int) (Math.random() * character.size()));
 	}
 
 	public void draw(Graphics2D g2) {

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <playerData>
     <background>/graphics/level/background/BlueBackgroundPixel.png</background>
+    <character>/graphics/entity/TetrisPlayerAnimation.xml</character>
     <coins>0</coins>
+    <level>res/data/levels/Level1.xml</level>
     <name>Peter</name>
+    <tileSet>/graphics/level/tileSets/TetrisTileSet.png</tileSet>
 </playerData>
