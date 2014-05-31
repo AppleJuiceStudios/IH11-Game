@@ -84,18 +84,18 @@ public class StageLevel extends Stage {
 		});
 		updateThread.start();
 	}
-	
-	private void initItems(int count){
+
+	private void initItems(int count) {
 		items = new ArrayList<>();
 		BufferedImage image = getItemImage();
 		itemImage = image;
-		for(int i = 0; i < count; i++){
+		for (int i = 0; i < count; i++) {
 			int xPos = (int) ((Math.random() * (level.getWidth() - 4)) + 2);
 			List<Integer> posibalYpos = new ArrayList<>();
 			boolean wasLastAir = false;
-			for(int j = 0; j < level.getHeight(); j++){
+			for (int j = 0; j < level.getHeight(); j++) {
 				boolean isAir = level.getTileID(xPos, j) == LevelTexture.AIR;
-				if(wasLastAir && !isAir){
+				if (wasLastAir && !isAir) {
 					posibalYpos.add(j - 1);
 				}
 				wasLastAir = isAir;
@@ -157,8 +157,8 @@ public class StageLevel extends Stage {
 		} else if (yMovement > maxYMovement) {
 			yMovement = maxYMovement;
 		}
-		for(int i = 0; i < items.size(); i++){
-			if(items.get(i).canCollectCoin(player)){
+		for (int i = 0; i < items.size(); i++) {
+			if (items.get(i).canCollectCoin(player)) {
 				collectedItems++;
 				items.remove(i);
 			}
@@ -179,7 +179,7 @@ public class StageLevel extends Stage {
 		tx.translate(-xMovement, -yMovement);
 		g2.setTransform(tx);
 		level.draw(g2);
-		for(int i = 0; i < items.size(); i++){
+		for (int i = 0; i < items.size(); i++) {
 			items.get(i).draw(g2);
 		}
 		player.draw(g2);
