@@ -116,5 +116,10 @@ public class EntityPlayer extends Entity {
 	public void setWinn(boolean hasWinn) {
 		this.hasWinn = hasWinn;
 	}
+	
+	public void close(){
+		audio.close();
+		level = null;
+	}
 
 }

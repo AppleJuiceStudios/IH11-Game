@@ -85,8 +85,8 @@ public class StageLevel extends Stage {
 							updateThread.interrupt();
 						}
 					}
-
 				}
+				System.out.println("Close");
 			}
 		});
 		updateThread.start();
@@ -174,6 +174,12 @@ public class StageLevel extends Stage {
 
 	public void close() {
 		updateThread.interrupt();
+		audio.close();
+		player.close();
+		player = null;
+		level = null;
+		updateThread = null;
+		audio = null;
 	}
 
 	public void draw(Graphics2D g2) {
@@ -201,9 +207,10 @@ public class StageLevel extends Stage {
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			getStageManager().setStatge(StageManager.STAGE_MENUE);
+			System.out.println();
 		} else if (e.getKeyCode() == KeyEvent.VK_R) {
 			getStageManager().setStatge(StageManager.STAGE_LEVEL);
-
+			System.out.println();
 		} else {
 			player.keyPressed(e);
 		}

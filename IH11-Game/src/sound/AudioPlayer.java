@@ -40,8 +40,8 @@ public class AudioPlayer {
 		try {
 			clip = AudioSystem.getClip();
 			AudioInputStream sound = AudioSystem.getAudioInputStream(getClass().getResourceAsStream(path));
-
 			clip.open(sound);
+			sound.close();
 		} catch (LineUnavailableException e) {
 			e.printStackTrace();
 		} catch (UnsupportedAudioFileException e) {
@@ -50,5 +50,11 @@ public class AudioPlayer {
 			e.printStackTrace();
 		}
 		return clip;
+	}
+	
+	public void close(){
+		for(String key : clips.keySet()){
+			clips.get(key).close();
+		}
 	}
 }

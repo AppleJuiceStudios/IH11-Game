@@ -71,18 +71,23 @@ public class GamePanel extends JPanel implements KeyListener {
 	}
 
 	public void draw(Graphics2D g2) {
-		stageManager.draw(g2);
+		try {
+			stageManager.draw(g2);
 
-		if (calcs == 50) {
-			calcs = 0;
-			_fps = fps;
+			if (calcs == 50) {
+				calcs = 0;
+				_fps = fps;
+			}
+			g2.drawString("FPS: " + _fps, WIDTH - 55, 15);
+			Graphics g = this.getGraphics();
+			if (g != null) {
+				g.drawImage(image, 0, 0, WIDTH * 2, HEIGHT * 2, null);
+				g.dispose();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		g2.drawString("FPS: " + _fps, WIDTH - 55, 15);
-		Graphics g = this.getGraphics();
-		if (g != null) {
-			g.drawImage(image, 0, 0, WIDTH * 2, HEIGHT * 2, null);
-			g.dispose();
-		}
+
 	}
 
 	public void keyPressed(KeyEvent e) {
