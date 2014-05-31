@@ -22,7 +22,7 @@ public class Item {
 	}
 	
 	public boolean canCollectCoin(EntityPlayer player){
-		return posX == player.getxPos() / 32 && posY == player.getyPos() / 32;
+		return posX == (int)((player.getxPos() + 16) / 32) && posY == (int)((player.getyPos() + 16) / 32);
 	}
 	
 }
