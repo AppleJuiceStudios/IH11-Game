@@ -228,6 +228,7 @@ public class StageLevel extends Stage {
 				getStageManager().setStatge(StageManager.STAGE_MENUE);
 			}
 		}).start();
+		PlayerData.playerData.setCoins(PlayerData.playerData.getCoins() + 20);
 	}
 
 }
