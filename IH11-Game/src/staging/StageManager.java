@@ -7,6 +7,9 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import org.omg.CORBA.Environment;
+import org.omg.CORBA.portable.ApplicationException;
+
 public class StageManager {
 
 	private Stage stage;
@@ -41,6 +44,11 @@ public class StageManager {
 		} else {
 			g2.drawImage(loadingScreen, 0, 0, 400, 300, null);
 		}
+	}
+
+	public void close() {
+		stage.close();
+		System.exit(0);
 	}
 
 	public void keyPressed(KeyEvent e) {
