@@ -106,6 +106,22 @@ public class StageLevel extends Stage {
 		return str;
 	}
 
+	private BufferedImage getCoin() {
+		String mainPath = new File("").getAbsolutePath();
+		File file = new File(mainPath + "/bin/graphics/entity/coin/");
+		File[] fileArray = file.listFiles();
+		String str = fileArray[(int) (Math.random() * 10) % fileArray.length].getPath();
+		str = str.substring(mainPath.length() + 4);
+		str = str.replace('\\', '/');
+		System.out.println("[StageLevel] Loading Backgrund: " + str.substring(str.lastIndexOf("/") + 1));
+		try {
+			return ImageIO.read(getClass().getResourceAsStream(str));
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 	public void update() {
 		player.update();
 		xMovement += (player.getxPos() - (GamePanel.WIDTH / 2) - xMovement) * movementSpeed;
