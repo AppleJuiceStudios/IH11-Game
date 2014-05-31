@@ -108,8 +108,6 @@ public class StageMenue extends Stage {
 			}
 			switch (selectedItem) {
 			case 0:
-
-				
 				getStageManager().setStatge(StageManager.STAGE_LEVEL);
 				break;
 			case 1:

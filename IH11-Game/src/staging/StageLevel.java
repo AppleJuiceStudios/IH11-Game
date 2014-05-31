@@ -60,7 +60,7 @@ public class StageLevel extends Stage {
 				long startTime = 0;
 				long delay = 0;
 				long waitTime = 1000 / 60;
-				while (true) {
+				while (!Thread.interrupted()) {
 					startTime = System.currentTimeMillis();
 					update();
 					delay = waitTime - (System.currentTimeMillis() - startTime);
@@ -68,7 +68,7 @@ public class StageLevel extends Stage {
 						try {
 							Thread.sleep(delay);
 						} catch (InterruptedException e) {
-							e.printStackTrace();
+							updateThread.interrupt();
 						}
 					}
 
@@ -117,7 +117,7 @@ public class StageLevel extends Stage {
 	}
 
 	public void close() {
-
+		updateThread.interrupt();
 	}
 
 	public void draw(Graphics2D g2) {
@@ -135,7 +135,14 @@ public class StageLevel extends Stage {
 	}
 
 	public void keyPressed(KeyEvent e) {
-		player.keyPressed(e);
+		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			getStageManager().setStatge(StageManager.STAGE_MENUE);
+		} else if (e.getKeyCode() == KeyEvent.VK_R) {
+			getStageManager().setStatge(StageManager.STAGE_LEVEL);
+
+		} else {
+			player.keyPressed(e);
+		}
 	}
 
 	public void keyReleased(KeyEvent e) {

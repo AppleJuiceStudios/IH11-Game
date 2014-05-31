@@ -8,10 +8,11 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.xml.bind.JAXB;
 
+import staging.StageManager;
 import level.Level;
 import main.GamePanel;
 
-public class EntityPlayer extends Entity{
+public class EntityPlayer extends Entity {
 
 	//Animation
 	private AnimationPlayer animation;
@@ -22,13 +23,13 @@ public class EntityPlayer extends Entity{
 	public static final int ACTION_JUMP = 2;
 	public static final int ACTION_FALL = 3;
 	public static final int ACTION_WINN = 4;
-	
+
 	private boolean keyRight;
 	private boolean keyLeft;
 	private boolean keyUp;
 	private boolean keyDown;
-	
-	public EntityPlayer(Level level, double x, double y){
+
+	public EntityPlayer(Level level, double x, double y) {
 		lookingRight = true;
 		this.level = level;
 		xPos = x;
@@ -38,21 +39,22 @@ public class EntityPlayer extends Entity{
 		falingSpeed = 0.15;
 		width = 32;
 		height = 32;
-		animation = JAXB.unmarshal(getClass().getResourceAsStream("/graphics/entity/PlayerAnimation.xml"), AnimationPlayer.class);
+		animation = JAXB.unmarshal(getClass().getResourceAsStream("/graphics/entity/PlayerAnimation.xml"),
+				AnimationPlayer.class);
 		animation.load();
 	}
-	
-	public void update(){
-		if(keyUp & onGround){
+
+	public void update() {
+		if (keyUp & onGround) {
 			yMoveMent = jumpSpeed;
 		} else {
 			yMoveMent += falingSpeed;
 		}
-		if(keyRight){
+		if (keyRight) {
 			xMoveMent = speed;
 			lookingRight = true;
 			action = ACTION_MOVE;
-		} else if(keyLeft){
+		} else if (keyLeft) {
 			xMoveMent = -speed;
 			lookingRight = false;
 			action = ACTION_MOVE;
@@ -61,46 +63,46 @@ public class EntityPlayer extends Entity{
 			action = ACTION_IDLE;
 		}
 		tryMove();
-		if(yMoveMent < 0){
+		if (yMoveMent < 0) {
 			action = ACTION_JUMP;
-		} else if(yMoveMent > 0){
+		} else if (yMoveMent > 0) {
 			action = ACTION_FALL;
 		}
-		if(keyDown){
+		if (keyDown) {
 			action = ACTION_WINN;
 		}
 	}
-	
+
 	public void draw(Graphics2D g2) {
 		BufferedImage image = animation.getImage(action);
-		if(lookingRight){
+		if (lookingRight) {
 			g2.drawImage(image, (int) xPos, (int) yPos, width, height, null);
 		} else {
 			g2.drawImage(image, (int) xPos + width, (int) yPos, -width, height, null);
 		}
-		
+
 	}
 
 	public void keyPressed(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_W){
+		if (e.getKeyCode() == KeyEvent.VK_W) {
 			keyUp = true;
-		} else if(e.getKeyCode() == KeyEvent.VK_A){
+		} else if (e.getKeyCode() == KeyEvent.VK_A) {
 			keyLeft = true;
-		} else if(e.getKeyCode() == KeyEvent.VK_S){
+		} else if (e.getKeyCode() == KeyEvent.VK_S) {
 			keyDown = true;
-		} else if(e.getKeyCode() == KeyEvent.VK_D){
+		} else if (e.getKeyCode() == KeyEvent.VK_D) {
 			keyRight = true;
 		}
 	}
 
 	public void keyReleased(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_W){
+		if (e.getKeyCode() == KeyEvent.VK_W) {
 			keyUp = false;
-		} else if(e.getKeyCode() == KeyEvent.VK_A){
+		} else if (e.getKeyCode() == KeyEvent.VK_A) {
 			keyLeft = false;
-		} else if(e.getKeyCode() == KeyEvent.VK_S){
+		} else if (e.getKeyCode() == KeyEvent.VK_S) {
 			keyDown = false;
-		} else if(e.getKeyCode() == KeyEvent.VK_D){
+		} else if (e.getKeyCode() == KeyEvent.VK_D) {
 			keyRight = false;
 		}
 	}
@@ -108,5 +110,5 @@ public class EntityPlayer extends Entity{
 	public void keyTyped(KeyEvent e) {
 
 	}
-	
+
 }
