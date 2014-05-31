@@ -26,7 +26,7 @@ public class EntityPlayer extends Entity {
 	private boolean keyRight;
 	private boolean keyLeft;
 	private boolean keyUp;
-	private boolean keyDown;
+	//	private boolean keyDown;
 	private boolean hasWinn;
 
 	private AudioPlayer audio;
@@ -42,8 +42,7 @@ public class EntityPlayer extends Entity {
 		falingSpeed = 0.15;
 		width = 32;
 		height = 32;
-		animation = JAXB.unmarshal(getClass().getResourceAsStream(choosecharacter()),
-				AnimationPlayer.class);
+		animation = JAXB.unmarshal(getClass().getResourceAsStream(choosecharacter()), AnimationPlayer.class);
 		animation.load();
 	}
 
@@ -76,8 +75,8 @@ public class EntityPlayer extends Entity {
 			action = ACTION_WINN;
 		}
 	}
-	
-	private String choosecharacter(){
+
+	private String choosecharacter() {
 		List<String> character = PlayerData.playerData.getCharacter();
 		return character.get((int) (Math.random() * character.size()));
 	}
@@ -97,8 +96,8 @@ public class EntityPlayer extends Entity {
 			keyUp = true;
 		} else if (e.getKeyCode() == KeyEvent.VK_A) {
 			keyLeft = true;
-		} else if (e.getKeyCode() == KeyEvent.VK_S) {
-			keyDown = true;
+			//		} else if (e.getKeyCode() == KeyEvent.VK_S) {
+			//			keyDown = true;
 		} else if (e.getKeyCode() == KeyEvent.VK_D) {
 			keyRight = true;
 		}
@@ -109,8 +108,8 @@ public class EntityPlayer extends Entity {
 			keyUp = false;
 		} else if (e.getKeyCode() == KeyEvent.VK_A) {
 			keyLeft = false;
-		} else if (e.getKeyCode() == KeyEvent.VK_S) {
-			keyDown = false;
+			//		} else if (e.getKeyCode() == KeyEvent.VK_S) {
+			//			keyDown = false;
 		} else if (e.getKeyCode() == KeyEvent.VK_D) {
 			keyRight = false;
 		}
@@ -123,8 +122,8 @@ public class EntityPlayer extends Entity {
 	public void setWinn(boolean hasWinn) {
 		this.hasWinn = hasWinn;
 	}
-	
-	public void close(){
+
+	public void close() {
 		audio.close();
 		level = null;
 	}

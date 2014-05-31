@@ -7,9 +7,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import org.omg.CORBA.Environment;
-import org.omg.CORBA.portable.ApplicationException;
-
 public class StageManager {
 
 	private Stage stage;
