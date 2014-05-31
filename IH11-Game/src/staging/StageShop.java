@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import sound.AudioPlayer;
 import main.GamePanel;
 import data.PlayerData;
 
@@ -21,19 +22,22 @@ public class StageShop extends Stage {
 	private int klicked = -1;
 	private BufferedImage[][] buttons = new BufferedImage[items][3];
 	private Rectangle[] recs = new Rectangle[items];
+	private AudioPlayer audio;
 
 	public StageShop(StageManager stageManager) {
 		super(stageManager);
+		audio = new AudioPlayer();
 		try {
 			background = ImageIO.read(getClass().getResourceAsStream("/graphics/level/background/BlueBackgroundPixel.png"));
 			coin = ImageIO.read(getClass().getResourceAsStream("/graphics/entity/coin/coin.png"));
-			buttons[0][0] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/PlayButtonSelected.png"));
-			buttons[0][1] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/PlayButtonUnpressed.png"));
-			buttons[0][2] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/PlayButtonPressed.png"));
 
-			buttons[1][0] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/QuitButtonSelected.png"));
-			buttons[1][1] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/QuitButtonUnpressed.png"));
-			buttons[1][2] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/QuitButtonPressed.png"));
+			buttons[0][0] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/PlayButtonBreitSelected.png"));
+			buttons[0][1] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/PlayButtonBreitUnpressed.png"));
+			buttons[0][2] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/PlayButtonBreitPressed.png"));
+
+			buttons[1][0] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/BackButtonBreitSelected.png"));
+			buttons[1][1] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/BackButtonBreitUnpressed.png"));
+			buttons[1][2] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/BackButtonBreitPressed.png"));
 
 			buttons[2][0] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/QuitButtonSelected.png"));
 			buttons[2][1] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/QuitButtonUnpressed.png"));
@@ -51,12 +55,12 @@ public class StageShop extends Stage {
 			buttons[5][1] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/QuitButtonUnpressed.png"));
 			buttons[5][2] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/QuitButtonPressed.png"));
 
-			recs[0] = new Rectangle((GamePanel.WIDTH / 4) - (buttons[2][0].getWidth() / 2), GamePanel.HEIGHT - 50, buttons[2][0].getWidth(), buttons[2][0].getHeight());
-			recs[1] = new Rectangle((GamePanel.WIDTH / 2) + (buttons[2][0].getWidth() / 2), GamePanel.HEIGHT - 50, buttons[2][0].getWidth(), buttons[2][0].getHeight());
-			recs[2] = new Rectangle((GamePanel.WIDTH / 5) - (buttons[2][0].getWidth() / 2), GamePanel.HEIGHT / 2 - buttons[2][0].getWidth() / 2, buttons[2][0].getWidth(), buttons[2][0].getHeight());
-			recs[3] = new Rectangle((GamePanel.WIDTH / 4) - (buttons[2][0].getWidth() / 2), GamePanel.HEIGHT / 2 - buttons[2][0].getWidth() / 2, buttons[2][0].getWidth(), buttons[2][0].getHeight());
-			recs[4] = new Rectangle((GamePanel.WIDTH / 3) - (buttons[2][0].getWidth() / 2), GamePanel.HEIGHT / 2 - buttons[2][0].getWidth() / 2, buttons[2][0].getWidth(), buttons[2][0].getHeight());
-			recs[5] = new Rectangle((GamePanel.WIDTH / 2) - (buttons[2][0].getWidth() / 2), GamePanel.HEIGHT / 2 - buttons[2][0].getWidth() / 2, buttons[2][0].getWidth(), buttons[2][0].getHeight());
+			recs[0] = new Rectangle(20, GamePanel.HEIGHT - 50, buttons[0][0].getWidth(), buttons[0][0].getHeight());
+			recs[1] = new Rectangle(220, GamePanel.HEIGHT - 50, buttons[0][0].getWidth(), buttons[0][0].getHeight());
+			recs[2] = new Rectangle((GamePanel.WIDTH / 4) - (buttons[2][0].getWidth() / 2), GamePanel.HEIGHT - 100, buttons[2][0].getWidth(), buttons[2][0].getHeight());
+			recs[3] = new Rectangle((GamePanel.WIDTH / 2) + (buttons[2][0].getWidth() / 2), GamePanel.HEIGHT - 100, buttons[2][0].getWidth(), buttons[2][0].getHeight());
+			recs[4] = new Rectangle((GamePanel.WIDTH / 4) - (buttons[2][0].getWidth() / 2), GamePanel.HEIGHT - 200, buttons[2][0].getWidth(), buttons[2][0].getHeight());
+			recs[5] = new Rectangle((GamePanel.WIDTH / 2) + (buttons[2][0].getWidth() / 2), GamePanel.HEIGHT - 200, buttons[2][0].getWidth(), buttons[2][0].getHeight());
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -65,6 +69,7 @@ public class StageShop extends Stage {
 
 	@Override
 	public void close() {
+		audio.close();
 	}
 
 	@Override
@@ -99,13 +104,56 @@ public class StageShop extends Stage {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		if (e.getKeyChar() == 'w') {
-
+			selected = (selected + 2) % items;
 		} else if (e.getKeyChar() == 'a') {
-
+			if (selected > 0) {
+				selected--;
+			} else {
+				selected = items - 1;
+			}
 		} else if (e.getKeyChar() == 's') {
-
+			if (selected > 1) {
+				selected -= 2;
+			} else {
+				selected = items - 1;
+			}
 		} else if (e.getKeyChar() == 'd') {
+			selected = (selected + 1) % items;
+		} else if (e.getKeyChar() == ' ') {
+			klicked = selected;
 
+			try {
+				Thread.sleep(150);
+			} catch (InterruptedException e2) {
+				e2.printStackTrace();
+			}
+			audio.play("Hit");
+			try {
+				Thread.sleep(250);
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			}
+
+			switch (selected) {
+			case 0:
+				getStageManager().setStatge(StageManager.STAGE_LEVEL);
+				break;
+			case 1:
+				getStageManager().setStatge(StageManager.STAGE_MENUE);
+				break;
+			case 2:
+
+				break;
+			case 3:
+
+				break;
+			case 4:
+
+				break;
+			case 5:
+
+				break;
+			}
 		}
 	}
 }
