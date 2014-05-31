@@ -85,7 +85,7 @@ public class StageLevel extends Stage {
 		String str = fileArray[(int) (Math.random() * 10) % fileArray.length].getPath();
 		str = str.substring(mainPath.length() + 4);
 		str = str.replace('\\', '/');
-		System.out.println("[StageLevel] Loading Backgrund: " + str);
+		System.out.println("[StageLevel] Loading Backgrund: " + str.substring(str.lastIndexOf("/") + 1));
 		return str;
 	}
 
@@ -96,7 +96,7 @@ public class StageLevel extends Stage {
 		String str = fileArray[(int) (Math.random() * 10) % fileArray.length].getPath();
 		str = str.substring(mainPath.length() + 1);
 		str = str.replace('\\', '/');
-		System.out.println("[StageLevel] Loading Level: " + str);
+		System.out.println("[StageLevel] Loading Level: " + str.substring(str.lastIndexOf("/") + 1));
 		return str;
 	}
 
@@ -121,8 +121,12 @@ public class StageLevel extends Stage {
 	}
 
 	public void draw(Graphics2D g2) {
-		g2.drawImage(background, 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, null);
 		AffineTransform tx = new AffineTransform();
+		tx.translate(-(xMovement / maxXMovement * GamePanel.WIDTH), 0);
+		g2.setTransform(tx);
+		g2.drawImage(background, 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, null);
+		g2.drawImage(background, GamePanel.WIDTH * 2, 0, -GamePanel.WIDTH, GamePanel.HEIGHT, null);
+		tx = new AffineTransform();
 		tx.translate(-xMovement, -yMovement);
 		g2.setTransform(tx);
 		level.draw(g2);
