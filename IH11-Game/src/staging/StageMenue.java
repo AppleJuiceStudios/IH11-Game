@@ -39,7 +39,7 @@ public class StageMenue extends Stage {
 
 	@Override
 	public void close() {
-		audio
+		audio.close();
 	}
 
 	@Override
