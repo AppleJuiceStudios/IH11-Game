@@ -48,15 +48,13 @@ public class StageLevel extends Stage {
 	public StageLevel(StageManager stageManager) {
 		super(stageManager);
 		audio = new AudioPlayer();
-		level = JAXB.unmarshal(getClass().getResourceAsStream(chooseLevel()), Level.class);
-		player = new EntityPlayer(level, level.getStartPositionX(),
-				level.getStartPositionY());
+		level = JAXB.unmarshal(getClass().getResourceAsStream("/data/levels/Level1.xml"), Level.class);
+		player = new EntityPlayer(level, level.getStartPositionX(), level.getStartPositionY());
 		initItems(itemCount);
 		startTime = System.currentTimeMillis();
 		// Movement
 		maxXMovement = level.getWidth() * level.getTileSize() - GamePanel.WIDTH;
-		maxYMovement = level.getHeight() * level.getTileSize()
-				- GamePanel.HEIGHT;
+		maxYMovement = level.getHeight() * level.getTileSize() - GamePanel.HEIGHT;
 		xMovement = player.getxPos() - (GamePanel.WIDTH / 2);
 		yMovement = player.getxPos() - (GamePanel.HEIGHT / 2);
 		if (xMovement < 0) {
@@ -70,10 +68,8 @@ public class StageLevel extends Stage {
 			yMovement = maxYMovement;
 		}
 		try {
-			background = ImageIO.read(getClass().getResourceAsStream(
-					chooseBackGround()));
-			clock = ImageIO.read(getClass().getResourceAsStream(
-					"/graphics/entity/Clock.png"));
+			background = ImageIO.read(getClass().getResourceAsStream(chooseBackGround()));
+			clock = ImageIO.read(getClass().getResourceAsStream("/graphics/entity/Clock.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -114,8 +110,7 @@ public class StageLevel extends Stage {
 				}
 				wasLastAir = isAir;
 			}
-			int yPos = posibalYpos.get((int) (Math.random() * posibalYpos
-					.size()));
+			int yPos = posibalYpos.get((int) (Math.random() * posibalYpos.size()));
 			items.add(new Item(image, xPos, yPos));
 		}
 	}
@@ -131,27 +126,32 @@ public class StageLevel extends Stage {
 	}
 
 	private BufferedImage getItemImage() {
-		String mainPath = new File("").getAbsolutePath();
-		File file = new File(mainPath + "/bin/graphics/entity/coin/");
-		File[] fileArray = file.listFiles();
-		String str = fileArray[(int) (Math.random() * 10) % fileArray.length]
-				.getPath();
-		str = str.substring(mainPath.length() + 4);
-		str = str.replace('\\', '/');
+		//		String mainPath = new File("").getAbsolutePath();
+		//		File file = new File(mainPath + "/bin/graphics/entity/coin/");
+		//		File[] fileArray = file.listFiles();
+		//		String str = fileArray[(int) (Math.random() * 10) % fileArray.length]
+		//				.getPath();
+		//		str = str.substring(mainPath.length() + 4);
+		//		str = str.replace('\\', '/');
+		//		try {
+		//			return ImageIO.read(getClass().getResourceAsStream(str));
+		//		} catch (IOException e) {
+		//			e.printStackTrace();
+		//			return null;
+		//		}
+		BufferedImage img = null;
 		try {
-			return ImageIO.read(getClass().getResourceAsStream(str));
+			img = ImageIO.read(getClass().getResourceAsStream("/graphics/entity/coin/coin.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
-			return null;
 		}
+		return img;
 	}
 
 	public void update() {
 		player.update();
-		xMovement += (player.getxPos() - (GamePanel.WIDTH / 2) - xMovement)
-				* movementSpeed;
-		yMovement += (player.getyPos() - (GamePanel.HEIGHT / 3) - yMovement)
-				* movementSpeed;
+		xMovement += (player.getxPos() - (GamePanel.WIDTH / 2) - xMovement) * movementSpeed;
+		yMovement += (player.getyPos() - (GamePanel.HEIGHT / 3) - yMovement) * movementSpeed;
 		if (xMovement < 0) {
 			xMovement = 0;
 		} else if (xMovement > maxXMovement) {
@@ -189,8 +189,7 @@ public class StageLevel extends Stage {
 		tx.translate(-(xMovement / maxXMovement * GamePanel.WIDTH), 0);
 		g2.setTransform(tx);
 		g2.drawImage(background, 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, null);
-		g2.drawImage(background, GamePanel.WIDTH * 2, 0, -GamePanel.WIDTH,
-				GamePanel.HEIGHT, null);
+		g2.drawImage(background, GamePanel.WIDTH * 2, 0, -GamePanel.WIDTH, GamePanel.HEIGHT, null);
 		tx = new AffineTransform();
 		tx.translate(-xMovement, -yMovement);
 		g2.setTransform(tx);
@@ -202,10 +201,8 @@ public class StageLevel extends Stage {
 		g2.setTransform(new AffineTransform());
 
 		g2.drawImage(itemImage, 5, 5, clock.getWidth(), clock.getHeight(), null);
-		g2.drawString(collectedItems + " / " + itemCount,
-				itemImage.getWidth() + 10, itemImage.getHeight() / 2 + 10);
-		g2.drawImage(clock, 5, itemImage.getHeight() + 10, clock.getWidth(),
-				clock.getHeight(), null);
+		g2.drawString(collectedItems + " / " + itemCount, itemImage.getWidth() + 10, itemImage.getHeight() / 2 + 10);
+		g2.drawImage(clock, 5, itemImage.getHeight() + 10, clock.getWidth(), clock.getHeight(), null);
 		long currentTime = System.currentTimeMillis() - startTime;
 		if (!hasWinn) {
 			zehner = (int) (currentTime / 1000) / 60;
@@ -215,8 +212,7 @@ public class StageLevel extends Stage {
 		if (einer < 10) {
 			strEiner = "0" + einer;
 		}
-		g2.drawString(zehner + ":" + strEiner, clock.getWidth() + 10,
-				clock.getHeight() / 2 + clock.getHeight() + 15);
+		g2.drawString(zehner + ":" + strEiner, clock.getWidth() + 10, clock.getHeight() / 2 + clock.getHeight() + 15);
 	}
 
 	public void keyPressed(KeyEvent e) {

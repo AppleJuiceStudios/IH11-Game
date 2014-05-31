@@ -45,7 +45,7 @@ public class StageShop extends Stage {
 
 			buttons[3][0] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/ButtonLevelsSelected.png"));
 			buttons[3][1] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/ButtonLevelsUnpressed.png"));
-			buttons[3][2] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/ButtonlevelsPressed.png"));
+			buttons[3][2] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/ButtonLevelsPressed.png"));
 
 			buttons[4][0] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/ButtonPlayersSelected.png"));
 			buttons[4][1] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/ButtonPlayersUnpressed.png"));
