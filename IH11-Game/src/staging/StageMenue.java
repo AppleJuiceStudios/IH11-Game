@@ -65,6 +65,9 @@ public class StageMenue extends Stage {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		if (e.getKeyChar() == KeyEvent.VK_ESCAPE){
+			getStageManager().close();
+		}
 	}
 
 	@Override
