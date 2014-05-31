@@ -247,7 +247,7 @@ public class StageLevel extends Stage {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				getStageManager().setStatge(StageManager.STAGE_MENUE);
+				getStageManager().setStatge(StageManager.STAGE_SHOP);
 			}
 		}).start();
 		PlayerData.playerData.setCoins(PlayerData.playerData.getCoins() + 20);

@@ -16,32 +16,28 @@ import javax.imageio.ImageIO;
 import main.GamePanel;
 import data.PlayerData;
 
-public class StagShopBackgrounds extends Stage {
+public class StagShopPlayer extends Stage {
 
 	private BufferedImage background;
 	private BufferedImage coin;
-	List<Background> backgrounds;
+	List<Player> players;
 	private BufferedImage[][] buttons;
 	private Rectangle[] recs = new Rectangle[2];
 	private int selectedButton = 2;
-	private int selectedBackground;
+	private int selectedPlayer;
 
 	// Scrlling
 	private double scrollingPosition;
 	private double scrollingSpeed = 0.05;
 
-	public StagShopBackgrounds(StageManager stageManager) {
+	public StagShopPlayer(StageManager stageManager) {
 		super(stageManager);
 		PlayerData.load();
-		backgrounds = new ArrayList<>();
+		players = new ArrayList<>();
 		buttons = new BufferedImage[2][2];
-		addBackground("/graphics/level/background/BlueBackgroundPixel.png");
-		addBackground("/graphics/level/background/CaribbeanBackgroundPixel.png");
-		addBackground("/graphics/level/background/DummyBackgroundPixel.png");
-		addBackground("/graphics/level/background/LandBackgroundPixel.png");
-		addBackground("/graphics/level/background/RainbowBackgroundPixel.png");
-		addBackground("/graphics/level/background/SkyBackgroundPixel.png");
 		try {
+			addPlayer("/graphics/entity/MCPlayerANimation.xml", ImageIO.read(getClass().getResourceAsStream("/graphics/entity/MCPlayer.png")));
+			addPlayer("/graphics/entity/TetrisPlayerANimation.xml", ImageIO.read(getClass().getResourceAsStream("/graphics/entity/TetrisPlayer.png")));
 			background = ImageIO.read(getClass().getResourceAsStream(
 					"/graphics/level/background/BlueBackgroundPixel.png"));
 			coin = ImageIO.read(getClass().getResourceAsStream(
@@ -66,14 +62,11 @@ public class StagShopBackgrounds extends Stage {
 
 	}
 
-	private void addBackground(String path) {
-		try {
-			backgrounds.add(new Background(ImageIO.read(getClass()
-					.getResourceAsStream(path)), PlayerData.playerData
-					.getBackground().contains(path), path));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	private void addPlayer(String path, BufferedImage image) {
+
+		players.add(new Player(image, PlayerData.playerData.getCharacter()
+				.contains(path), path));
+
 	}
 
 	public void draw(Graphics2D g2) {
@@ -97,7 +90,7 @@ public class StagShopBackgrounds extends Stage {
 		}
 
 		// Scrolling
-		double targetPosition = selectedBackground * 50;
+		double targetPosition = selectedPlayer * 50;
 		scrollingPosition += (targetPosition - scrollingPosition)
 				* scrollingSpeed;
 		AffineTransform at = new AffineTransform();
@@ -106,13 +99,13 @@ public class StagShopBackgrounds extends Stage {
 				BufferedImage.TYPE_INT_RGB);
 		Graphics2D scrollG = (Graphics2D) scrollArea.getGraphics();
 		scrollG.setTransform(at);
-		for (int i = 0; i < backgrounds.size(); i++) {
-			Background b = backgrounds.get(i);
-			scrollG.drawImage(b.getImage(), 20, i * 50 + 5, 60, 40, null);
+		for (int i = 0; i < players.size(); i++) {
+			Player b = players.get(i);
+			scrollG.drawImage(b.getImage(), 30, i * 50 + 5, 40, 40, null);
 			if (b.isOwend()) {
 				scrollG.drawString("Yours", 100, i * 50 + 30);
 			} else {
-				scrollG.drawString("Buy        75 $", 100, i * 50 + 30);
+				scrollG.drawString("Buy        150 $", 100, i * 50 + 30);
 			}
 		}
 		g2.drawImage(scrollArea, 50, 70, 300, 160, null);
@@ -143,11 +136,11 @@ public class StagShopBackgrounds extends Stage {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		if (e.getKeyChar() == 's') {
-			selectedBackground = (selectedBackground + 1) % backgrounds.size();
+			selectedPlayer = (selectedPlayer + 1) % players.size();
 		} else if (e.getKeyChar() == 'w') {
-			selectedBackground--;
-			if (selectedBackground < 0) {
-				selectedBackground = backgrounds.size() - 1;
+			selectedPlayer--;
+			if (selectedPlayer < 0) {
+				selectedPlayer = players.size() - 1;
 			}
 		} else if (e.getKeyChar() == 'd') {
 			selectedButton = (selectedButton + 1) % 3;
@@ -163,27 +156,27 @@ public class StagShopBackgrounds extends Stage {
 			} else if (selectedButton == 1) {
 				getStageManager().setStatge(StageManager.STAGE_SHOP);
 			} else {
-				Background bg = backgrounds.get(selectedBackground);
+				Player bg = players.get(selectedPlayer);
 				if (!bg.isOwend()) {
 					int coins = PlayerData.playerData.getCoins();
-					if (coins >= 75) {
-						coins -= 75;
+					if (coins >= 150) {
+						coins -= 150;
 						PlayerData.playerData.setCoins(coins);
-						PlayerData.playerData.getBackground().add(bg.getPath());
+						PlayerData.playerData.getCharacter().add(bg.getPath());
 						PlayerData.save();
-						getStageManager().setStatge(StageManager.STAGE_SHOP_BACKGROUNDS);
+						getStageManager().setStatge(StageManager.STAGE_SHOP_PLAYER);
 					}
 				}
 			}
 		}
 	}
 
-	private class Background {
+	private class Player {
 		BufferedImage image;
 		boolean owend;
 		String path;
 
-		private Background(BufferedImage image, boolean owend, String path) {
+		private Player(BufferedImage image, boolean owend, String path) {
 			this.image = image;
 			this.owend = owend;
 			this.path = path;

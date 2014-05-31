@@ -146,13 +146,13 @@ public class StageShop extends Stage {
 						.setStatge(StageManager.STAGE_SHOP_BACKGROUNDS);
 				break;
 			case 3:
-
+				
 				break;
 			case 4:
-
+				getStageManager().setStatge(StageManager.STAGE_SHOP_PLAYER);
 				break;
 			case 5:
-
+				
 				break;
 			}
 		}
