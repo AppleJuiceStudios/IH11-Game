@@ -56,7 +56,6 @@ public class LevelEditor {
 
 
 
-		level.save("res/data/levels/Level5");
 
 	}
 }
