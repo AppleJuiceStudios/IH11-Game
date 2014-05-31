@@ -48,7 +48,7 @@ public class StageLevel extends Stage {
 	public StageLevel(StageManager stageManager) {
 		super(stageManager);
 		audio = new AudioPlayer();
-		level = JAXB.unmarshal(getClass().getResourceAsStream("/data/levels/Level1.xml"), Level.class);
+		level = JAXB.unmarshal(getClass().getResourceAsStream(chooseLevel()), Level.class);
 		player = new EntityPlayer(level, level.getStartPositionX(), level.getStartPositionY());
 		initItems(itemCount);
 		startTime = System.currentTimeMillis();
