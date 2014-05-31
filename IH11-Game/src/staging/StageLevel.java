@@ -12,6 +12,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.xml.bind.JAXB;
 
+import sound.AudioPlayer;
 import level.Item;
 import level.Level;
 import level.graphics.LevelTexture;
@@ -28,6 +29,7 @@ public class StageLevel extends Stage {
 	private double yMovement;
 
 	private Level level;
+	private AudioPlayer audio;
 	private BufferedImage background;
 	private BufferedImage clock;
 	private Thread updateThread;
@@ -41,6 +43,7 @@ public class StageLevel extends Stage {
 
 	public StageLevel(StageManager stageManager) {
 		super(stageManager);
+		audio = new AudioPlayer();
 		level = JAXB.unmarshal(new File(chooseLevel()), Level.class);
 		player = new EntityPlayer(level, level.getStartPositionX(), level.getStartPositionY());
 		initItems(itemCount);
@@ -163,8 +166,9 @@ public class StageLevel extends Stage {
 		for (int i = 0; i < items.size(); i++) {
 			if (items.get(i).canCollectCoin(player)) {
 				collectedItems++;
+				audio.play("Orb");
 				items.remove(i);
-				if(collectedItems == itemCount){
+				if (collectedItems == itemCount) {
 					hasWinn = true;
 					player.setWinn(true);
 				}
