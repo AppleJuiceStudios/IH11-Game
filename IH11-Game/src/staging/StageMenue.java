@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import data.PlayerData;
 import sound.AudioPlayer;
 import main.GamePanel;
 
@@ -35,11 +36,13 @@ public class StageMenue extends Stage {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		PlayerData.load("res/data/Player.xml");
 	}
 
 	@Override
 	public void close() {
 		audio.close();
+		PlayerData.save("res/data/Player.xml");
 	}
 
 	@Override
