@@ -39,21 +39,21 @@ public class StageShop extends Stage {
 			buttons[1][1] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/BackButtonBreitUnpressed.png"));
 			buttons[1][2] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/BackButtonBreitPressed.png"));
 
-			buttons[2][0] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/QuitButtonSelected.png"));
-			buttons[2][1] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/QuitButtonUnpressed.png"));
-			buttons[2][2] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/QuitButtonPressed.png"));
+			buttons[2][0] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/ButtonBackgroundsSelected.png"));
+			buttons[2][1] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/ButtonBackgroundsUnpressed.png"));
+			buttons[2][2] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/ButtonBackgroundsPressed.png"));
 
-			buttons[3][0] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/QuitButtonSelected.png"));
-			buttons[3][1] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/QuitButtonUnpressed.png"));
-			buttons[3][2] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/QuitButtonPressed.png"));
+			buttons[3][0] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/ButtonLevelsSelected.png"));
+			buttons[3][1] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/ButtonLevelsUnpressed.png"));
+			buttons[3][2] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/ButtonlevelsPressed.png"));
 
-			buttons[4][0] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/QuitButtonSelected.png"));
-			buttons[4][1] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/QuitButtonUnpressed.png"));
-			buttons[4][2] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/QuitButtonPressed.png"));
+			buttons[4][0] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/ButtonPlayersSelected.png"));
+			buttons[4][1] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/ButtonPlayersUnpressed.png"));
+			buttons[4][2] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/ButtonPlayersPressed.png"));
 
-			buttons[5][0] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/QuitButtonSelected.png"));
-			buttons[5][1] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/QuitButtonUnpressed.png"));
-			buttons[5][2] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/QuitButtonPressed.png"));
+			buttons[5][0] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/ButtonTilesetsSelected.png"));
+			buttons[5][1] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/ButtonTilesetsUnpressed.png"));
+			buttons[5][2] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/ButtonTilesetsPressed.png"));
 
 			recs[0] = new Rectangle(20, GamePanel.HEIGHT - 50, buttons[0][0].getWidth(), buttons[0][0].getHeight());
 			recs[1] = new Rectangle(220, GamePanel.HEIGHT - 50, buttons[0][0].getWidth(), buttons[0][0].getHeight());

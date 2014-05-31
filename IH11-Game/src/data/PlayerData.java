@@ -25,12 +25,12 @@ public class PlayerData {
 	public static void setPlayerData(PlayerData playerData) {
 		PlayerData.playerData = playerData;
 	}
-	
-	public static void load(String path){
+
+	public static void load(String path) {
 		playerData = JAXB.unmarshal(new File(path), PlayerData.class);
 	}
-	
-	public static void save(String path){
+
+	public static void save(String path) {
 		JAXB.marshal(playerData, new File(path));
 	}
 
