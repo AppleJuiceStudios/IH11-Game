@@ -85,9 +85,9 @@ public class StageShop extends Stage {
 			if (i == klicked) {
 				g2.drawImage(buttons[i][2], recs[i].x, recs[i].y, recs[i].width, recs[i].height, null);
 			} else if (i == selected) {
-				g2.drawImage(buttons[i][1], recs[i].x, recs[i].y, recs[i].width, recs[i].height, null);
-			} else {
 				g2.drawImage(buttons[i][0], recs[i].x, recs[i].y, recs[i].width, recs[i].height, null);
+			} else {
+				g2.drawImage(buttons[i][1], recs[i].x, recs[i].y, recs[i].width, recs[i].height, null);
 			}
 
 		}
