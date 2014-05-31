@@ -14,6 +14,7 @@ public class StageManager {
 
 	private Stage stage;
 	private BufferedImage loadingScreen;
+	public static final int STAGE_WELCOME = 0;
 	public static final int STAGE_MENUE = 1;
 	public static final int STAGE_LEVEL = 2;
 	public static final int STAGE_SHOP = 4;
@@ -33,7 +34,9 @@ public class StageManager {
 			stage = null;
 			s.close();
 		}
-		if (stageID == STAGE_MENUE) {
+		if (stageID == STAGE_WELCOME) {
+			stage = new StageWelcome(this);
+		} else if (stageID == STAGE_MENUE) {
 			stage = new StageMenue(this);
 		} else if (stageID == STAGE_LEVEL) {
 			stage = new StageLevel(this);
