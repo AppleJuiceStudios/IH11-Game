@@ -6,15 +6,15 @@ import java.awt.event.KeyEvent;
 public abstract class Stage {
 
 	private StageManager stageManager;
-	
-	public Stage(StageManager stageManager){
+
+	public Stage(StageManager stageManager) {
 		this.stageManager = stageManager;
 	}
-	
+
 	public abstract void close();
-	
+
 	public abstract void draw(Graphics2D g2);
-	
+
 	public abstract void keyPressed(KeyEvent e);
 
 	public abstract void keyReleased(KeyEvent e);
@@ -28,6 +28,5 @@ public abstract class Stage {
 	public void setStageManager(StageManager stageManager) {
 		this.stageManager = stageManager;
 	}
-	
-	
+
 }

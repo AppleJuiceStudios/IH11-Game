@@ -1,5 +1,6 @@
 package sound;
 
+import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,7 +40,7 @@ public class AudioPlayer {
 		Clip clip = null;
 		try {
 			clip = AudioSystem.getClip();
-			AudioInputStream sound = AudioSystem.getAudioInputStream(getClass().getResourceAsStream(path));
+			AudioInputStream sound = AudioSystem.getAudioInputStream(new BufferedInputStream(getClass().getResourceAsStream(path)));
 			clip.open(sound);
 			sound.close();
 		} catch (LineUnavailableException e) {
