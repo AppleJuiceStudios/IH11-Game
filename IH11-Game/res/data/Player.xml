@@ -8,7 +8,7 @@
     <background>/graphics/level/background/SkyBackgroundPixel.png</background>
     <character>/graphics/entity/TetrisPlayerAnimation.xml</character>
     <character>/graphics/entity/MCPlayerAnimation.xml</character>
-    <coins>0</coins>
+    <coins>20</coins>
     <level>res/data/levels/Level1.xml</level>
     <level>res/data/levels/Level2.xml</level>
     <level>res/data/levels/Level3.xml</level>

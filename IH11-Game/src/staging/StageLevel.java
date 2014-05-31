@@ -39,6 +39,9 @@ public class StageLevel extends Stage {
 	private int collectedItems;
 	private int itemCount = 20;
 	private boolean hasWinn;
+	private long startTime;
+	private int zehner;
+	private int einer;
 
 	private EntityPlayer player;
 
@@ -48,6 +51,7 @@ public class StageLevel extends Stage {
 		level = JAXB.unmarshal(new File(chooseLevel()), Level.class);
 		player = new EntityPlayer(level, level.getStartPositionX(), level.getStartPositionY());
 		initItems(itemCount);
+		startTime = System.currentTimeMillis();
 		//Movement
 		maxXMovement = level.getWidth() * level.getTileSize() - GamePanel.WIDTH;
 		maxYMovement = level.getHeight() * level.getTileSize() - GamePanel.HEIGHT;
@@ -191,7 +195,16 @@ public class StageLevel extends Stage {
 		g2.drawImage(itemImage, 5, 5, clock.getWidth(), clock.getHeight(), null);
 		g2.drawString(collectedItems + " / " + itemCount, itemImage.getWidth() + 10, itemImage.getHeight() / 2 + 10);
 		g2.drawImage(clock, 5, itemImage.getHeight() + 10, clock.getWidth(), clock.getHeight(), null);
-		g2.drawString("00:00", clock.getWidth() + 10, clock.getHeight() / 2 + clock.getHeight() + 15);
+		long currentTime = System.currentTimeMillis() - startTime;
+		if (!hasWinn) {
+			zehner = (int) (currentTime / 1000) / 60;
+			einer = (int) (currentTime / 1000) % 60;
+		}
+		String strEiner = einer + "";
+		if (einer < 10) {
+			strEiner = "0" + einer;
+		}
+		g2.drawString(zehner + ":" + strEiner, clock.getWidth() + 10, clock.getHeight() / 2 + clock.getHeight() + 15);
 	}
 
 	public void keyPressed(KeyEvent e) {
