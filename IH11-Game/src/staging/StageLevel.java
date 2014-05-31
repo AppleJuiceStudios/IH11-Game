@@ -214,8 +214,8 @@ public class StageLevel extends Stage {
 	public void keyTyped(KeyEvent e) {
 		player.keyTyped(e);
 	}
-	
-	public void winn(){
+
+	public void winn() {
 		audio.play("Win");
 		hasWinn = true;
 		player.setWinn(true);

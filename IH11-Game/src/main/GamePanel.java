@@ -37,7 +37,7 @@ public class GamePanel extends JPanel implements KeyListener {
 		addKeyListener(this);
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		graphics = (Graphics2D) image.getGraphics();
-		stageManager = new StageManager(StageManager.STAGE_SHOP);
+		stageManager = new StageManager(StageManager.STAGE_MENUE);
 		new Thread(new Runnable() {
 			public void run() {
 				long startTime = 0;

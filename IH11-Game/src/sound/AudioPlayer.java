@@ -51,9 +51,9 @@ public class AudioPlayer {
 		}
 		return clip;
 	}
-	
-	public void close(){
-		for(String key : clips.keySet()){
+
+	public void close() {
+		for (String key : clips.keySet()) {
 			clips.get(key).close();
 		}
 	}
