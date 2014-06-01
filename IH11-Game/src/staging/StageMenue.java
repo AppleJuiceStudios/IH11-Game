@@ -9,6 +9,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import main.GamePanel;
+import main.Main;
 import sound.AudioPlayer;
 import data.PlayerData;
 
@@ -24,7 +25,9 @@ public class StageMenue extends Stage {
 	public StageMenue(StageManager stageManager) {
 		super(stageManager);
 		audio = new AudioPlayer();
-		audio.play("Example");
+		audio.load(AudioPlayer.EXAMPLE);
+		audio.load(AudioPlayer.HIT);
+		audio.play(AudioPlayer.EXAMPLE);
 		try {
 			background = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/MenueBackground.png"));
 			buttons[0][0] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/PlayButtonSelected.png"));
@@ -88,27 +91,32 @@ public class StageMenue extends Stage {
 		}
 
 		if (e.getKeyChar() == ' ') {
-			audio.stop("Example");
-			try {
-				Thread.sleep(150);
-			} catch (InterruptedException e2) {
-				e2.printStackTrace();
-			}
-			audio.play("Hit");
-			pressedItem = selectedItem;
+			audio.stop(AudioPlayer.EXAMPLE);
 			try {
 				Thread.sleep(250);
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}
+			audio.play(AudioPlayer.HIT);
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			}
+			pressedItem = selectedItem;
 			switch (selectedItem) {
 			case 0:
 				getStageManager().setStatge(StageManager.STAGE_SHOP);
 				break;
 			case 1:
+				Main.frame.setVisible(false);
 				getStageManager().close();
 				break;
 			}
+		}
+		
+		if(e.getKeyChar() == 'e'){
+			getStageManager().setStatge(StageManager.STAGE_LEVELEDITOR);
 		}
 	}
 }

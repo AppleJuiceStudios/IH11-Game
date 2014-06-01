@@ -35,6 +35,7 @@ public class EntityPlayer extends Entity {
 		lookingRight = true;
 		this.level = level;
 		audio = new AudioPlayer();
+		audio.load(AudioPlayer.JUMP);
 		xPos = x;
 		yPos = y;
 		speed = 2.0;
@@ -47,8 +48,9 @@ public class EntityPlayer extends Entity {
 	}
 
 	public void update() {
+		boolean startJump = false;
 		if (keyUp & onGround) {
-			audio.play("Jump");
+			startJump = true;
 			yMoveMent = jumpSpeed;
 		} else {
 			yMoveMent += falingSpeed;
@@ -68,6 +70,9 @@ public class EntityPlayer extends Entity {
 		tryMove();
 		if (yMoveMent < 0) {
 			action = ACTION_JUMP;
+			if (startJump) {
+				audio.play(AudioPlayer.JUMP);
+			}
 		} else if (yMoveMent > 0) {
 			action = ACTION_FALL;
 		}

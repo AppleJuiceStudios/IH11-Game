@@ -11,7 +11,7 @@ public class GameFrame extends JFrame {
 		init();
 	}
 
-	public void init() {
+	private void init() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gamePanel = new GamePanel();
 		setContentPane(gamePanel);
@@ -21,5 +21,4 @@ public class GameFrame extends JFrame {
 		setVisible(true);
 		setLocationRelativeTo(null);
 	}
-
 }

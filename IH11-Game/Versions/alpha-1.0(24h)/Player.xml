@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playerData>
+    <background>/graphics/level/background/BlueBackgroundPixel.png</background>
+    <background>/graphics/level/background/CaribbeanBackgroundPixel.png</background>
+    <background>/graphics/level/background/DummyBackgroundPixel.png</background>
+    <background>/graphics/level/background/SkyBackgroundPixel.png</background>
+    <character>/graphics/entity/TetrisPlayerAnimation.xml</character>
+    <character>/graphics/entity/MCPlayerAnimation.xml</character>
+    <coins>240</coins>
+    <level>/data/levels/Level1.xml</level>
+    <level>/data/levels/Level2.xml</level>
+    <level>/data/levels/Level3.xml</level>
+    <level>/data/levels/Level4.xml</level>
+    <level>/data/levels/Level5.xml</level>
+    <level>/data/levels/Level6.xml</level>
+    <name>Peter</name>
+    <tileSet>/graphics/level/tileSets/DirtGrassTileSet.png</tileSet>
+    <tileSet>/graphics/level/tileSets/DirtGrassTileSet2.png</tileSet>
+    <tileSet>/graphics/level/tileSets/DirtGrassTileSetBlury.png</tileSet>
+    <tileSet>/graphics/level/tileSets/TetrisTileSet.png</tileSet>
+    <tileSet>/graphics/level/tileSets/SchwarzWeißTileSet.png</tileSet>
+    <tileSet>/graphics/level/tileSets/BricksTileSet.png</tileSet>
+</playerData>

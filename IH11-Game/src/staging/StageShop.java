@@ -27,6 +27,7 @@ public class StageShop extends Stage {
 	public StageShop(StageManager stageManager) {
 		super(stageManager);
 		audio = new AudioPlayer();
+		audio.load(AudioPlayer.HIT);
 		try {
 			background = ImageIO.read(getClass().getResourceAsStream("/graphics/level/background/BlueBackgroundPixel.png"));
 			coin = ImageIO.read(getClass().getResourceAsStream("/graphics/entity/coin/coin.png"));
@@ -95,6 +96,9 @@ public class StageShop extends Stage {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			getStageManager().setStatge(StageManager.STAGE_MENUE);
+		}
 	}
 
 	@Override
@@ -119,17 +123,12 @@ public class StageShop extends Stage {
 			}
 		} else if (e.getKeyChar() == 'd') {
 			selected = (selected + 1) % items;
-		} else if (e.getKeyChar() == ' ') {
+		}
+		if (e.getKeyChar() == ' ') {
 			klicked = selected;
-
+			audio.play(AudioPlayer.HIT);
 			try {
-				Thread.sleep(150);
-			} catch (InterruptedException e2) {
-				e2.printStackTrace();
-			}
-			audio.play("Hit");
-			try {
-				Thread.sleep(250);
+				Thread.sleep(15);
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}
@@ -142,17 +141,16 @@ public class StageShop extends Stage {
 				getStageManager().setStatge(StageManager.STAGE_MENUE);
 				break;
 			case 2:
-				getStageManager()
-						.setStatge(StageManager.STAGE_SHOP_BACKGROUNDS);
+				getStageManager().setStatge(StageManager.STAGE_SHOP_BACKGROUNDS);
 				break;
 			case 3:
-				
+
 				break;
 			case 4:
 				getStageManager().setStatge(StageManager.STAGE_SHOP_PLAYER);
 				break;
 			case 5:
-				
+
 				break;
 			}
 		}

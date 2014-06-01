@@ -22,7 +22,7 @@ public class Level {
 	private double startPositionY;
 
 	public Level() {
-		tileSet = new byte[1][1];
+		tileSet = new byte[10][10];
 		levelTexture = new LevelTexture(chooseTileSet(), "TileSet");
 	}
 
@@ -41,6 +41,10 @@ public class Level {
 			}
 		}
 	}
+	
+	public boolean isInTileSet(int x, int y){
+		return x >= 0 & x < getWidth() & y >= 0 & y < getHeight();
+	}
 
 	public void save(String name) {
 		JAXB.marshal(this, new File(name + ".xml"));
@@ -55,17 +59,17 @@ public class Level {
 	}
 
 	public byte getTileID(int x, int y) {
-		try {
-			return tileSet[x][y];
-		} catch (IndexOutOfBoundsException e) {
+		if(x < 0 | x >= getWidth() | y >= getHeight()){
+			return LevelTexture.CENTER;
+		} else if(y < 0){
 			return LevelTexture.AIR;
+		} else {
+			return tileSet[x][y];
 		}
-
 	}
 
-	@XmlElement(name = "TileSet")
 	public byte[][] getTileSet() {
-		return tileSet;
+		return this.tileSet;
 	}
 
 	public void setTileSet(byte[][] tileSet) {
@@ -88,8 +92,12 @@ public class Level {
 		this.startPositionY = startPositionY;
 	}
 
-	public double getTileSize() {
+	public int getTileSize() {
 		return tileSize;
+	}
+	
+	public void setTileDrawSize(int i) {
+		tileSize = i;
 	}
 
 }
