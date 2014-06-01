@@ -219,10 +219,8 @@ public class StageLevel extends Stage {
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			getStageManager().setStatge(StageManager.STAGE_MENUE);
-			System.out.println();
 		} else if (e.getKeyCode() == KeyEvent.VK_R) {
 			getStageManager().setStatge(StageManager.STAGE_LEVEL);
-			System.out.println();
 		} else {
 			player.keyPressed(e);
 		}

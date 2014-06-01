@@ -96,6 +96,9 @@ public class StageShop extends Stage {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			getStageManager().setStatge(StageManager.STAGE_MENUE);
+		}
 	}
 
 	@Override
@@ -120,17 +123,12 @@ public class StageShop extends Stage {
 			}
 		} else if (e.getKeyChar() == 'd') {
 			selected = (selected + 1) % items;
-		} else if (e.getKeyChar() == ' ') {
+		}
+		if (e.getKeyChar() == ' ') {
 			klicked = selected;
-
-			try {
-				Thread.sleep(150);
-			} catch (InterruptedException e2) {
-				e2.printStackTrace();
-			}
 			audio.play(AudioPlayer.HIT);
 			try {
-				Thread.sleep(250);
+				Thread.sleep(15);
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}

@@ -25,11 +25,14 @@ public class AudioPlayer {
 	}
 
 	public void play(SoundFile sound) {
-		if (clips.containsKey(sound.name)) {
-			stop(sound);
-			clips.get(sound.name).setFramePosition(0);
-			clips.get(sound.name).start();
+		System.out.println("[AudioPlayer]Playing Audioclip: " + sound.name);
+		if (!clips.containsKey(sound.name)) {
+			load(sound);
 		}
+
+		stop(sound);
+		clips.get(sound.name).setFramePosition(0);
+		clips.get(sound.name).start();
 	}
 
 	public void stop(SoundFile sound) {
@@ -41,6 +44,7 @@ public class AudioPlayer {
 	}
 
 	private Clip loadClip(String path) {
+		System.out.println("[AudioPlayer]Loading Audioclip from " + path);
 		Clip clip = null;
 		try {
 			clip = AudioSystem.getClip();

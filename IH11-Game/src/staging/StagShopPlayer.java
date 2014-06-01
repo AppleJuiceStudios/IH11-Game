@@ -114,7 +114,9 @@ public class StagShopPlayer extends Stage {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-
+		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			getStageManager().setStatge(StageManager.STAGE_MENUE);
+		}
 	}
 
 	@Override
