@@ -13,7 +13,6 @@ import javax.imageio.ImageIO;
 import level.LevelEditable;
 import level.graphics.LevelTexture;
 import main.GamePanel;
-import sound.AudioPlayer;
 import data.PlayerData;
 
 public class StageLevelEditor extends Stage {
@@ -24,7 +23,6 @@ public class StageLevelEditor extends Stage {
 	private double yMovement;
 
 	private LevelEditable level;
-	private AudioPlayer audio;
 	private BufferedImage background;
 
 	private int selectedX;
@@ -32,7 +30,6 @@ public class StageLevelEditor extends Stage {
 
 	public StageLevelEditor(StageManager stageManager) {
 		super(stageManager);
-		audio = new AudioPlayer();
 		level = new LevelEditable();
 		byte[][] map = level.getTileSet();
 		for (int x = 0; x < map.length; x++) {
@@ -59,9 +56,7 @@ public class StageLevelEditor extends Stage {
 	}
 
 	public void close() {
-		audio.close();
 		level = null;
-		audio = null;
 	}
 
 	public void draw(Graphics2D g2) {
@@ -99,18 +94,18 @@ public class StageLevelEditor extends Stage {
 		} else if (e.getKeyChar() == 'd') {
 			selectedX++;
 		}
-		
-		if (e.getKeyChar() == ' '){
-			if(level.getTileID(selectedX, selectedY) == LevelTexture.AIR | !level.isInTileSet(selectedX, selectedY)){
+
+		if (e.getKeyChar() == ' ') {
+			if (level.getTileID(selectedX, selectedY) == LevelTexture.AIR | !level.isInTileSet(selectedX, selectedY)) {
 				level.setTileID(selectedX, selectedY, LevelTexture.CENTER);
 			} else {
 				level.setTileID(selectedX, selectedY, LevelTexture.AIR);
 			}
-			if(selectedX < 0){
+			if (selectedX < 0) {
 				xMovement -= selectedX * level.getTileSize();
 				selectedX = 0;
 			}
-			if(selectedY < 0){
+			if (selectedY < 0) {
 				yMovement -= selectedY * level.getTileSize();
 				selectedY = 0;
 			}
