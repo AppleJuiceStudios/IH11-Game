@@ -22,7 +22,7 @@ public class Level {
 	private double startPositionY;
 
 	public Level() {
-		tileSet = new byte[1][1];
+		tileSet = new byte[10][10];
 		levelTexture = new LevelTexture(chooseTileSet(), "TileSet");
 	}
 
@@ -55,12 +55,13 @@ public class Level {
 	}
 
 	public byte getTileID(int x, int y) {
-		try {
-			return tileSet[x][y];
-		} catch (IndexOutOfBoundsException e) {
+		if(x < 0 | x > getWidth() | y > getHeight()){
+			return LevelTexture.CENTER;
+		} else if(y < 0){
 			return LevelTexture.AIR;
+		} else {
+			return tileSet[x][y];
 		}
-
 	}
 
 	@XmlElement(name = "TileSet")
