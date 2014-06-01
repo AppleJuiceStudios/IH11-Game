@@ -17,6 +17,7 @@ public class StageManager {
 	public static final int STAGE_SHOP = 4;
 	public static final int STAGE_SHOP_BACKGROUNDS = 5;
 	public static final int STAGE_SHOP_PLAYER = 6;
+	public static final int STAGE_LEVELEDITOR = 7;
 
 	public StageManager(int startStage) {
 		setStatge(startStage);
@@ -45,6 +46,8 @@ public class StageManager {
 			stage = new StagShopBackgrounds(this);
 		} else if (stageID == STAGE_SHOP_PLAYER){
 			stage = new StagShopPlayer(this);
+		} else if (stageID == STAGE_LEVELEDITOR){
+			stage = new StageLevelEditor(this);
 		}
 	}
 

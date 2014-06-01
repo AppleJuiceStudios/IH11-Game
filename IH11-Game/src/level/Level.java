@@ -41,6 +41,10 @@ public class Level {
 			}
 		}
 	}
+	
+	public boolean isInTileSet(int x, int y){
+		return x >= 0 & x < getWidth() & y >= 0 & y < getHeight();
+	}
 
 	public void save(String name) {
 		JAXB.marshal(this, new File(name + ".xml"));
@@ -55,7 +59,7 @@ public class Level {
 	}
 
 	public byte getTileID(int x, int y) {
-		if(x < 0 | x > getWidth() | y > getHeight()){
+		if(x < 0 | x >= getWidth() | y >= getHeight()){
 			return LevelTexture.CENTER;
 		} else if(y < 0){
 			return LevelTexture.AIR;
@@ -64,9 +68,8 @@ public class Level {
 		}
 	}
 
-	@XmlElement(name = "TileSet")
 	public byte[][] getTileSet() {
-		return tileSet;
+		return this.tileSet;
 	}
 
 	public void setTileSet(byte[][] tileSet) {
@@ -89,8 +92,12 @@ public class Level {
 		this.startPositionY = startPositionY;
 	}
 
-	public double getTileSize() {
+	public int getTileSize() {
 		return tileSize;
+	}
+	
+	public void setTileDrawSize(int i) {
+		tileSize = i;
 	}
 
 }

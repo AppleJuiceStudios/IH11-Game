@@ -114,5 +114,9 @@ public class StageMenue extends Stage {
 				break;
 			}
 		}
+		
+		if(e.getKeyChar() == 'e'){
+			getStageManager().setStatge(StageManager.STAGE_LEVELEDITOR);
+		}
 	}
 }
