@@ -13,6 +13,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import sound.AudioPlayer;
 import main.GamePanel;
 import data.PlayerData;
 
@@ -20,6 +21,7 @@ public class StagShopPlayer extends Stage {
 
 	private BufferedImage background;
 	private BufferedImage coin;
+	private AudioPlayer audio;
 	List<Player> players;
 	private BufferedImage[][] buttons;
 	private Rectangle[] recs = new Rectangle[2];
@@ -32,71 +34,58 @@ public class StagShopPlayer extends Stage {
 
 	public StagShopPlayer(StageManager stageManager) {
 		super(stageManager);
+		audio = new AudioPlayer();
+		audio.load(AudioPlayer.HIT);
 		PlayerData.load();
 		players = new ArrayList<>();
 		buttons = new BufferedImage[2][2];
 		try {
 			addPlayer("/graphics/entity/MCPlayerANimation.xml", ImageIO.read(getClass().getResourceAsStream("/graphics/entity/MCPlayer.png")));
 			addPlayer("/graphics/entity/TetrisPlayerANimation.xml", ImageIO.read(getClass().getResourceAsStream("/graphics/entity/TetrisPlayer.png")));
-			background = ImageIO.read(getClass().getResourceAsStream(
-					"/graphics/level/background/BlueBackgroundPixel.png"));
-			coin = ImageIO.read(getClass().getResourceAsStream(
-					"/graphics/entity/coin/coin.png"));
+			background = ImageIO.read(getClass().getResourceAsStream("/graphics/level/background/BlueBackgroundPixel.png"));
+			coin = ImageIO.read(getClass().getResourceAsStream("/graphics/entity/coin/coin.png"));
 
-			buttons[0][0] = ImageIO.read(getClass().getResourceAsStream(
-					"/graphics/menue/PlayButtonBreitSelected.png"));
-			buttons[0][1] = ImageIO.read(getClass().getResourceAsStream(
-					"/graphics/menue/PlayButtonBreitUnpressed.png"));
+			buttons[0][0] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/PlayButtonBreitSelected.png"));
+			buttons[0][1] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/PlayButtonBreitUnpressed.png"));
 
-			buttons[1][0] = ImageIO.read(getClass().getResourceAsStream(
-					"/graphics/menue/BackButtonBreitSelected.png"));
-			buttons[1][1] = ImageIO.read(getClass().getResourceAsStream(
-					"/graphics/menue/BackButtonBreitUnpressed.png"));
+			buttons[1][0] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/BackButtonBreitSelected.png"));
+			buttons[1][1] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/BackButtonBreitUnpressed.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		recs[0] = new Rectangle(20, GamePanel.HEIGHT - 50,
-				buttons[0][0].getWidth(), buttons[0][0].getHeight());
-		recs[1] = new Rectangle(220, GamePanel.HEIGHT - 50,
-				buttons[0][0].getWidth(), buttons[0][0].getHeight());
+		recs[0] = new Rectangle(20, GamePanel.HEIGHT - 50, buttons[0][0].getWidth(), buttons[0][0].getHeight());
+		recs[1] = new Rectangle(220, GamePanel.HEIGHT - 50, buttons[0][0].getWidth(), buttons[0][0].getHeight());
 
 	}
 
 	private void addPlayer(String path, BufferedImage image) {
 
-		players.add(new Player(image, PlayerData.playerData.getCharacter()
-				.contains(path), path));
+		players.add(new Player(image, PlayerData.playerData.getCharacter().contains(path), path));
 
 	}
 
 	public void draw(Graphics2D g2) {
 		g2.drawImage(background, 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, null);
-		g2.drawImage(coin, GamePanel.WIDTH - coin.getWidth() - 90, 18,
-				coin.getWidth(), coin.getHeight(), null);
+		g2.drawImage(coin, GamePanel.WIDTH - coin.getWidth() - 90, 18, coin.getWidth(), coin.getHeight(), null);
 		g2.setFont(new Font("LCD", 2, 50));
 		g2.drawString(PlayerData.playerData.getName(), 80, 49);
-		g2.drawString(String.valueOf(PlayerData.playerData.getCoins()),
-				GamePanel.WIDTH - 90, 49);
+		g2.drawString(String.valueOf(PlayerData.playerData.getCoins()), GamePanel.WIDTH - 90, 49);
 		g2.setFont(new Font("Dialog", Font.PLAIN, 12));
 		for (int i = 0; i < 2; i++) {
 			if (i == selectedButton) {
-				g2.drawImage(buttons[i][0], recs[i].x, recs[i].y,
-						recs[i].width, recs[i].height, null);
+				g2.drawImage(buttons[i][0], recs[i].x, recs[i].y, recs[i].width, recs[i].height, null);
 			} else {
-				g2.drawImage(buttons[i][1], recs[i].x, recs[i].y,
-						recs[i].width, recs[i].height, null);
+				g2.drawImage(buttons[i][1], recs[i].x, recs[i].y, recs[i].width, recs[i].height, null);
 			}
 
 		}
 
 		// Scrolling
 		double targetPosition = selectedPlayer * 50;
-		scrollingPosition += (targetPosition - scrollingPosition)
-				* scrollingSpeed;
+		scrollingPosition += (targetPosition - scrollingPosition) * scrollingSpeed;
 		AffineTransform at = new AffineTransform();
 		at.translate(0, -scrollingPosition);
-		BufferedImage scrollArea = new BufferedImage(300, 160,
-				BufferedImage.TYPE_INT_RGB);
+		BufferedImage scrollArea = new BufferedImage(300, 160, BufferedImage.TYPE_INT_RGB);
 		Graphics2D scrollG = (Graphics2D) scrollArea.getGraphics();
 		scrollG.setTransform(at);
 		for (int i = 0; i < players.size(); i++) {
@@ -151,6 +140,7 @@ public class StagShopPlayer extends Stage {
 			}
 		}
 		if (e.getKeyChar() == ' ') {
+			audio.play(AudioPlayer.HIT);
 			if (selectedButton == 0) {
 				getStageManager().setStatge(StageManager.STAGE_LEVEL);
 			} else if (selectedButton == 1) {
