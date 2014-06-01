@@ -79,7 +79,8 @@ public class GamePanel extends JPanel implements KeyListener {
 				_fps = fps;
 			}
 			if (showFps) {
-				g2.drawString("FPS: " + _fps, WIDTH - 55, 15);
+				g2.drawString(Main.version, WIDTH - 60, 15);
+				g2.drawString("FPS: " + _fps, WIDTH - 60, 30);
 			}
 			Graphics g = this.getGraphics();
 			if (g != null) {
