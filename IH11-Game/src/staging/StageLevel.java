@@ -47,6 +47,8 @@ public class StageLevel extends Stage {
 	public StageLevel(StageManager stageManager) {
 		super(stageManager);
 		audio = new AudioPlayer();
+		audio.load(AudioPlayer.ORB);
+		audio.load(AudioPlayer.WIN);
 		level = JAXB.unmarshal(getClass().getResourceAsStream(chooseLevel()), Level.class);
 		player = new EntityPlayer(level, level.getStartPositionX(), level.getStartPositionY());
 		initItems(itemCount);
@@ -164,7 +166,7 @@ public class StageLevel extends Stage {
 		for (int i = 0; i < items.size(); i++) {
 			if (items.get(i).canCollectCoin(player)) {
 				collectedItems++;
-				audio.play("Orb");
+				audio.play(AudioPlayer.ORB);
 				items.remove(i);
 				if (collectedItems == itemCount) {
 					winn();
@@ -234,9 +236,8 @@ public class StageLevel extends Stage {
 		player.keyTyped(e);
 	}
 
-	@SuppressWarnings("static-access")
 	public void winn() {
-		audio.play("Win");
+		audio.play(AudioPlayer.WIN);
 		hasWinn = true;
 		player.setWinn(true);
 		new Thread(new Runnable() {
@@ -250,7 +251,7 @@ public class StageLevel extends Stage {
 			}
 		}).start();
 		PlayerData.playerData.setCoins(PlayerData.playerData.getCoins() + 20);
-		PlayerData.playerData.save();
+		PlayerData.save();
 	}
 
 }

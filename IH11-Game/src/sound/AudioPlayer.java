@@ -12,28 +12,32 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class AudioPlayer {
-
 	private Map<String, Clip> clips;
 
+	public final static SoundFile EXAMPLE = new SoundFile("Example", "/sounds/Example.wav");
+	public final static SoundFile HIT = new SoundFile("Hit", "/sounds/Hit.wav");
+	public final static SoundFile ORB = new SoundFile("Orb", "/sounds/orb.wav");
+	public final static SoundFile JUMP = new SoundFile("Jump", "/sounds/Jump.wav");
+	public final static SoundFile WIN = new SoundFile("Win", "/sounds/AirHorn.wav");
+
 	public AudioPlayer() {
-
 		clips = new HashMap<String, Clip>();
-		clips.put("Example", loadClip("/sounds/Example.wav"));
-		clips.put("Hit", loadClip("/sounds/Hit.wav"));
-		clips.put("Orb", loadClip("/sounds/orb.wav"));
-		clips.put("Jump", loadClip("/sounds/Jump.wav"));
-		clips.put("Win", loadClip("/sounds/AirHorn.wav"));
-
 	}
 
-	public void play(String name) {
-		stop(name);
-		clips.get(name).setFramePosition(0);
-		clips.get(name).start();
+	public void play(SoundFile sound) {
+		if (clips.containsKey(sound.name)) {
+			stop(sound);
+			clips.get(sound.name).setFramePosition(0);
+			clips.get(sound.name).start();
+		}
 	}
 
-	public void stop(String name) {
-		clips.get(name).stop();
+	public void stop(SoundFile sound) {
+		clips.get(sound.name).stop();
+	}
+
+	public void load(SoundFile sound) {
+		clips.put(sound.name, loadClip(sound.path));
 	}
 
 	private Clip loadClip(String path) {
