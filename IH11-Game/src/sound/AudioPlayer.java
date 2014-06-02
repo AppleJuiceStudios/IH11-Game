@@ -25,7 +25,7 @@ public class AudioPlayer {
 	}
 
 	public void play(SoundFile sound) {
-		System.out.println("[AudioPlayer]Playing Audioclip: " + sound.name);
+		System.out.println("[AudioPlayer] Playing Audioclip: " + sound.name);
 		if (!clips.containsKey(sound.name)) {
 			load(sound);
 		}
@@ -44,7 +44,7 @@ public class AudioPlayer {
 	}
 
 	private Clip loadClip(String path) {
-		System.out.println("[AudioPlayer]Loading Audioclip from " + path);
+		System.out.println("[AudioPlayer] Loading Audioclip from " + path);
 		Clip clip = null;
 		try {
 			clip = AudioSystem.getClip();

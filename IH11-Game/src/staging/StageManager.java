@@ -19,6 +19,7 @@ public class StageManager {
 	public static final int STAGE_SHOP_BACKGROUNDS = 5;
 	public static final int STAGE_SHOP_PLAYER = 6;
 	public static final int STAGE_LEVELEDITOR = 7;
+	private long startedLoadingTime;
 
 	public StageManager(int startStage) {
 		setStatge(startStage);
@@ -30,6 +31,7 @@ public class StageManager {
 	}
 
 	public void setStatge(int stageID) {
+		startedLoadingTime = System.nanoTime();
 		if (stage != null) {
 			Stage s = stage;
 			stage = null;
@@ -45,11 +47,12 @@ public class StageManager {
 			stage = new StageShop(this);
 		} else if (stageID == STAGE_SHOP_BACKGROUNDS) {
 			stage = new StagShopBackgrounds(this);
-		} else if (stageID == STAGE_SHOP_PLAYER){
+		} else if (stageID == STAGE_SHOP_PLAYER) {
 			stage = new StagShopPlayer(this);
-		} else if (stageID == STAGE_LEVELEDITOR){
+		} else if (stageID == STAGE_LEVELEDITOR) {
 			stage = new StageLevelEditor(this);
 		}
+		System.out.println("[StageManager] Stage " + stageID + " took " + ((double) (System.nanoTime() - startedLoadingTime) / 1000000000) + " Seconds to load!");
 	}
 
 	public void draw(Graphics2D g2) {
