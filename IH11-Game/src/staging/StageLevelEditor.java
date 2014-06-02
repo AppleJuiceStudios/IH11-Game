@@ -90,8 +90,8 @@ public class StageLevelEditor extends Stage {
 			g2.drawRect(-1, -1, level.getWidth() * boxSize + 1, level.getHeight() * boxSize + 1);
 			g2.drawRect(-2, -2, level.getWidth() * boxSize + 3, level.getHeight() * boxSize + 3);
 			g2.setColor(Color.BLUE);
-			g2.drawRect((int) level.getStartPositionX(), (int) level.getStartPositionY(), boxSize - 1, boxSize - 1);
-			g2.drawRect((int) level.getStartPositionX() + 1, (int) level.getStartPositionY() + 1, boxSize - 3, boxSize - 3);
+			g2.drawRect((int) level.getStartPositionX() / 32 * boxSize, (int) level.getStartPositionY() / 32 * boxSize, boxSize - 1, boxSize - 1);
+			g2.drawRect((int) level.getStartPositionX() / 32 * boxSize + 1, (int) level.getStartPositionY() / 32 * boxSize + 1, boxSize - 3, boxSize - 3);
 			g2.setColor(Color.RED);
 			g2.drawRect(selectedX * boxSize - 1, selectedY * boxSize - 1, boxSize + 1, boxSize + 1);
 			g2.drawRect(selectedX * boxSize - 2, selectedY * boxSize - 2, boxSize + 3, boxSize + 3);
