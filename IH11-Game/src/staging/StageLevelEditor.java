@@ -31,8 +31,8 @@ public class StageLevelEditor extends Stage {
 
 	private int selectedX;
 	private int selectedY;
-	
-	//LoadSave
+
+	// LoadSave
 	private boolean isLoadSaveScreen;
 	private String loadedLevel;
 	private StringBuilder enteredLevel;
@@ -70,7 +70,7 @@ public class StageLevelEditor extends Stage {
 	}
 
 	public void draw(Graphics2D g2) {
-		if(isLoadSaveScreen){
+		if (isLoadSaveScreen) {
 			g2.setColor(Color.BLUE);
 			g2.fillRoundRect(80, 120, 240, 60, 10, 10);
 			g2.setColor(Color.BLACK);
@@ -97,31 +97,31 @@ public class StageLevelEditor extends Stage {
 			g2.drawRect(selectedX * boxSize - 2, selectedY * boxSize - 2, boxSize + 3, boxSize + 3);
 			g2.setTransform(new AffineTransform());
 		}
-		
+
 	}
-	
-	public void setTile(byte id, boolean update){
+
+	public void setTile(byte id, boolean update) {
 		level.setTileID(selectedX, selectedY, id);
-		if(selectedX < 0){
+		if (selectedX < 0) {
 			xMovement -= selectedX * level.getTileSize();
 			selectedX = 0;
 		}
-		if(selectedY < 0){
+		if (selectedY < 0) {
 			yMovement -= selectedY * level.getTileSize();
 			selectedY = 0;
 		}
-		if(update){
+		if (update) {
 			level.calculateTileSet(selectedX, selectedY, true);
 		}
 	}
-	
-	public void loadSave(){
-		if(enteredLevel.toString().equals(loadedLevel)){
+
+	public void loadSave() {
+		if (enteredLevel.toString().equals(loadedLevel)) {
 			level.save("res/data/levels/" + loadedLevel);
 			System.out.println("Save");
 		} else {
 			File file = new File("res/data/levels/" + enteredLevel.toString() + ".xml");
-			if(file.exists()){
+			if (file.exists()) {
 				level = new LevelEditable(JAXB.unmarshal(file, Level.class));
 				System.out.println("Load");
 			} else {
@@ -133,20 +133,22 @@ public class StageLevelEditor extends Stage {
 	}
 
 	public void keyPressed(KeyEvent e) {
-
+		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			getStageManager().setStatge(StageManager.STAGE_MENUE);
+		}
 	}
 
 	public void keyReleased(KeyEvent e) {
-		if(isLoadSaveScreen){
-			if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE){
+		if (isLoadSaveScreen) {
+			if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 				enteredLevel.delete(enteredLevel.length() - 2, enteredLevel.length());
 			}
 		}
 	}
 
 	public void keyTyped(KeyEvent e) {
-		if(isLoadSaveScreen){
-			if(e.getKeyChar() == '\n'){
+		if (isLoadSaveScreen) {
+			if (e.getKeyChar() == '\n') {
 				isLoadSaveScreen = false;
 				loadSave();
 			} else {
@@ -171,6 +173,28 @@ public class StageLevelEditor extends Stage {
 				}
 			}
 
+			if (e.getKeyChar() == '7') {
+				setTile(LevelTexture.NORTHWEST, false);
+			} else if (e.getKeyChar() == '8') {
+				setTile(LevelTexture.NORTH, false);
+			} else if (e.getKeyChar() == '9') {
+				setTile(LevelTexture.NORTHEAST, false);
+			} else if (e.getKeyChar() == '4') {
+				setTile(LevelTexture.WEST, false);
+			} else if (e.getKeyChar() == '5') {
+				setTile(LevelTexture.CENTER, false);
+			} else if (e.getKeyChar() == '6') {
+				setTile(LevelTexture.EAST, false);
+			} else if (e.getKeyChar() == '1') {
+				setTile(LevelTexture.SOUTHWEST, false);
+			} else if (e.getKeyChar() == '2') {
+				setTile(LevelTexture.SOUTH, false);
+			} else if (e.getKeyChar() == '3') {
+				setTile(LevelTexture.SOUTHEAST, false);
+			} else if (e.getKeyChar() == '0') {
+				setTile(LevelTexture.AIR, false);
+			}
+
 			if (e.getKeyChar() == 'p') {
 				level.setStartPositionX(selectedX * 32);
 				level.setStartPositionY(selectedY * 32);
@@ -189,8 +213,8 @@ public class StageLevelEditor extends Stage {
 					yMovement = selectedY * level.getTileSize() - (GamePanel.HEIGHT / 2);
 				}
 			}
-			
-			if(e.getKeyChar() == '\n'){
+
+			if (e.getKeyChar() == '\n') {
 				isLoadSaveScreen = true;
 				enteredLevel = new StringBuilder(loadedLevel);
 			}
