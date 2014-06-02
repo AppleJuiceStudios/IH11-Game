@@ -36,6 +36,9 @@ public class StageLevelEditor extends Stage {
 	private boolean isSpacePressed;
 	private boolean isStrgPressed;
 
+	private TestingStageManager testingManager;
+	private boolean isTesting;
+
 	// LoadSave
 	private boolean isLoadSaveScreen;
 	private String loadedLevel;
@@ -74,6 +77,10 @@ public class StageLevelEditor extends Stage {
 	}
 
 	public void draw(Graphics2D g2) {
+		if (isTesting) {
+			testingManager.draw(g2);
+			return;
+		}
 		if (isLoadSaveScreen) {
 			g2.setColor(Color.BLUE);
 			g2.fillRoundRect(80, 120, 240, 60, 10, 10);
@@ -151,10 +158,12 @@ public class StageLevelEditor extends Stage {
 		level.setTileID(x, y, id);
 		if (x < 0) {
 			xMovement -= x * level.getTileSize();
+			selectedX -= x;
 			x = 0;
 		}
 		if (y < 0) {
 			yMovement -= y * level.getTileSize();
+			selectedY -= y;
 			y = 0;
 		}
 		if (update) {
@@ -205,7 +214,17 @@ public class StageLevelEditor extends Stage {
 		}
 	}
 
+	private void finishTesting() {
+		isTesting = false;
+		testingManager = null;
+	}
+
 	public void keyPressed(KeyEvent e) {
+		if (isTesting) {
+			testingManager.keyPressed(e);
+			return;
+		}
+
 		if (isLoadSaveScreen) {
 
 		} else {
@@ -227,6 +246,11 @@ public class StageLevelEditor extends Stage {
 	}
 
 	public void keyReleased(KeyEvent e) {
+		if (isTesting) {
+			testingManager.keyReleased(e);
+			return;
+		}
+
 		if (isLoadSaveScreen) {
 			if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 				enteredLevel.delete(enteredLevel.length() - 2, enteredLevel.length());
@@ -256,6 +280,11 @@ public class StageLevelEditor extends Stage {
 	}
 
 	public void keyTyped(KeyEvent e) {
+		if (isTesting) {
+			testingManager.keyTyped(e);
+			return;
+		}
+
 		if (isLoadSaveScreen) {
 			if (e.getKeyChar() == '\n') {
 				isLoadSaveScreen = false;
@@ -319,7 +348,67 @@ public class StageLevelEditor extends Stage {
 				isLoadSaveScreen = true;
 				enteredLevel = new StringBuilder(loadedLevel);
 			}
+
+			if (e.getKeyChar() == 't') {
+				testingManager = new TestingStageManager(level);
+				isTesting = true;
+			}
 		}
 	}
 
+	private class TestingStageManager extends StageManager {
+
+		private Stage levelStage;
+
+		public TestingStageManager(Level level) {
+			super(-1);
+			levelStage = new StageLevel(this, level);
+		}
+
+		public void setStatge(int stageID, Map<String, String> data) {
+			if (stageID != -1) {
+				close();
+			}
+		}
+
+		public void draw(Graphics2D g2) {
+			try{
+				if (levelStage != null) {
+				levelStage.draw(g2);
+			} else {
+				super.draw(g2);
+			}
+			} catch(NullPointerException e){
+				if (isTesting){
+					e.printStackTrace();
+				}
+			}
+			
+		}
+
+		public void close() {
+			finishTesting();
+			levelStage.close();
+			levelStage = null;
+		}
+
+		public void keyPressed(KeyEvent e) {
+			if (levelStage != null) {
+				levelStage.keyPressed(e);
+			}
+		}
+
+		public void keyReleased(KeyEvent e) {
+			if (levelStage != null) {
+				levelStage.keyReleased(e);
+			}
+		}
+
+		public void keyTyped(KeyEvent e) {
+			if (levelStage != null) {
+				levelStage.keyTyped(e);
+			}
+		}
+
+	}
 }

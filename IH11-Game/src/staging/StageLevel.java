@@ -6,6 +6,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -44,7 +45,7 @@ public class StageLevel extends Stage {
 	private int einer;
 
 	private EntityPlayer player;
-
+	
 	public StageLevel(StageManager stageManager, Map<String, String> data) {
 		super(stageManager, data);
 		audio = new AudioPlayer();
@@ -55,46 +56,22 @@ public class StageLevel extends Stage {
 		initItems(itemCount);
 		startTime = System.currentTimeMillis();
 		// Movement
-		maxXMovement = level.getWidth() * level.getTileSize() - GamePanel.WIDTH;
-		maxYMovement = level.getHeight() * level.getTileSize() - GamePanel.HEIGHT;
-		xMovement = player.getxPos() - (GamePanel.WIDTH / 2);
-		yMovement = player.getxPos() - (GamePanel.HEIGHT / 2);
-		if (xMovement < 0) {
-			xMovement = 0;
-		} else if (xMovement > maxXMovement) {
-			xMovement = maxXMovement;
-		}
-		if (yMovement < 0) {
-			yMovement = 0;
-		} else if (yMovement > maxYMovement) {
-			yMovement = maxYMovement;
-		}
-		try {
-			background = ImageIO.read(getClass().getResourceAsStream(chooseBackGround()));
-			clock = ImageIO.read(getClass().getResourceAsStream("/graphics/entity/Clock.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		updateThread = new Thread(new Runnable() {
-			public void run() {
-				long startTime = 0;
-				long delay = 0;
-				long waitTime = 1000 / 60;
-				while (!Thread.interrupted()) {
-					startTime = System.currentTimeMillis();
-					update();
-					delay = waitTime - (System.currentTimeMillis() - startTime);
-					if (delay > 0) {
-						try {
-							Thread.sleep(delay);
-						} catch (InterruptedException e) {
-							updateThread.interrupt();
-						}
-					}
-				}
-			}
-		});
-		updateThread.start();
+		initMovementAndBackground();
+		initUpdateThread();
+	}
+	
+	public StageLevel(StageManager stageManager, Level level){
+		super(stageManager, null);
+		audio = new AudioPlayer();
+		audio.load(AudioPlayer.ORB);
+		audio.load(AudioPlayer.WIN);
+		this.level = level;
+		player = new EntityPlayer(level, level.getStartPositionX(), level.getStartPositionY());
+		initItems(itemCount);
+		startTime = System.currentTimeMillis();
+		// Movement
+		initMovementAndBackground();
+		initUpdateThread();
 	}
 
 	private void initItems(int count) {
@@ -121,6 +98,52 @@ public class StageLevel extends Stage {
 			}
 		}
 		itemCount -= count;
+	}
+	
+	private void initMovementAndBackground(){
+		maxXMovement = level.getWidth() * level.getTileSize() - GamePanel.WIDTH;
+		maxYMovement = level.getHeight() * level.getTileSize() - GamePanel.HEIGHT;
+		xMovement = player.getxPos() - (GamePanel.WIDTH / 2);
+		yMovement = player.getxPos() - (GamePanel.HEIGHT / 2);
+		if (xMovement < 0) {
+			xMovement = 0;
+		} else if (xMovement > maxXMovement) {
+			xMovement = maxXMovement;
+		}
+		if (yMovement < 0) {
+			yMovement = 0;
+		} else if (yMovement > maxYMovement) {
+			yMovement = maxYMovement;
+		}
+		try {
+			background = ImageIO.read(getClass().getResourceAsStream(chooseBackGround()));
+			clock = ImageIO.read(getClass().getResourceAsStream("/graphics/entity/Clock.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void initUpdateThread(){
+		updateThread = new Thread(new Runnable() {
+			public void run() {
+				long startTime = 0;
+				long delay = 0;
+				long waitTime = 1000 / 60;
+				while (!Thread.interrupted()) {
+					startTime = System.currentTimeMillis();
+					update();
+					delay = waitTime - (System.currentTimeMillis() - startTime);
+					if (delay > 0) {
+						try {
+							Thread.sleep(delay);
+						} catch (InterruptedException e) {
+							updateThread.interrupt();
+						}
+					}
+				}
+			}
+		});
+		updateThread.start();
 	}
 
 	private String chooseBackGround() {
