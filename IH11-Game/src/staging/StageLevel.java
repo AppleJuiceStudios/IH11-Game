@@ -6,7 +6,9 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.xml.bind.JAXB;
@@ -43,9 +45,9 @@ public class StageLevel extends Stage {
 	private int einer;
 
 	private EntityPlayer player;
-
-	public StageLevel(StageManager stageManager) {
-		super(stageManager);
+	
+	public StageLevel(StageManager stageManager, Map<String, String> data) {
+		super(stageManager, data);
 		audio = new AudioPlayer();
 		audio.load(AudioPlayer.ORB);
 		audio.load(AudioPlayer.WIN);
@@ -54,6 +56,51 @@ public class StageLevel extends Stage {
 		initItems(itemCount);
 		startTime = System.currentTimeMillis();
 		// Movement
+		initMovementAndBackground();
+		initUpdateThread();
+	}
+	
+	public StageLevel(StageManager stageManager, Level level){
+		super(stageManager, null);
+		audio = new AudioPlayer();
+		audio.load(AudioPlayer.ORB);
+		audio.load(AudioPlayer.WIN);
+		this.level = level;
+		player = new EntityPlayer(level, level.getStartPositionX(), level.getStartPositionY());
+		initItems(itemCount);
+		startTime = System.currentTimeMillis();
+		// Movement
+		initMovementAndBackground();
+		initUpdateThread();
+	}
+
+	private void initItems(int count) {
+		items = new ArrayList<>();
+		BufferedImage image = getItemImage();
+		itemImage = image;
+		List<Integer> xPos = new ArrayList<>();
+		List<Integer> yPos = new ArrayList<>();
+		for (int x = 2; x < level.getWidth() - 2; x++) {
+			boolean wasLastAir = false;
+			for (int y = 0; y < level.getHeight(); y++) {
+				boolean isAir = level.getTileID(x, y) == LevelTexture.AIR;
+				if (wasLastAir && !isAir) {
+					xPos.add(x);
+					yPos.add(y - 1);
+				}
+				wasLastAir = isAir;
+			}
+		}
+		for(int i = 0; i < xPos.size(); i++){
+			if(Math.random() < (double)count / (xPos.size() - i)){
+				items.add(new Item(image, xPos.get(i), yPos.get(i)));
+				count--;
+			}
+		}
+		itemCount -= count;
+	}
+	
+	private void initMovementAndBackground(){
 		maxXMovement = level.getWidth() * level.getTileSize() - GamePanel.WIDTH;
 		maxYMovement = level.getHeight() * level.getTileSize() - GamePanel.HEIGHT;
 		xMovement = player.getxPos() - (GamePanel.WIDTH / 2);
@@ -74,6 +121,9 @@ public class StageLevel extends Stage {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void initUpdateThread(){
 		updateThread = new Thread(new Runnable() {
 			public void run() {
 				long startTime = 0;
@@ -94,26 +144,6 @@ public class StageLevel extends Stage {
 			}
 		});
 		updateThread.start();
-	}
-
-	private void initItems(int count) {
-		items = new ArrayList<>();
-		BufferedImage image = getItemImage();
-		itemImage = image;
-		for (int i = 0; i < count; i++) {
-			int xPos = (int) ((Math.random() * (level.getWidth() - 4)) + 2);
-			List<Integer> posibalYpos = new ArrayList<>();
-			boolean wasLastAir = false;
-			for (int j = 0; j < level.getHeight(); j++) {
-				boolean isAir = level.getTileID(xPos, j) == LevelTexture.AIR;
-				if (wasLastAir && !isAir) {
-					posibalYpos.add(j - 1);
-				}
-				wasLastAir = isAir;
-			}
-			int yPos = posibalYpos.get((int) (Math.random() * posibalYpos.size()));
-			items.add(new Item(image, xPos, yPos));
-		}
 	}
 
 	private String chooseBackGround() {
@@ -218,9 +248,9 @@ public class StageLevel extends Stage {
 
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			getStageManager().setStatge(StageManager.STAGE_MENUE);
+			getStageManager().setStatge(StageManager.STAGE_MENUE, null);
 		} else if (e.getKeyCode() == KeyEvent.VK_R) {
-			getStageManager().setStatge(StageManager.STAGE_LEVEL);
+			getStageManager().setStatge(StageManager.STAGE_LEVEL, null);
 		} else {
 			player.keyPressed(e);
 		}
@@ -245,7 +275,7 @@ public class StageLevel extends Stage {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				getStageManager().setStatge(StageManager.STAGE_SHOP);
+				getStageManager().setStatge(StageManager.STAGE_SHOP, null);
 			}
 		}).start();
 		PlayerData.playerData.setCoins(PlayerData.playerData.getCoins() + 20);

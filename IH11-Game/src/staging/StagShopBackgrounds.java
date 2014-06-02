@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 
@@ -32,8 +33,8 @@ public class StagShopBackgrounds extends Stage {
 	private double scrollingPosition;
 	private double scrollingSpeed = 0.05;
 
-	public StagShopBackgrounds(StageManager stageManager) {
-		super(stageManager);
+	public StagShopBackgrounds(StageManager stageManager, Map<String, String> data) {
+		super(stageManager, null);
 		audio = new AudioPlayer();
 		audio.load(AudioPlayer.HIT);
 		PlayerData.load();
@@ -121,7 +122,7 @@ public class StagShopBackgrounds extends Stage {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			getStageManager().setStatge(StageManager.STAGE_MENUE);
+			getStageManager().setStatge(StageManager.STAGE_MENUE, null);
 		}
 	}
 
@@ -150,9 +151,9 @@ public class StagShopBackgrounds extends Stage {
 		if (e.getKeyChar() == ' ') {
 			audio.play(AudioPlayer.HIT);
 			if (selectedButton == 0) {
-				getStageManager().setStatge(StageManager.STAGE_LEVEL);
+				getStageManager().setStatge(StageManager.STAGE_LEVEL, null);
 			} else if (selectedButton == 1) {
-				getStageManager().setStatge(StageManager.STAGE_SHOP);
+				getStageManager().setStatge(StageManager.STAGE_SHOP, null);
 			} else {
 				Background bg = backgrounds.get(selectedBackground);
 				if (!bg.isOwend()) {
@@ -162,7 +163,7 @@ public class StagShopBackgrounds extends Stage {
 						PlayerData.playerData.setCoins(coins);
 						PlayerData.playerData.getBackground().add(bg.getPath());
 						PlayerData.save();
-						getStageManager().setStatge(StageManager.STAGE_SHOP_BACKGROUNDS);
+						getStageManager().setStatge(StageManager.STAGE_SHOP_BACKGROUNDS, null);
 					}
 				}
 			}

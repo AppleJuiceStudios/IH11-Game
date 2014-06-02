@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<level>
+<levelEditable>
     <startPositionX>32.0</startPositionX>
     <startPositionY>32.0</startPositionY>
-    <TileSet>CQkCBAQEBAQEBAQEBAQFBAQ=</TileSet>
+    <TileSet>AgUFBAQEBAQEBAQEBAQFBAQ=</TileSet>
     <TileSet>CQkJCQkJCQkJCQIEBAcJAgQ=</TileSet>
     <TileSet>CQkJCQkJCQkJCQkCBQgJCQE=</TileSet>
     <TileSet>CQkJCQkJCQkJCQkJCQkJCQE=</TileSet>
@@ -29,4 +29,4 @@
     <TileSet>AQcJCQkJAAQEBwkJCQAEBAQ=</TileSet>
     <TileSet>AQQEAwMDBAQEBAMDAwQEBAQ=</TileSet>
     <TileSet>AgUFBQUFBQUFBQUFBQUFBQU=</TileSet>
-</level>
+</levelEditable>

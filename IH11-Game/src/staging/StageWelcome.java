@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 
@@ -13,8 +14,8 @@ public class StageWelcome extends Stage {
 
 	private BufferedImage welcome;
 
-	public StageWelcome(StageManager stageManager) {
-		super(stageManager);
+	public StageWelcome(StageManager stageManager, Map<String, String> data) {
+		super(stageManager, data);
 		try {
 			welcome = ImageIO.read(getClass().getResourceAsStream("/graphics/loading/Welcome.png"));
 		} catch (IOException e) {
@@ -41,6 +42,6 @@ public class StageWelcome extends Stage {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		getStageManager().setStatge(StageManager.STAGE_MENUE);
+		getStageManager().setStatge(StageManager.STAGE_MENUE, null);
 	}
 }

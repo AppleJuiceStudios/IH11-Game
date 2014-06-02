@@ -6,6 +6,7 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 
@@ -24,8 +25,8 @@ public class StageShop extends Stage {
 	private Rectangle[] recs = new Rectangle[items];
 	private AudioPlayer audio;
 
-	public StageShop(StageManager stageManager) {
-		super(stageManager);
+	public StageShop(StageManager stageManager, Map<String, String> data) {
+		super(stageManager, data);
 		audio = new AudioPlayer();
 		audio.load(AudioPlayer.HIT);
 		try {
@@ -97,7 +98,7 @@ public class StageShop extends Stage {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			getStageManager().setStatge(StageManager.STAGE_MENUE);
+			getStageManager().setStatge(StageManager.STAGE_MENUE, null);
 		}
 	}
 
@@ -135,19 +136,19 @@ public class StageShop extends Stage {
 
 			switch (selected) {
 			case 0:
-				getStageManager().setStatge(StageManager.STAGE_LEVEL);
+				getStageManager().setStatge(StageManager.STAGE_LEVEL, null);
 				break;
 			case 1:
-				getStageManager().setStatge(StageManager.STAGE_MENUE);
+				getStageManager().setStatge(StageManager.STAGE_MENUE, null);
 				break;
 			case 2:
-				getStageManager().setStatge(StageManager.STAGE_SHOP_BACKGROUNDS);
+				getStageManager().setStatge(StageManager.STAGE_SHOP_BACKGROUNDS, null);
 				break;
 			case 3:
 
 				break;
 			case 4:
-				getStageManager().setStatge(StageManager.STAGE_SHOP_PLAYER);
+				getStageManager().setStatge(StageManager.STAGE_SHOP_PLAYER, null);
 				break;
 			case 5:
 
