@@ -95,7 +95,13 @@ public class StagShopPlayer extends Stage {
 			if (b.isOwend()) {
 				scrollG.drawString("Yours", 100, i * 50 + 30);
 			} else {
-				scrollG.drawString("Buy        150 $", 100, i * 50 + 30);
+				if (PlayerData.playerData.getCoins() >= 150) {
+					scrollG.drawString("Buy        150 $", 100, i * 50 + 30);
+				} else {
+					scrollG.setColor(Color.RED);
+					scrollG.drawString("Buy        150 $", 100, i * 50 + 30);
+					scrollG.setColor(Color.WHITE);
+				}
 			}
 		}
 		g2.drawImage(scrollArea, 50, 70, 300, 160, null);
