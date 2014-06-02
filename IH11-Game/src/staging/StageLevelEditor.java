@@ -272,6 +272,14 @@ public class StageLevelEditor extends Stage {
 					}
 				}
 			}
+			
+			if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE & isSpacePressed & isStrgPressed) {
+				level.setTileSet(level.resize(Math.max(selectionXstart, selectedX) + 1, Math.max(selectionYstart, selectedY) + 1, Math.min(selectionXstart, selectedX), Math.min(selectionYstart, selectedY)));
+				selectedX  = 0;
+				selectedY = 0;
+				isSpacePressed = false;
+				isStrgPressed = false;
+			}
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_CONTROL) {
