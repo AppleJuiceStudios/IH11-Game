@@ -39,7 +39,6 @@ public class StageLevelEditor extends Stage {
 
 	public StageLevelEditor(StageManager stageManager) {
 		super(stageManager);
-		audio = new AudioPlayer();
 		level = new LevelEditable();
 		byte[][] map = level.getTileSet();
 		for (int x = 0; x < map.length; x++) {
@@ -192,9 +191,6 @@ public class StageLevelEditor extends Stage {
 				enteredLevel = new StringBuilder(loadedLevel);
 			}
 		}
-<<<<<<< HEAD
-		
-=======
 
 		if (e.getKeyChar() == ' ') {
 			if (level.getTileID(selectedX, selectedY) == LevelTexture.AIR | !level.isInTileSet(selectedX, selectedY)) {
@@ -212,7 +208,6 @@ public class StageLevelEditor extends Stage {
 			}
 			level.calculateTileSet(selectedX, selectedY, true);
 		}
->>>>>>> branch 'master' of https://github.com/TobiasBodewig/IH11-Game.git
 	}
 
 }
