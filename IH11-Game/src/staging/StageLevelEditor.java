@@ -16,6 +16,7 @@ import level.Level;
 import level.LevelEditable;
 import level.graphics.LevelTexture;
 import main.GamePanel;
+import sound.AudioPlayer;
 import data.PlayerData;
 
 public class StageLevelEditor extends Stage {
@@ -190,7 +191,23 @@ public class StageLevelEditor extends Stage {
 				enteredLevel = new StringBuilder(loadedLevel);
 			}
 		}
-		
+
+		if (e.getKeyChar() == ' ') {
+			if (level.getTileID(selectedX, selectedY) == LevelTexture.AIR | !level.isInTileSet(selectedX, selectedY)) {
+				level.setTileID(selectedX, selectedY, LevelTexture.CENTER);
+			} else {
+				level.setTileID(selectedX, selectedY, LevelTexture.AIR);
+			}
+			if (selectedX < 0) {
+				xMovement -= selectedX * level.getTileSize();
+				selectedX = 0;
+			}
+			if (selectedY < 0) {
+				yMovement -= selectedY * level.getTileSize();
+				selectedY = 0;
+			}
+			level.calculateTileSet(selectedX, selectedY, true);
+		}
 	}
 
 }
