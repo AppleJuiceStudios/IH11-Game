@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.xml.bind.JAXB;
+import javax.xml.crypto.dsig.spec.XSLTTransformParameterSpec;
 
 import level.Level;
 import level.LevelEditable;
@@ -31,6 +32,10 @@ public class StageLevelEditor extends Stage {
 
 	private int selectedX;
 	private int selectedY;
+	private int selectionXstart;
+	private int selectionYstart;
+	private boolean isSpacePressed;
+	private boolean isStrgPressed;
 
 	// LoadSave
 	private boolean isLoadSaveScreen;
@@ -66,7 +71,7 @@ public class StageLevelEditor extends Stage {
 	}
 
 	public void close() {
-		
+
 	}
 
 	public void draw(Graphics2D g2) {
@@ -91,27 +96,96 @@ public class StageLevelEditor extends Stage {
 			g2.drawRect(-2, -2, level.getWidth() * boxSize + 3, level.getHeight() * boxSize + 3);
 			g2.setColor(Color.BLUE);
 			g2.drawRect((int) level.getStartPositionX() / 32 * boxSize, (int) level.getStartPositionY() / 32 * boxSize, boxSize - 1, boxSize - 1);
-			g2.drawRect((int) level.getStartPositionX() / 32 * boxSize + 1, (int) level.getStartPositionY() / 32 * boxSize + 1, boxSize - 3, boxSize - 3);
+			g2.drawRect((int) level.getStartPositionX() / 32 * boxSize + 1, (int) level.getStartPositionY() / 32 * boxSize + 1, boxSize - 3,
+					boxSize - 3);
 			g2.setColor(Color.RED);
+			if ((selectedX != selectionXstart | selectedY != selectionYstart) & isSpacePressed) {
+				drawSelection(g2);
+			}
 			g2.drawRect(selectedX * boxSize - 1, selectedY * boxSize - 1, boxSize + 1, boxSize + 1);
 			g2.drawRect(selectedX * boxSize - 2, selectedY * boxSize - 2, boxSize + 3, boxSize + 3);
 			g2.setTransform(new AffineTransform());
+			g2.setColor(Color.WHITE);
 		}
 
 	}
 
-	public void setTile(byte id, boolean update) {
-		level.setTileID(selectedX, selectedY, id);
-		if (selectedX < 0) {
-			xMovement -= selectedX * level.getTileSize();
-			selectedX = 0;
+	private void drawSelection(Graphics2D g2) {
+		int boxSize = level.getTileSize();
+		int relXstart;
+		int relX;
+		int relYstart;
+		int relY;
+		if (selectedX > selectionXstart) {
+			relXstart = selectionXstart;
+			relX = selectedX - selectionXstart + 1;
+		} else {
+			relXstart = selectedX;
+			relX = selectionXstart - selectedX + 1;
 		}
-		if (selectedY < 0) {
-			yMovement -= selectedY * level.getTileSize();
-			selectedY = 0;
+		if (selectedY > selectionYstart) {
+			relYstart = selectionYstart;
+			relY = selectedY - selectionYstart + 1;
+		} else {
+			relYstart = selectedY;
+			relY = selectionYstart - selectedY + 1;
+		}
+		g2.drawRect(relXstart * boxSize - 1, relYstart * boxSize - 1, relX * boxSize + 1, relY * boxSize + 1);
+		g2.drawRect(relXstart * boxSize - 2, relYstart * boxSize - 2, relX * boxSize + 3, relY * boxSize + 3);
+		for (int x = relXstart; x < relXstart + relX; x++) {
+			for (int y = relYstart; y < relYstart + relY; y++) {
+				if(isStrgPressed != (!level.isInTileSet(x, y) | level.getTileID(x, y) == LevelTexture.AIR)){
+					drawBlockSelection(g2, x * boxSize, y * boxSize, boxSize);
+				}
+			}
+		}
+	}
+
+	private void drawBlockSelection(Graphics2D g2, int x, int y, int blockSize) {
+		for (int i = 1; i < blockSize; i += 2) {
+			g2.drawLine(x + i, y, x, y + i);
+			g2.drawLine(x + blockSize - i, y + blockSize, x + blockSize, y + blockSize - i);
+		}
+	}
+
+	public void setTile(int x, int y, byte id, boolean update) {
+		level.setTileID(x, y, id);
+		if (x < 0) {
+			xMovement -= x * level.getTileSize();
+			x = 0;
+		}
+		if (y < 0) {
+			yMovement -= y * level.getTileSize();
+			y = 0;
 		}
 		if (update) {
-			level.calculateTileSet(selectedX, selectedY, true);
+			level.calculateTileSet(x, y, true);
+		}
+	}
+
+	public void setSelection(byte id, boolean update) {
+		int relXstart;
+		int relXtarget;
+		int relYstart;
+		int relYtarget;
+		if (selectedX > selectionXstart) {
+			relXstart = selectionXstart - selectedX;
+			relXtarget = 0;
+		} else {
+			relXstart = 0;
+			relXtarget = selectionXstart - selectedX;
+		}
+		if (selectedY > selectionYstart) {
+			relYstart = selectionYstart - selectedY;
+			relYtarget = 0;
+		} else {
+			relYstart = 0;
+			relYtarget = selectionYstart - selectedY;
+		}
+		for (int x = relXstart; x <= relXtarget; x++) {
+			for (int y = relYstart; y <= relYtarget; y++) {
+				setTile(selectedX + x, selectedY + y, id, update);
+			}
 		}
 	}
 
@@ -133,8 +207,23 @@ public class StageLevelEditor extends Stage {
 	}
 
 	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			getStageManager().setStatge(StageManager.STAGE_MENUE);
+		if (isLoadSaveScreen) {
+
+		} else {
+			if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+				getStageManager().setStatge(StageManager.STAGE_MENUE);
+			}
+			if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+				if (!isSpacePressed) {
+					isSpacePressed = true;
+					selectionXstart = selectedX;
+					selectionYstart = selectedY;
+				}
+			}
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_CONTROL) {
+			isStrgPressed = true;
 		}
 	}
 
@@ -143,6 +232,27 @@ public class StageLevelEditor extends Stage {
 			if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 				enteredLevel.delete(enteredLevel.length() - 2, enteredLevel.length());
 			}
+		} else {
+			if (e.getKeyCode() == KeyEvent.VK_SPACE & isSpacePressed) {
+				isSpacePressed = false;
+				if (selectedX == selectionXstart & selectedY == selectionYstart) {
+					if (level.getTileID(selectedX, selectedY) == LevelTexture.AIR | !level.isInTileSet(selectedX, selectedY)) {
+						setTile(selectedX, selectedY, LevelTexture.CENTER, true);
+					} else {
+						setTile(selectedX, selectedY, LevelTexture.AIR, true);
+					}
+				} else {
+					if (isStrgPressed) {
+						setSelection(LevelTexture.AIR, true);
+					} else {
+						setSelection(LevelTexture.CENTER, true);
+					}
+				}
+			}
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_CONTROL) {
+			isStrgPressed = false;
 		}
 	}
 
@@ -165,34 +275,26 @@ public class StageLevelEditor extends Stage {
 				selectedX++;
 			}
 
-			if (e.getKeyChar() == ' ') {
-				if (level.getTileID(selectedX, selectedY) == LevelTexture.AIR | !level.isInTileSet(selectedX, selectedY)) {
-					setTile(LevelTexture.CENTER, true);
-				} else {
-					setTile(LevelTexture.AIR, true);
-				}
-			}
-
 			if (e.getKeyChar() == '7') {
-				setTile(LevelTexture.NORTHWEST, false);
+				setTile(selectedX, selectedY, LevelTexture.NORTHWEST, false);
 			} else if (e.getKeyChar() == '8') {
-				setTile(LevelTexture.NORTH, false);
+				setTile(selectedX, selectedY, LevelTexture.NORTH, false);
 			} else if (e.getKeyChar() == '9') {
-				setTile(LevelTexture.NORTHEAST, false);
+				setTile(selectedX, selectedY, LevelTexture.NORTHEAST, false);
 			} else if (e.getKeyChar() == '4') {
-				setTile(LevelTexture.WEST, false);
+				setTile(selectedX, selectedY, LevelTexture.WEST, false);
 			} else if (e.getKeyChar() == '5') {
-				setTile(LevelTexture.CENTER, false);
+				setTile(selectedX, selectedY, LevelTexture.CENTER, false);
 			} else if (e.getKeyChar() == '6') {
-				setTile(LevelTexture.EAST, false);
+				setTile(selectedX, selectedY, LevelTexture.EAST, false);
 			} else if (e.getKeyChar() == '1') {
-				setTile(LevelTexture.SOUTHWEST, false);
+				setTile(selectedX, selectedY, LevelTexture.SOUTHWEST, false);
 			} else if (e.getKeyChar() == '2') {
-				setTile(LevelTexture.SOUTH, false);
+				setTile(selectedX, selectedY, LevelTexture.SOUTH, false);
 			} else if (e.getKeyChar() == '3') {
-				setTile(LevelTexture.SOUTHEAST, false);
+				setTile(selectedX, selectedY, LevelTexture.SOUTHEAST, false);
 			} else if (e.getKeyChar() == '0') {
-				setTile(LevelTexture.AIR, false);
+				setTile(selectedX, selectedY, LevelTexture.AIR, false);
 			}
 
 			if (e.getKeyChar() == 'p') {
