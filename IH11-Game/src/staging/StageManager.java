@@ -56,7 +56,6 @@ public class StageManager {
 	}
 
 	public void draw(Graphics2D g2) {
-		g2.setTransform(new AffineTransform());
 		if (stage != null) {
 			stage.draw(g2);
 		} else {

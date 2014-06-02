@@ -66,7 +66,7 @@ public class StageLevelEditor extends Stage {
 	}
 
 	public void close() {
-		level = null;
+		
 	}
 
 	public void draw(Graphics2D g2) {
