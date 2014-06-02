@@ -65,7 +65,8 @@ public class StagShopBackgrounds extends Stage {
 
 	private void addBackground(String path) {
 		try {
-			backgrounds.add(new Background(ImageIO.read(getClass().getResourceAsStream(path)), PlayerData.playerData.getBackground().contains(path), path));
+			backgrounds.add(new Background(ImageIO.read(getClass().getResourceAsStream(path)), PlayerData.playerData.getBackground().contains(path),
+					path));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -101,7 +102,13 @@ public class StagShopBackgrounds extends Stage {
 			if (b.isOwend()) {
 				scrollG.drawString("Yours", 100, i * 50 + 30);
 			} else {
-				scrollG.drawString("Buy        75 $", 100, i * 50 + 30);
+				if (PlayerData.playerData.getCoins() >= 75) {
+					scrollG.drawString("Buy        75 $", 100, i * 50 + 30);
+				} else {
+					scrollG.setColor(Color.RED);
+					scrollG.drawString("Buy        75 $", 100, i * 50 + 30);
+					scrollG.setColor(Color.WHITE);
+				}
 			}
 		}
 		g2.drawImage(scrollArea, 50, 70, 300, 160, null);

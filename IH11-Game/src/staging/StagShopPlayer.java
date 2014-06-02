@@ -41,8 +41,8 @@ public class StagShopPlayer extends Stage {
 		players = new ArrayList<>();
 		buttons = new BufferedImage[2][2];
 		try {
-			addPlayer("/graphics/entity/MCPlayerANimation.xml", ImageIO.read(getClass().getResourceAsStream("/graphics/entity/MCPlayer.png")));
-			addPlayer("/graphics/entity/TetrisPlayerANimation.xml", ImageIO.read(getClass().getResourceAsStream("/graphics/entity/TetrisPlayer.png")));
+			addPlayer("/graphics/entity/MCPlayerAnimation.xml", ImageIO.read(getClass().getResourceAsStream("/graphics/entity/MCPlayer.png")));
+			addPlayer("/graphics/entity/TetrisPlayerAnimation.xml", ImageIO.read(getClass().getResourceAsStream("/graphics/entity/TetrisPlayer.png")));
 			background = ImageIO.read(getClass().getResourceAsStream("/graphics/level/background/BlueBackgroundPixel.png"));
 			coin = ImageIO.read(getClass().getResourceAsStream("/graphics/entity/coin/coin.png"));
 
@@ -95,7 +95,13 @@ public class StagShopPlayer extends Stage {
 			if (b.isOwend()) {
 				scrollG.drawString("Yours", 100, i * 50 + 30);
 			} else {
-				scrollG.drawString("Buy        150 $", 100, i * 50 + 30);
+				if (PlayerData.playerData.getCoins() >= 150) {
+					scrollG.drawString("Buy        150 $", 100, i * 50 + 30);
+				} else {
+					scrollG.setColor(Color.RED);
+					scrollG.drawString("Buy        150 $", 100, i * 50 + 30);
+					scrollG.setColor(Color.WHITE);
+				}
 			}
 		}
 		g2.drawImage(scrollArea, 50, 70, 300, 160, null);

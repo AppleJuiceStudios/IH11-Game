@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<level>
+<levelEditable>
     <startPositionX>32.0</startPositionX>
     <startPositionY>32.0</startPositionY>
     <TileSet>AgUFBQUFBQUFBQUEBA==</TileSet>
@@ -26,7 +26,7 @@
     <TileSet>CQkJCQkJCQkJAQcJAQ==</TileSet>
     <TileSet>CQkJCQkJCQkJAQcJAQ==</TileSet>
     <TileSet>CQkJCQkJCQkJAQcJAQ==</TileSet>
-    <TileSet>AwMGCQkAAwMDBAcJAQ==</TileSet>
+    <TileSet>AAMGCQkAAwMDBAcJAQ==</TileSet>
     <TileSet>BAQHCQkBBAUFBQgJAQ==</TileSet>
     <TileSet>BAQICQkCCAkJCQkJAQ==</TileSet>
     <TileSet>BAcJCQkJCQkJCQkJAQ==</TileSet>
@@ -44,7 +44,7 @@
     <TileSet>BAQHCQkJCQkJCQAEBA==</TileSet>
     <TileSet>BAQHCQkJCQkJCQEEBA==</TileSet>
     <TileSet>BAQEAwYJCQADAwQEBA==</TileSet>
-    <TileSet>BQUFBQgJCQIEBAQEBA==</TileSet>
+    <TileSet>AgUFBQgJCQIEBAQEBA==</TileSet>
     <TileSet>CQkJCQkJCQkCBAQEBA==</TileSet>
     <TileSet>CQkJCQkJCQkJAgQEBA==</TileSet>
     <TileSet>CQkJCQkJCQkJCQIEBA==</TileSet>
@@ -57,4 +57,4 @@
     <TileSet>CQkJCQkJCQkJCQAEBA==</TileSet>
     <TileSet>CQkJCQAGCQkJAAQEBA==</TileSet>
     <TileSet>AAMDAwQEAwMDBAQEBA==</TileSet>
-</level>
+</levelEditable>
