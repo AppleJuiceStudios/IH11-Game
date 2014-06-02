@@ -3,6 +3,11 @@ package level;
 import level.graphics.LevelTexture;
 
 public class LevelEditable extends Level {
+	
+	public LevelEditable(){
+		super();
+		setTileSet(new byte[10][10]);
+	}
 
 	public void setTileID(int x, int y, byte id) {
 		if (!(x < getWidth() & y < getHeight() & x >= 0 & y >= 0)) {
