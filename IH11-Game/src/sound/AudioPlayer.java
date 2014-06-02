@@ -14,7 +14,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class AudioPlayer {
 	private Map<String, Clip> clips;
 
-	public final static SoundFile EXAMPLE = new SoundFile("Example", "/sounds/Example.wav");
+	public final static SoundFile CHIPTUNE = new SoundFile("Chiptune", "/sounds/Chiptune.wav");
 	public final static SoundFile HIT = new SoundFile("Hit", "/sounds/Hit.wav");
 	public final static SoundFile ORB = new SoundFile("Orb", "/sounds/orb.wav");
 	public final static SoundFile JUMP = new SoundFile("Jump", "/sounds/Jump.wav");
@@ -33,6 +33,18 @@ public class AudioPlayer {
 		stop(sound);
 		clips.get(sound.name).setFramePosition(0);
 		clips.get(sound.name).start();
+	}
+	
+	public void loop(SoundFile sound){
+		System.out.println("[AudioPlayer] Looping Audioclip: " + sound.name);
+		if (!clips.containsKey(sound.name)) {
+			load(sound);
+		}
+
+		stop(sound);
+		clips.get(sound.name).setFramePosition(0);
+		clips.get(sound.name).loop(Clip.LOOP_CONTINUOUSLY);
+		
 	}
 
 	public void stop(SoundFile sound) {

@@ -25,9 +25,9 @@ public class StageMenue extends Stage {
 	public StageMenue(StageManager stageManager) {
 		super(stageManager);
 		audio = new AudioPlayer();
-		audio.load(AudioPlayer.EXAMPLE);
+		audio.load(AudioPlayer.CHIPTUNE);
 		audio.load(AudioPlayer.HIT);
-		audio.play(AudioPlayer.EXAMPLE);
+		audio.loop(AudioPlayer.CHIPTUNE);
 		try {
 			background = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/MenueBackground.png"));
 			buttons[0][0] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/PlayButtonSelected.png"));
@@ -91,7 +91,7 @@ public class StageMenue extends Stage {
 		}
 
 		if (e.getKeyChar() == ' ') {
-			audio.stop(AudioPlayer.EXAMPLE);
+			audio.stop(AudioPlayer.CHIPTUNE);
 			try {
 				Thread.sleep(250);
 			} catch (InterruptedException e1) {
