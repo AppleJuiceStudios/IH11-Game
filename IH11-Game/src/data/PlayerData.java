@@ -27,7 +27,12 @@ public class PlayerData {
 	}
 
 	public static void load() {
-		playerData = JAXB.unmarshal(new File("./Player.xml"), PlayerData.class);
+		File file = new File("./Player.xml");
+		if(file.exists()){
+			playerData = JAXB.unmarshal(file, PlayerData.class);
+		} else {
+			playerData = JAXB.unmarshal(PlayerData.class.getResourceAsStream("/data/Player.xml"), PlayerData.class);
+		}
 	}
 
 	public static void save() {
