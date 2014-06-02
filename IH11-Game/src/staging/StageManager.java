@@ -51,7 +51,7 @@ public class StageManager {
 		} else if (stageID == STAGE_LEVELEDITOR) {
 			stage = new StageLevelEditor(this);
 		}
-		System.out.println("[StageManager] Took " + ((double) (System.nanoTime() - startedLoadingTime) / 1000000000) + " Seconds to load!");
+		System.out.println("[StageManager] Stage " + stageID + " took " + ((double) (System.nanoTime() - startedLoadingTime) / 1000000000) + " Seconds to load!");
 	}
 
 	public void draw(Graphics2D g2) {
