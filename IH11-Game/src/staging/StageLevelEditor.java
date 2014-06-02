@@ -118,13 +118,17 @@ public class StageLevelEditor extends Stage {
 	public void loadSave(){
 		if(enteredLevel.toString().equals(loadedLevel)){
 			level.save("res/data/levels/" + loadedLevel);
+			System.out.println("Save");
 		} else {
-			File file = new File("res/data/levels/" + enteredLevel.toString());
+			File file = new File("res/data/levels/" + enteredLevel.toString() + ".xml");
 			if(file.exists()){
-				level = new LevelEditable(JAXB.unmarshal(getClass().getResourceAsStream("res/data/levels/" + enteredLevel.toString() +".xml"), Level.class));
+				level = new LevelEditable(JAXB.unmarshal(file, Level.class));
+				System.out.println("Load");
 			} else {
-				level.save("res/data/levels/" + loadedLevel);
+				level.save("res/data/levels/" + enteredLevel.toString());
+				System.out.println("Save new.");
 			}
+			loadedLevel = enteredLevel.toString();
 		}
 	}
 
@@ -190,23 +194,6 @@ public class StageLevelEditor extends Stage {
 				isLoadSaveScreen = true;
 				enteredLevel = new StringBuilder(loadedLevel);
 			}
-		}
-
-		if (e.getKeyChar() == ' ') {
-			if (level.getTileID(selectedX, selectedY) == LevelTexture.AIR | !level.isInTileSet(selectedX, selectedY)) {
-				level.setTileID(selectedX, selectedY, LevelTexture.CENTER);
-			} else {
-				level.setTileID(selectedX, selectedY, LevelTexture.AIR);
-			}
-			if (selectedX < 0) {
-				xMovement -= selectedX * level.getTileSize();
-				selectedX = 0;
-			}
-			if (selectedY < 0) {
-				yMovement -= selectedY * level.getTileSize();
-				selectedY = 0;
-			}
-			level.calculateTileSet(selectedX, selectedY, true);
 		}
 	}
 
