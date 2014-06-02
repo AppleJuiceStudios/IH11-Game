@@ -22,7 +22,7 @@ public class Level {
 	private double startPositionY;
 
 	public Level() {
-		tileSet = new byte[10][10];
+		tileSet =  new byte[10][10];
 		levelTexture = new LevelTexture(chooseTileSet(), "TileSet");
 	}
 
@@ -67,7 +67,8 @@ public class Level {
 			return tileSet[x][y];
 		}
 	}
-
+	
+	@XmlElement(name = "TileSet")
 	public byte[][] getTileSet() {
 		return this.tileSet;
 	}
