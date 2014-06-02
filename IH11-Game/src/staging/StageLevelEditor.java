@@ -5,11 +5,14 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.xml.bind.JAXB;
 
+import level.Level;
 import level.LevelEditable;
 import level.graphics.LevelTexture;
 import main.GamePanel;
@@ -112,11 +115,16 @@ public class StageLevelEditor extends Stage {
 	}
 	
 	public void loadSave(){
-		
-	}
-	
-	public void save(){
-		
+		if(enteredLevel.toString().equals(loadedLevel)){
+			level.save("res/data/levels/" + loadedLevel);
+		} else {
+			File file = new File("res/data/levels/" + enteredLevel.toString());
+			if(file.exists()){
+				level = new LevelEditable(JAXB.unmarshal(getClass().getResourceAsStream("res/data/levels/" + enteredLevel.toString() +".xml"), Level.class));
+			} else {
+				level.save("res/data/levels/" + loadedLevel);
+			}
+		}
 	}
 
 	public void keyPressed(KeyEvent e) {

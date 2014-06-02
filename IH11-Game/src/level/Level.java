@@ -66,7 +66,11 @@ public class Level {
 			return tileSet[x][y];
 		}
 	}
+<<<<<<< Upstream, based on master
 
+=======
+	
+>>>>>>> dc0c6a1 Editing LevelEditor.
 	@XmlElement(name = "TileSet")
 	public byte[][] getTileSet() {
 		return this.tileSet;
