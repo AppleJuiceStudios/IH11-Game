@@ -100,20 +100,26 @@ public class StageLevel extends Stage {
 		items = new ArrayList<>();
 		BufferedImage image = getItemImage();
 		itemImage = image;
-		for (int i = 0; i < count; i++) {
-			int xPos = (int) ((Math.random() * (level.getWidth() - 4)) + 2);
-			List<Integer> posibalYpos = new ArrayList<>();
+		List<Integer> xPos = new ArrayList<>();
+		List<Integer> yPos = new ArrayList<>();
+		for (int x = 2; x < level.getWidth() - 2; x++) {
 			boolean wasLastAir = false;
-			for (int j = 0; j < level.getHeight(); j++) {
-				boolean isAir = level.getTileID(xPos, j) == LevelTexture.AIR;
+			for (int y = 0; y < level.getHeight(); y++) {
+				boolean isAir = level.getTileID(x, y) == LevelTexture.AIR;
 				if (wasLastAir && !isAir) {
-					posibalYpos.add(j - 1);
+					xPos.add(x);
+					yPos.add(y - 1);
 				}
 				wasLastAir = isAir;
 			}
-			int yPos = posibalYpos.get((int) (Math.random() * posibalYpos.size()));
-			items.add(new Item(image, xPos, yPos));
 		}
+		for(int i = 0; i < xPos.size(); i++){
+			if(Math.random() < (double)count / (xPos.size() - i)){
+				items.add(new Item(image, xPos.get(i), yPos.get(i)));
+				count--;
+			}
+		}
+		itemCount -= count;
 	}
 
 	private String chooseBackGround() {
