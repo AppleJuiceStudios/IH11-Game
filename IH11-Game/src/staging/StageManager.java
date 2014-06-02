@@ -2,6 +2,8 @@ package staging;
 
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Map;
@@ -57,6 +59,7 @@ public class StageManager {
 	}
 
 	public void draw(Graphics2D g2) {
+		g2.setTransform(new AffineTransform());
 		if (stage != null) {
 			stage.draw(g2);
 		} else {
