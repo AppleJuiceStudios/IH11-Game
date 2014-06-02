@@ -3,11 +3,6 @@ package level;
 import level.graphics.LevelTexture;
 
 public class LevelEditable extends Level {
-	
-	public LevelEditable(){
-		super();
-		setTileSet(new byte[10][10]);
-	}
 
 	public LevelEditable() {
 		super();
