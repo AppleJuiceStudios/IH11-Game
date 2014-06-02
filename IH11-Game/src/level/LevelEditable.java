@@ -4,6 +4,25 @@ import level.graphics.LevelTexture;
 
 public class LevelEditable extends Level {
 
+	public LevelEditable() {
+		super();
+	}
+
+	public LevelEditable(Level level) {
+		setTileSet(level.getTileSet());
+		setTileDrawSize(level.getTileSize());
+		setStartPositionX(level.getStartPositionX());
+		setStartPositionY(level.getStartPositionY());
+	}
+
+	public Level getLevel() {
+		Level level = new Level();
+		level.setTileSet(getTileSet());
+		level.setStartPositionX(getStartPositionX());
+		level.setStartPositionY(getStartPositionY());
+		return level;
+	}
+
 	public void setTileID(int x, int y, byte id) {
 		if (!(x < getWidth() & y < getHeight() & x >= 0 & y >= 0)) {
 			setTileSet(resize(Math.max(x + 1, getWidth()), Math.max(y + 1, getHeight()), Math.min(x, 0), Math.min(y, 0)));
@@ -18,7 +37,6 @@ public class LevelEditable extends Level {
 	}
 
 	public byte[][] resize(int width, int height, int xOffset, int yoffset) {
-		System.out.println("Resize;" + width  + ";" + height  + ";" + xOffset  + ";" + yoffset);
 		byte[][] newTileSet = new byte[width - xOffset][height - yoffset];
 		byte[][] altTileSet = getTileSet();
 		for (int x = 0; x < newTileSet.length; x++) {

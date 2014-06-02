@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<level>
+<levelEditable>
     <startPositionX>32.0</startPositionX>
     <startPositionY>32.0</startPositionY>
-    <TileSet>BQUFBQUFBQQEBA==</TileSet>
-    <TileSet>CQkJCQkJCQIEBA==</TileSet>
+    <TileSet>BQUFBQUFBQUEBA==</TileSet>
     <TileSet>CQkJCQkJCQkBBA==</TileSet>
-    <TileSet>CQADBgkJCQkBBA==</TileSet>
-    <TileSet>CQEEBwkJCQkBBA==</TileSet>
-    <TileSet>CQIFCAkJCQkBBA==</TileSet>
+    <TileSet>CQkJAAYJCQkBBA==</TileSet>
+    <TileSet>CQkJAQcJCQkBBA==</TileSet>
+    <TileSet>CQkJAggJCQkBBA==</TileSet>
     <TileSet>CQkJCQkJCQkBBA==</TileSet>
-    <TileSet>CQkJCQkJCQkBBA==</TileSet>
-    <TileSet>CQkJCQkJCQkBBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
-    <TileSet>CQkJCQkJCQkBBA==</TileSet>
+    <TileSet>CQkJAAYJCQkBBA==</TileSet>
+    <TileSet>CQkJAQcJCQkBBA==</TileSet>
+    <TileSet>CQkJAggJCQkBBA==</TileSet>
     <TileSet>CQkJCQkJCQkBBA==</TileSet>
     <TileSet>CQkJCQkJCQkBBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
+    <TileSet>CQkJCQkABgkBBA==</TileSet>
+    <TileSet>CQkJCQkBBwkBBA==</TileSet>
+    <TileSet>CQkJCQkBBwkBBA==</TileSet>
+    <TileSet>CQkJCQkBBwkBBA==</TileSet>
+    <TileSet>CQkJCQkCCAkBBA==</TileSet>
     <TileSet>CQkJCQkJCQkBBA==</TileSet>
-    <TileSet>CQkJCQkJCQkBBA==</TileSet>
-    <TileSet>CQkJCQkJCQkBBA==</TileSet>
     <TileSet>CQkJCQkJCQAEBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
-    <TileSet>CQkJCQkJCQAEBA==</TileSet>
+    <TileSet>CQkJCQkJCQEEBA==</TileSet>
+    <TileSet>CQkJCQkJCQEEBA==</TileSet>
+    <TileSet>CQkJCQkJCQEEBA==</TileSet>
+    <TileSet>CQkJCQkJCQEEBA==</TileSet>
+    <TileSet>CQkJCQkJCQEEBA==</TileSet>
+    <TileSet>CQkJCQkJCQEEBA==</TileSet>
+    <TileSet>CQkJCQkJCQEEBA==</TileSet>
+    <TileSet>CQkJCQkJCQEEBA==</TileSet>
+    <TileSet>CQkJCQkJCQEEBA==</TileSet>
+    <TileSet>CQkJCQkJCQEEBA==</TileSet>
+    <TileSet>CQkJCQkJCQEEBA==</TileSet>
+    <TileSet>CQkJCQkJCQEEBA==</TileSet>
+    <TileSet>CQkJCQkJCQEEBA==</TileSet>
+    <TileSet>CQkJCQkJCQEEBA==</TileSet>
+    <TileSet>CQkJCQkJCQEEBA==</TileSet>
+    <TileSet>CQkJCQkJCQEEBA==</TileSet>
+    <TileSet>CQkJCQkJCQEEBA==</TileSet>
+    <TileSet>CQkJCQkJCQEEBA==</TileSet>
+    <TileSet>CQkJCQkJCQEEBA==</TileSet>
+    <TileSet>CQkJCQkJCQEEBA==</TileSet>
+    <TileSet>CQkJCQkJCQEEBA==</TileSet>
+    <TileSet>CQkJCQkJCQEEBA==</TileSet>
+    <TileSet>CQkJCQkJCQEEBA==</TileSet>
+    <TileSet>CQkJCQkJCQEEBA==</TileSet>
+    <TileSet>CQkJCQkJCQEEBA==</TileSet>
+    <TileSet>CQkJCQkJCQEEBA==</TileSet>
+    <TileSet>CQkJCQkJCQEEBA==</TileSet>
+    <TileSet>CQkJCQkJCQEEBA==</TileSet>
+    <TileSet>CQkJCQkJCQEEBA==</TileSet>
     <TileSet>CQkJCQkJAAQEBA==</TileSet>
     <TileSet>CQkJCQkJAQQEBA==</TileSet>
     <TileSet>CQkJCQkJAQQEBA==</TileSet>
-</level>
+</levelEditable>
