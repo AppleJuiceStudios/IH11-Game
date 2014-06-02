@@ -2,9 +2,9 @@ package staging;
 
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
-import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 
@@ -22,7 +22,7 @@ public class StageManager {
 	private long startedLoadingTime;
 
 	public StageManager(int startStage) {
-		setStatge(startStage);
+		setStatge(startStage, null);
 		try {
 			loadingScreen = ImageIO.read(getClass().getResourceAsStream("/graphics/loading/DummyLoading.png"));
 		} catch (IOException e) {
@@ -30,7 +30,7 @@ public class StageManager {
 		}
 	}
 
-	public void setStatge(int stageID) {
+	public void setStatge(int stageID, Map<String, String> data) {
 		startedLoadingTime = System.nanoTime();
 		if (stage != null) {
 			Stage s = stage;
@@ -38,21 +38,22 @@ public class StageManager {
 			s.close();
 		}
 		if (stageID == STAGE_WELCOME) {
-			stage = new StageWelcome(this);
+			stage = new StageWelcome(this, data);
 		} else if (stageID == STAGE_MENUE) {
-			stage = new StageMenue(this);
+			stage = new StageMenue(this, data);
 		} else if (stageID == STAGE_LEVEL) {
-			stage = new StageLevel(this);
+			stage = new StageLevel(this, data);
 		} else if (stageID == STAGE_SHOP) {
-			stage = new StageShop(this);
+			stage = new StageShop(this, data);
 		} else if (stageID == STAGE_SHOP_BACKGROUNDS) {
-			stage = new StagShopBackgrounds(this);
+			stage = new StagShopBackgrounds(this, data);
 		} else if (stageID == STAGE_SHOP_PLAYER) {
-			stage = new StagShopPlayer(this);
+			stage = new StagShopPlayer(this, data);
 		} else if (stageID == STAGE_LEVELEDITOR) {
-			stage = new StageLevelEditor(this);
+			stage = new StageLevelEditor(this, data);
 		}
-		System.out.println("[StageManager] Stage " + stageID + " took " + ((double) (System.nanoTime() - startedLoadingTime) / 1000000000) + " Seconds to load!");
+		System.out.println("[StageManager] Stage " + stageID + " took " + ((double) (System.nanoTime() - startedLoadingTime) / 1000000000)
+				+ " Seconds to load!");
 	}
 
 	public void draw(Graphics2D g2) {

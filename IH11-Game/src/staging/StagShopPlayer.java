@@ -10,11 +10,12 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 
-import sound.AudioPlayer;
 import main.GamePanel;
+import sound.AudioPlayer;
 import data.PlayerData;
 
 public class StagShopPlayer extends Stage {
@@ -32,8 +33,8 @@ public class StagShopPlayer extends Stage {
 	private double scrollingPosition;
 	private double scrollingSpeed = 0.05;
 
-	public StagShopPlayer(StageManager stageManager) {
-		super(stageManager);
+	public StagShopPlayer(StageManager stageManager, Map<String, String> data) {
+		super(stageManager, data);
 		audio = new AudioPlayer();
 		audio.load(AudioPlayer.HIT);
 		PlayerData.load();
@@ -115,7 +116,7 @@ public class StagShopPlayer extends Stage {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			getStageManager().setStatge(StageManager.STAGE_MENUE);
+			getStageManager().setStatge(StageManager.STAGE_MENUE, null);
 		}
 	}
 
@@ -144,9 +145,9 @@ public class StagShopPlayer extends Stage {
 		if (e.getKeyChar() == ' ') {
 			audio.play(AudioPlayer.HIT);
 			if (selectedButton == 0) {
-				getStageManager().setStatge(StageManager.STAGE_LEVEL);
+				getStageManager().setStatge(StageManager.STAGE_LEVEL, null);
 			} else if (selectedButton == 1) {
-				getStageManager().setStatge(StageManager.STAGE_SHOP);
+				getStageManager().setStatge(StageManager.STAGE_SHOP, null);
 			} else {
 				Player bg = players.get(selectedPlayer);
 				if (!bg.isOwend()) {
@@ -156,7 +157,7 @@ public class StagShopPlayer extends Stage {
 						PlayerData.playerData.setCoins(coins);
 						PlayerData.playerData.getCharacter().add(bg.getPath());
 						PlayerData.save();
-						getStageManager().setStatge(StageManager.STAGE_SHOP_PLAYER);
+						getStageManager().setStatge(StageManager.STAGE_SHOP_PLAYER, null);
 					}
 				}
 			}

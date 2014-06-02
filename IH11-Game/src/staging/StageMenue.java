@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 
@@ -22,8 +23,8 @@ public class StageMenue extends Stage {
 	private BufferedImage background;
 	private AudioPlayer audio;
 
-	public StageMenue(StageManager stageManager) {
-		super(stageManager);
+	public StageMenue(StageManager stageManager, Map<String, String> data) {
+		super(stageManager, data);
 		audio = new AudioPlayer();
 		audio.load(AudioPlayer.CHIPTUNE);
 		audio.load(AudioPlayer.HIT);
@@ -106,7 +107,7 @@ public class StageMenue extends Stage {
 			pressedItem = selectedItem;
 			switch (selectedItem) {
 			case 0:
-				getStageManager().setStatge(StageManager.STAGE_SHOP);
+				getStageManager().setStatge(StageManager.STAGE_SHOP, null);
 				break;
 			case 1:
 				Main.frame.setVisible(false);
@@ -116,7 +117,7 @@ public class StageMenue extends Stage {
 		}
 		
 		if(e.getKeyChar() == 'e'){
-			getStageManager().setStatge(StageManager.STAGE_LEVELEDITOR);
+			getStageManager().setStatge(StageManager.STAGE_LEVELEDITOR, null);
 		}
 	}
 }

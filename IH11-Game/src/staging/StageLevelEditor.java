@@ -8,16 +8,15 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.xml.bind.JAXB;
-import javax.xml.crypto.dsig.spec.XSLTTransformParameterSpec;
 
 import level.Level;
 import level.LevelEditable;
 import level.graphics.LevelTexture;
 import main.GamePanel;
-import sound.AudioPlayer;
 import data.PlayerData;
 
 public class StageLevelEditor extends Stage {
@@ -42,8 +41,8 @@ public class StageLevelEditor extends Stage {
 	private String loadedLevel;
 	private StringBuilder enteredLevel;
 
-	public StageLevelEditor(StageManager stageManager) {
-		super(stageManager);
+	public StageLevelEditor(StageManager stageManager, Map<String, String> data) {
+		super(stageManager, data);
 		level = new LevelEditable();
 		byte[][] map = level.getTileSet();
 		for (int x = 0; x < map.length; x++) {
@@ -134,7 +133,7 @@ public class StageLevelEditor extends Stage {
 		g2.drawRect(relXstart * boxSize - 2, relYstart * boxSize - 2, relX * boxSize + 3, relY * boxSize + 3);
 		for (int x = relXstart; x < relXstart + relX; x++) {
 			for (int y = relYstart; y < relYstart + relY; y++) {
-				if(isStrgPressed != (!level.isInTileSet(x, y) | level.getTileID(x, y) == LevelTexture.AIR)){
+				if (isStrgPressed != (!level.isInTileSet(x, y) | level.getTileID(x, y) == LevelTexture.AIR)) {
 					drawBlockSelection(g2, x * boxSize, y * boxSize, boxSize);
 				}
 			}
@@ -211,7 +210,7 @@ public class StageLevelEditor extends Stage {
 
 		} else {
 			if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-				getStageManager().setStatge(StageManager.STAGE_MENUE);
+				getStageManager().setStatge(StageManager.STAGE_MENUE, null);
 			}
 			if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 				if (!isSpacePressed) {

@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.xml.bind.JAXB;
@@ -44,8 +45,8 @@ public class StageLevel extends Stage {
 
 	private EntityPlayer player;
 
-	public StageLevel(StageManager stageManager) {
-		super(stageManager);
+	public StageLevel(StageManager stageManager, Map<String, String> data) {
+		super(stageManager, data);
 		audio = new AudioPlayer();
 		audio.load(AudioPlayer.ORB);
 		audio.load(AudioPlayer.WIN);
@@ -224,9 +225,9 @@ public class StageLevel extends Stage {
 
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			getStageManager().setStatge(StageManager.STAGE_MENUE);
+			getStageManager().setStatge(StageManager.STAGE_MENUE, null);
 		} else if (e.getKeyCode() == KeyEvent.VK_R) {
-			getStageManager().setStatge(StageManager.STAGE_LEVEL);
+			getStageManager().setStatge(StageManager.STAGE_LEVEL, null);
 		} else {
 			player.keyPressed(e);
 		}
@@ -251,7 +252,7 @@ public class StageLevel extends Stage {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				getStageManager().setStatge(StageManager.STAGE_SHOP);
+				getStageManager().setStatge(StageManager.STAGE_SHOP, null);
 			}
 		}).start();
 		PlayerData.playerData.setCoins(PlayerData.playerData.getCoins() + 20);
