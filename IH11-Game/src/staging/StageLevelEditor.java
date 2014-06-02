@@ -207,6 +207,7 @@ public class StageLevelEditor extends Stage {
 				level = new LevelEditable(JAXB.unmarshal(file, Level.class));
 				System.out.println("Load");
 			} else {
+				new File("res/data/levels").mkdirs();
 				level.save("res/data/levels/" + enteredLevel.toString());
 				System.out.println("Save new.");
 			}
