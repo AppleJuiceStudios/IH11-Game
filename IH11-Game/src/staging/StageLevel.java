@@ -182,6 +182,9 @@ public class StageLevel extends Stage {
 
 	public void update() {
 		player.update();
+		if(player.getyPos() > level.getHeight() * level.getTileSize()){
+			player.setyPos(0);
+		}
 		xMovement += (player.getxPos() - (GamePanel.WIDTH / 2) - xMovement) * movementSpeed;
 		yMovement += (player.getyPos() - (GamePanel.HEIGHT / 3) - yMovement) * movementSpeed;
 		if (xMovement < 0) {

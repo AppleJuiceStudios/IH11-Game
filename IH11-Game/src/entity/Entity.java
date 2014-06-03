@@ -15,6 +15,7 @@ public abstract class Entity {
 	protected double speed;
 	protected double jumpSpeed;
 	protected double falingSpeed;
+	protected double maxfalingSpeed;
 	protected boolean onGround;
 	
 	//Size
@@ -83,6 +84,14 @@ public abstract class Entity {
 
 	public double getyPos() {
 		return yPos;
+	}
+	
+	public void setxPos(double xPos){
+		this.xPos = xPos;
+	}
+	
+	public void setyPos(double yPos){
+		this.yPos = yPos;
 	}
 	
 }

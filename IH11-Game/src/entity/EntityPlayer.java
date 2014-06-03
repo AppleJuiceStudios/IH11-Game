@@ -41,6 +41,7 @@ public class EntityPlayer extends Entity {
 		speed = 2.0;
 		jumpSpeed = -5.0;
 		falingSpeed = 0.15;
+		maxfalingSpeed = 10;
 		width = 32;
 		height = 32;
 		animation = JAXB.unmarshal(getClass().getResourceAsStream(choosecharacter()), AnimationPlayer.class);
@@ -54,6 +55,9 @@ public class EntityPlayer extends Entity {
 			yMoveMent = jumpSpeed;
 		} else {
 			yMoveMent += falingSpeed;
+			if(yMoveMent > maxfalingSpeed){
+				yMoveMent = maxfalingSpeed;
+			}
 		}
 		if (keyRight) {
 			xMoveMent = speed;

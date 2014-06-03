@@ -59,10 +59,17 @@ public class Level {
 	}
 
 	public byte getTileID(int x, int y) {
-		if(x < 0 | x >= getWidth() | y >= getHeight()){
+		if(x < 0 | x >= getWidth()){
 			return LevelTexture.CENTER;
 		} else if(y < 0){
 			return LevelTexture.AIR;
+		} else if (y >= getHeight()){
+			if(tileSet[x][getHeight() - 1] == LevelTexture.AIR){
+				return tileSet[x][0];
+			} else {
+				return LevelTexture.CENTER;
+			}
+			
 		} else {
 			return tileSet[x][y];
 		}
