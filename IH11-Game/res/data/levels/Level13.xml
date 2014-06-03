@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<levelEditable>
+    <startPositionX>32.0</startPositionX>
+    <startPositionY>608.0</startPositionY>
+    <TileSet>BAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ=</TileSet>
+    <TileSet>BAQFBQQEBQUEBAUFBAQFBQQEBQUEBAUFBAQFBQQ=</TileSet>
+    <TileSet>BAcJCQIICQkBBwkJAQcJCQEHCQkCCAkJAQcJCQE=</TileSet>
+    <TileSet>BAcJCQkJCQkBBwkJAQcJCQEHCQkJCQkJAQcJCQE=</TileSet>
+    <TileSet>BAcJCQkJCQkBBwkJAggJCQEHCQkJCQkJAQcJCQE=</TileSet>
+    <TileSet>BAcJCQAGCQkCCAkJCQkJCQEHCQkABgkJAggJCQE=</TileSet>
+    <TileSet>BAcJCQEHCQkJCQkJCQkJCQIICQkBBwkJCQkJCQE=</TileSet>
+    <TileSet>BAcJCQEHCQkJCQkJAAYJCQkJCQkBBwkJCQkJCQE=</TileSet>
+    <TileSet>BAcJCQEHCQkABgkJAQcJCQkJCQkBBwkJAAYJCQE=</TileSet>
+    <TileSet>BAcJCQEHCQkBBwkJAQcJCQAGCQkBBwkJAQcJCQE=</TileSet>
+    <TileSet>BAcJCQEEAwMEBAMDBAQDAwQEAwMEBAMDBAcJCQE=</TileSet>
+    <TileSet>BAcJCQIFBAQEBAUFBQUEBAQEBQUFBQQEBAcJCQE=</TileSet>
+    <TileSet>BAcJCQkJAgUEBwkJCQkCBQQHCQkJCQIFBAcJCQE=</TileSet>
+    <TileSet>BAcJCQkJCQkBBwkJCQkJCQEHCQkJCQkJAQcJCQE=</TileSet>
+    <TileSet>BAQGCQkJCQkBBwkJAAYJCQEHCQkABgkJAQcJCQE=</TileSet>
+    <TileSet>BAQEBgkJCQkCCAkJAQcJCQIICQkBBwkJAggJCQE=</TileSet>
+    <TileSet>BAQEBAYJCQkJCQkJAQcJCQkJCQkBBwkJCQkJCQE=</TileSet>
+    <TileSet>BAQEBAQGCQkJCQADBAcJCQkJAAMEBwkJCQkAAwQ=</TileSet>
+    <TileSet>BAUFBQUFAwMDAwUFBQUDAwMDBQUFBQMDAwMFBQU=</TileSet>
+</levelEditable>
