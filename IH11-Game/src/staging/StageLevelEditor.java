@@ -112,6 +112,7 @@ public class StageLevelEditor extends Stage {
 			g2.drawRect(selectedX * boxSize - 2, selectedY * boxSize - 2, boxSize + 3, boxSize + 3);
 			g2.setTransform(new AffineTransform());
 			g2.setColor(Color.WHITE);
+			g2.drawString(loadedLevel, 5, 15);
 		}
 
 	}
@@ -159,11 +160,13 @@ public class StageLevelEditor extends Stage {
 		if (x < 0) {
 			xMovement -= x * level.getTileSize();
 			selectedX -= x;
+			level.setStartPositionX(level .getStartPositionX() - x * 32);
 			x = 0;
 		}
 		if (y < 0) {
 			yMovement -= y * level.getTileSize();
 			selectedY -= y;
+			level.setStartPositionY(level .getStartPositionY() - y * 32);
 			y = 0;
 		}
 		if (update) {
@@ -359,6 +362,7 @@ public class StageLevelEditor extends Stage {
 			}
 
 			if (e.getKeyChar() == 't') {
+				level.setTileDrawSize(32);
 				testingManager = new TestingStageManager(level);
 				isTesting = true;
 			}
