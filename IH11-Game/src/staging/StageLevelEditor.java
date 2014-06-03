@@ -361,8 +361,11 @@ public class StageLevelEditor extends Stage {
 			}
 
 			if (e.getKeyChar() == 't') {
+				int scale = level.getTileSize();
+				level.setTileDrawSize(32);
 				testingManager = new TestingStageManager(level);
 				isTesting = true;
+				level.setTileDrawSize(scale);
 			}
 		}
 	}
