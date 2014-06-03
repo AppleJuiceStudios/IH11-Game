@@ -3,7 +3,7 @@
     <background>/graphics/level/background/BlueBackgroundPixel.png</background>
     <background>/graphics/level/background/DummyBackgroundPixel.png</background>
     <character>/graphics/entity/MCPlayerAnimation.xml</character>
-    <coins>220</coins>
+    <coins>0</coins>
     <level>res/data/levels/Level1.xml</level>
     <level>res/data/levels/Level2.xml</level>
     <level>res/data/levels/Level3.xml</level>

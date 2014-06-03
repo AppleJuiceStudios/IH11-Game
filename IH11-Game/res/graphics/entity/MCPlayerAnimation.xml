@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <animationPlayer>
-	<path>/graphics/entity/MCPlayerSprite.png</path>
+	<path>/graphics/entity/MCPlayerNEWSprite.png</path>
 	<delay>200</delay>
 	<delay>30</delay>
 	<delay>70</delay>
-	<delay>100</delay>
+	<delay>200</delay>
 	<delay>150</delay>
 	<length>6</length>
-	<length>7</length>
-	<length>4</length>
+	<length>8</length>
+	<length>8</length>
 	<length>4</length>
 	<length>4</length>
 </animationPlayer>
