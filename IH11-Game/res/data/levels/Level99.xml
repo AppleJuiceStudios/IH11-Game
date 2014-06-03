@@ -1,15 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <levelEditable>
     <startPositionX>32.0</startPositionX>
-    <startPositionY>224.0</startPositionY>
-    <TileSet>AgUFBQUFBQUEBAUEBAUEBAQ=</TileSet>
-    <TileSet>CQkJCQkJCQkCCAkCCAkCBQU=</TileSet>
-    <TileSet>CQkJCQkJCQkJCQkJCQkJCQk=</TileSet>
-    <TileSet>CQkJCQkJCQkJCQkJCQkJCQk=</TileSet>
-    <TileSet>CQkJCQkJCQADAwYJAAYJAAM=</TileSet>
-    <TileSet>CQkJCQkJCQIFBQUDBQgJAgQ=</TileSet>
-    <TileSet>CQkJCQkJCQkJCQkJCQkJCQE=</TileSet>
-    <TileSet>CQkJCQkJCQkJCQkJCQkJCQE=</TileSet>
-    <TileSet>CQkJCQkJCQkJCQkJCQkJCQE=</TileSet>
-    <TileSet>CQkJCQkJCQkJCQkJCQkJCQE=</TileSet>
+    <startPositionY>352.0</startPositionY>
+    <TileSet>BAUFBQUFBQUFBQUFBAQFBQUFBQUFBA==</TileSet>
+    <TileSet>BAkJCQkJCQkJCQkJAggJCQkJCQkJAQ==</TileSet>
+    <TileSet>BAkJCQkJCQkJCQkJCQkJCQkJCQkABA==</TileSet>
+    <TileSet>BAkJCQkJCQkJCQkJCQkJCQkJCQAEBA==</TileSet>
+    <TileSet>BAkJCQkJCQkJCQkJCQkJCQkJCQIEBA==</TileSet>
+    <TileSet>BAkJCQkJCQkJCQkJCQkJCQkJCQkCBA==</TileSet>
+    <TileSet>BAkJCQkJCQkJCQkJCQkJCQkJCQkJAQ==</TileSet>
+    <TileSet>BAkJCQkJCQkJCQkJCQkABgkJAAYJAQ==</TileSet>
+    <TileSet>BAkJCQkJCQkJCQkJCQkCCAkJAggJAQ==</TileSet>
+    <TileSet>BAkJCQkJCQkJCQkJCQkJCQkJCQkJAQ==</TileSet>
+    <TileSet>BAkJCQkJCQkJCQkJCQkJCQkJCQkJAQ==</TileSet>
+    <TileSet>BAkJCQkJCQkJCQkJCQkJCQkJCQkJAQ==</TileSet>
+    <TileSet>BAkJCQkJCQkJCQkJCQkJCQkJAAYJAQ==</TileSet>
+    <TileSet>BAkJCQkJCQkJCQkJCQkJCQkJAggJAQ==</TileSet>
+    <TileSet>BAkJCQkJCQkJCQkJCQkJCQkJCQkJAQ==</TileSet>
+    <TileSet>BAkJCQkJCQkJCQkJCQkJCQAGCQkJAQ==</TileSet>
+    <TileSet>BAkJCQkJCQkJCQkJCQkJAAQHCQkJAQ==</TileSet>
+    <TileSet>BAkJCQkJCQkJCQkJCQkJAgUICQkJAQ==</TileSet>
+    <TileSet>BAkJCQkJCQkJCQkJCQkJCQkJCQkJAQ==</TileSet>
+    <TileSet>BAkJCQkJCQkJCQkJCQAGCQkJCQkJAQ==</TileSet>
+    <TileSet>BAkJCQkJCQkJCQkJAAQICQkJCQkJAQ==</TileSet>
+    <TileSet>BAkJCQkJCQkJCQkABAgJCQkJCQkJAQ==</TileSet>
+    <TileSet>BAkJCQkJCQkJCQkCCAkJCQkJCQkABA==</TileSet>
+    <TileSet>BAkJCQkJCQkJCQkJCQkJCQkJCQAEBA==</TileSet>
+    <TileSet>BAkJCQkJCQkJCQkJCQkJCQkJAAQEBA==</TileSet>
+    <TileSet>BAkJCQkJCQkABgkJAAYJCQkJAgQEBA==</TileSet>
+    <TileSet>BAkJCQkJCQkCCAkJAQQGCQkJCQIFBA==</TileSet>
+    <TileSet>BAkJCQkJCQkJCQkJAgUICQkJCQkJAQ==</TileSet>
+    <TileSet>BAkJCQkJCQkJCQkJCQkJCQkJCQkJAQ==</TileSet>
+    <TileSet>BAkJCQkJAAYJCQAGCQkJCQkABgkJAQ==</TileSet>
+    <TileSet>BAMDAwMDBAQDAwQEAwMDAwMEBAMDBA==</TileSet>
 </levelEditable>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <playerData>
-    <background>/graphics/level/background/BlueBackgroundPixel.png</background>
+
     <background>/graphics/level/background/CaribbeanBackgroundPixel.png</background>
     <background>/graphics/level/background/DummyBackgroundPixel.png</background>
     <background>/graphics/level/background/SkyBackgroundPixel.png</background>
@@ -13,6 +13,7 @@
     <level>res/data/levels/Level4.xml</level>
     <level>res/data/levels/Level5.xml</level>
     <level>res/data/levels/Level6.xml</level>
+    <level>res/data/levels/Level17.xml</level>
     <name>Peter</name>
     <tileSet>/graphics/level/tileSets/DirtGrassTileSet.png</tileSet>
     <tileSet>/graphics/level/tileSets/DirtGrassTileSet2.png</tileSet>
