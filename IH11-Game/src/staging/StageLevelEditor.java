@@ -159,11 +159,13 @@ public class StageLevelEditor extends Stage {
 		if (x < 0) {
 			xMovement -= x * level.getTileSize();
 			selectedX -= x;
+			level.setStartPositionX(level .getStartPositionX() - x * 32);
 			x = 0;
 		}
 		if (y < 0) {
 			yMovement -= y * level.getTileSize();
 			selectedY -= y;
+			level.setStartPositionY(level .getStartPositionY() - y * 32);
 			y = 0;
 		}
 		if (update) {
