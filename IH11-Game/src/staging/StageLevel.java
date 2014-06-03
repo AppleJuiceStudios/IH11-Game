@@ -44,7 +44,7 @@ public class StageLevel extends Stage {
 	private int einer;
 
 	private EntityPlayer player;
-	
+
 	public StageLevel(StageManager stageManager, Map<String, String> data) {
 		super(stageManager, data);
 		audio = new AudioPlayer();
@@ -58,8 +58,8 @@ public class StageLevel extends Stage {
 		initMovementAndBackground();
 		initUpdateThread();
 	}
-	
-	public StageLevel(StageManager stageManager, Level level){
+
+	public StageLevel(StageManager stageManager, Level level) {
 		super(stageManager, null);
 		audio = new AudioPlayer();
 		audio.load(AudioPlayer.ORB);
@@ -90,16 +90,16 @@ public class StageLevel extends Stage {
 				wasLastAir = isAir;
 			}
 		}
-		for(int i = 0; i < xPos.size(); i++){
-			if(Math.random() < (double)count / (xPos.size() - i)){
+		for (int i = 0; i < xPos.size(); i++) {
+			if (Math.random() < (double) count / (xPos.size() - i)) {
 				items.add(new Item(image, xPos.get(i), yPos.get(i)));
 				count--;
 			}
 		}
 		itemCount -= count;
 	}
-	
-	private void initMovementAndBackground(){
+
+	private void initMovementAndBackground() {
 		maxXMovement = level.getWidth() * level.getTileSize() - GamePanel.WIDTH;
 		maxYMovement = level.getHeight() * level.getTileSize() - GamePanel.HEIGHT;
 		xMovement = player.getxPos() - (GamePanel.WIDTH / 2);
@@ -121,8 +121,8 @@ public class StageLevel extends Stage {
 			e.printStackTrace();
 		}
 	}
-	
-	private void initUpdateThread(){
+
+	private void initUpdateThread() {
 		updateThread = new Thread(new Runnable() {
 			public void run() {
 				long startTime = 0;
@@ -152,7 +152,9 @@ public class StageLevel extends Stage {
 
 	private String chooseLevel() {
 		List<String> level = PlayerData.playerData.getLevel();
-		return level.get((int) (Math.random() * level.size()));
+		String strLvl = level.get((int) (Math.random() * level.size()));
+		System.out.println("[StageLevel] Loaded Level: " + strLvl.substring(13, strLvl.length() - 4));
+		return strLvl;
 	}
 
 	private BufferedImage getItemImage() {

@@ -203,16 +203,16 @@ public class StageLevelEditor extends Stage {
 	public void loadSave() {
 		if (enteredLevel.toString().equals(loadedLevel)) {
 			level.save("res/data/levels/" + loadedLevel);
-			System.out.println("Save");
+			System.out.println("[StageLevelEditor] Overwriting Level");
 		} else {
 			File file = new File("res/data/levels/" + enteredLevel.toString() + ".xml");
 			if (file.exists()) {
 				level = new LevelEditable(JAXB.unmarshal(file, Level.class));
-				System.out.println("Load");
+				System.out.println("[StageLevelEditor] Loading Level");
 			} else {
 				new File("res/data/levels").mkdirs();
 				level.save("res/data/levels/" + enteredLevel.toString());
-				System.out.println("Save new.");
+				System.out.println("[StageLevelEditor] Saving new Level");
 			}
 			loadedLevel = enteredLevel.toString();
 		}
