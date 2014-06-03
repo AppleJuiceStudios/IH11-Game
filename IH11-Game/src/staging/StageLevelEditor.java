@@ -112,6 +112,7 @@ public class StageLevelEditor extends Stage {
 			g2.drawRect(selectedX * boxSize - 2, selectedY * boxSize - 2, boxSize + 3, boxSize + 3);
 			g2.setTransform(new AffineTransform());
 			g2.setColor(Color.WHITE);
+			g2.drawString(loadedLevel, 5, 15);
 		}
 
 	}
