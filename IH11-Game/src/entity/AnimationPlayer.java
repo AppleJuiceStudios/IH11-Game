@@ -20,7 +20,7 @@ public class AnimationPlayer {
 	private int animation;
 	
 	public AnimationPlayer(){
-		
+		animation = -1;
 	}
 
 	public void load(){
