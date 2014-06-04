@@ -37,7 +37,7 @@ public class StageLevel extends Stage {
 	private List<Item> items;
 	private BufferedImage itemImage;
 	private int collectedItems;
-	private int itemCount = 20;
+	private int itemCount;
 	private boolean hasWinn;
 	private long startTime;
 	private int zehner;
@@ -52,7 +52,7 @@ public class StageLevel extends Stage {
 		audio.load(AudioPlayer.WIN);
 		level = JAXB.unmarshal(getClass().getResourceAsStream(chooseLevel()), Level.class);
 		player = new EntityPlayer(level, level.getStartPositionX(), level.getStartPositionY());
-		initItems(itemCount);
+		initItems();
 		startTime = System.currentTimeMillis();
 		// Movement
 		initMovementAndBackground();
@@ -66,14 +66,14 @@ public class StageLevel extends Stage {
 		audio.load(AudioPlayer.WIN);
 		this.level = level;
 		player = new EntityPlayer(level, level.getStartPositionX(), level.getStartPositionY());
-		initItems(itemCount);
+		initItems();
 		startTime = System.currentTimeMillis();
 		// Movement
 		initMovementAndBackground();
 		initUpdateThread();
 	}
 
-	private void initItems(int count) {
+	private void initItems() {
 		items = new ArrayList<>();
 		BufferedImage image = getItemImage();
 		itemImage = image;
@@ -90,13 +90,14 @@ public class StageLevel extends Stage {
 				wasLastAir = isAir;
 			}
 		}
+		int count = xPos.size() / 5;
+		itemCount = count;
 		for (int i = 0; i < xPos.size(); i++) {
 			if (Math.random() < (double) count / (xPos.size() - i)) {
 				items.add(new Item(image, xPos.get(i), yPos.get(i)));
 				count--;
 			}
 		}
-		itemCount -= count;
 	}
 
 	private void initMovementAndBackground() {
