@@ -31,7 +31,7 @@ public class StagShopBackgrounds extends Stage {
 
 	// Scrlling
 	private double scrollingPosition;
-	private double scrollingSpeed = 0.05;
+	private double scrollingSpeed = 0.15;
 
 	public StagShopBackgrounds(StageManager stageManager, Map<String, String> data) {
 		super(stageManager, null);
