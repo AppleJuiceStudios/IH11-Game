@@ -374,7 +374,7 @@ public class StageLevelEditor extends Stage {
 		private Stage levelStage;
 
 		public TestingStageManager(Level level) {
-			super(-1);
+			super(null, -1);
 			levelStage = new StageLevel(this, level);
 		}
 

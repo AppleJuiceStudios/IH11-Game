@@ -2,12 +2,15 @@ package staging;
 
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseListener;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
+
+import main.GamePanel;
 
 public class StageManager {
 
@@ -21,8 +24,11 @@ public class StageManager {
 	public static final int STAGE_SHOP_PLAYER = 6;
 	public static final int STAGE_LEVELEDITOR = 7;
 	private long startedLoadingTime;
+	private GamePanel gamePanel;
+	private MouseListener mouseListener;
 
-	public StageManager(int startStage) {
+	public StageManager(GamePanel gamePanel, int startStage) {
+		this.gamePanel = gamePanel;
 		setStatge(startStage, null);
 		try {
 			loadingScreen = ImageIO.read(getClass().getResourceAsStream("/graphics/loading/DummyLoading.png"));
@@ -32,6 +38,9 @@ public class StageManager {
 	}
 
 	public void setStatge(int stageID, Map<String, String> data) {
+		if(this.mouseListener != null){
+			gamePanel.removeMouseListener(this.mouseListener);
+		}
 		startedLoadingTime = System.nanoTime();
 		if (stage != null) {
 			Stage s = stage;
@@ -55,6 +64,14 @@ public class StageManager {
 		}
 		System.out.println("[StageManager] Stage " + stageID + " took " + ((double) (System.nanoTime() - startedLoadingTime) / 1000000000)
 				+ " Seconds to load!");
+	}
+	
+	public void setMouseListener(MouseListener mouseListener){
+		if(this.mouseListener != null){
+			gamePanel.removeMouseListener(this.mouseListener);
+		}
+		this.mouseListener = mouseListener;
+		gamePanel.addMouseListener(mouseListener);
 	}
 
 	public void draw(Graphics2D g2) {
