@@ -1,5 +1,7 @@
 package network;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -22,6 +24,7 @@ public class NetworkManager {
 	private int coins;
 	private String unlocked;
 	private int playtime;
+	private boolean succLogin = false;
 
 	private void openConnection() {
 		try {
@@ -42,14 +45,18 @@ public class NetworkManager {
 	}
 
 	public void updateDB() {
-		try {
-			openConnection();
-			st.execute("UPDATE Player SET Coins='" + coins + "' WHERE Name='" + user + "'");
-			st.execute("UPDATE Player SET Unlocked='" + unlocked + "' WHERE Name='" + user + "'");
-			st.execute("UPDATE Player SET Playtime='" + playtime + "' WHERE Name='" + user + "'");
-			closeConnection();
-		} catch (SQLException e) {
-			e.printStackTrace();
+		if (succLogin) {
+			try {
+				openConnection();
+				st.execute("UPDATE Player SET Coins='" + coins + "' WHERE Name='" + user + "'");
+				st.execute("UPDATE Player SET Unlocked='" + unlocked + "' WHERE Name='" + user + "'");
+				st.execute("UPDATE Player SET Playtime='" + playtime + "' WHERE Name='" + user + "'");
+				closeConnection();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("[NetworkManager] Not Logged in!");
 		}
 	}
 
@@ -64,7 +71,17 @@ public class NetworkManager {
 				logins.put(res.getString("Name"), res.getString("Password"));
 			}
 
-			if (!password.equals(logins.get(user))) {
+			MessageDigest m = MessageDigest.getInstance("MD5");
+			m.reset();
+			m.update(password.getBytes());
+			byte[] digest = m.digest();
+			BigInteger bigInt = new BigInteger(1, digest);
+			String hashtext = bigInt.toString(16);
+			while (hashtext.length() < 32) {
+				hashtext = "0" + hashtext;
+			}
+
+			if (!hashtext.equals(logins.get(user))) {
 				return false;
 			}
 
@@ -79,6 +96,7 @@ public class NetworkManager {
 			ex.printStackTrace();
 			return false;
 		}
+		succLogin = true;
 		return true;
 	}
 
