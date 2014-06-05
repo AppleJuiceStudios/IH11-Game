@@ -23,7 +23,7 @@ import entity.EntityPlayer;
 public class StageLevel extends Stage {
 
 	// Movement
-	private double movementSpeed = 0.7;
+	private double movementSpeed = 0.3;
 	private double maxXMovement;
 	private double maxYMovement;
 	private double xMovement;

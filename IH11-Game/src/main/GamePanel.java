@@ -21,8 +21,6 @@ public class GamePanel extends JPanel implements KeyListener {
 	public final static int WIDTH = 400;
 	public final static int HEIGHT = 300;
 
-	private int calcs = 0;
-	private int _fps;
 	public static int fps = 0;
 	public static final int FPS_MAX = 60;
 	public static boolean showFps = false;
@@ -44,19 +42,12 @@ public class GamePanel extends JPanel implements KeyListener {
 				long waitTime = 1000 / FPS_MAX;
 
 				long lastTime = 0;
-				int frames = 0;
 				long time = 0;
 
 				while (true) {
-					frames++;
 					time = System.nanoTime();
-					if (time > lastTime + 1000000000) {
-						calcs++;
-						fps = (int) ((double)(time - lastTime) / 1000000000 * frames);
-						System.out.println(fps);
-						lastTime = time;
-						frames = 0;
-					}
+					fps = (int) (1000000000d / (time - lastTime));
+					lastTime = time;
 					startTime = System.currentTimeMillis();
 					draw(graphics);
 					delay = waitTime - (System.currentTimeMillis() - startTime);

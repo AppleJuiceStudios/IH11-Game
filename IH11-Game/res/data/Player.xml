@@ -4,17 +4,17 @@
     <background>/graphics/level/background/DummyBackgroundPixel.png</background>
     <character>/graphics/entity/MCPlayerAnimation.xml</character>
     <coins>0</coins>
-    <level>res/data/levels/Level1.xml</level>
-    <level>res/data/levels/Level2.xml</level>
-    <level>res/data/levels/Level3.xml</level>
-    <level>res/data/levels/Level4.xml</level>
-    <level>res/data/levels/Level5.xml</level>
-    <level>res/data/levels/Level6.xml</level>
-    <level>res/data/levels/Level7.xml</level>
-    <level>res/data/levels/Level12.xml</level>
-    <level>res/data/levels/Level13.xml</level>
-    <level>res/data/levels/Level17.xml</level>
-    <level>res/data/levels/Level99.xml</level>
+    <level>/data/levels/Level1.xml</level>
+    <level>/data/levels/Level2.xml</level>
+    <level>/data/levels/Level3.xml</level>
+    <level>/data/levels/Level4.xml</level>
+    <level>/data/levels/Level5.xml</level>
+    <level>/data/levels/Level6.xml</level>
+    <level>/data/levels/Level7.xml</level>
+    <level>/data/levels/Level12.xml</level>
+    <level>/data/levels/Level13.xml</level>
+    <level>/data/levels/Level17.xml</level>
+    <level>/data/levels/Level99.xml</level>
     <name>Peter</name>
     <tileSet>/graphics/level/tileSets/DirtGrassTileSet.png</tileSet>
     <tileSet>/graphics/level/tileSets/DirtGrassTileSet2.png</tileSet>

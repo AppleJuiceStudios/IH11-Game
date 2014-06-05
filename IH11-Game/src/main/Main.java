@@ -3,7 +3,7 @@ package main;
 import java.awt.EventQueue;
 
 public class Main {
-	public final static String version = "Alpha 1.0";
+	public final static String version = "Alpha 2.0";
 
 	public static GameFrame frame;
 
