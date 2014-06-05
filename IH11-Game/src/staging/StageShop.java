@@ -1,11 +1,14 @@
 package staging;
 
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
@@ -77,10 +80,10 @@ public class StageShop extends Stage {
 	@Override
 	public void draw(Graphics2D g2) {
 		g2.drawImage(background, 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, null);
-		g2.drawImage(coin, GamePanel.WIDTH - coin.getWidth() - 90, 18, coin.getWidth(), coin.getHeight(), null);
-		g2.setFont(new Font("LCD", 2, 50));
-		g2.drawString(PlayerData.playerData.getName(), 80, 49);
-		g2.drawString(String.valueOf(PlayerData.playerData.getCoins()), GamePanel.WIDTH - 90, 49);
+		g2.drawImage(coin, GamePanel.WIDTH - coin.getWidth() - 100, 7, coin.getWidth(), coin.getHeight(), null);
+		g2.setFont(newFont(45));	//argument: font-size(float)
+		g2.drawString(PlayerData.playerData.getName(), 10, 37);
+		g2.drawString(String.valueOf(PlayerData.playerData.getCoins()), GamePanel.WIDTH - 93, 37);
 		g2.setFont(new Font("Dialog", Font.PLAIN, 12));
 
 		for (int i = 0; i < items; i++) {
@@ -104,6 +107,23 @@ public class StageShop extends Stage {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
+	}
+	
+	public Font newFont(float size){
+		Font font = null;
+		InputStream is = null;
+		is = StageShop.class.getResourceAsStream("/fonts/Perfect DOS VGA 437 Win.ttf");
+//		is = StageShop.class.getResourceAsStream("/fonts/BMgermar.ttf");
+//		is = StageShop.class.getResourceAsStream("/fonts/Minecraftia.ttf");
+	    try {
+	    	font = Font.createFont(Font.TRUETYPE_FONT, is);
+	    	font = font.deriveFont(Font.PLAIN, size);
+		} catch (FontFormatException e) {
+			
+		} catch (IOException e) {
+			
+		}
+	    return font;
 	}
 
 	@Override
