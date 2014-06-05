@@ -80,10 +80,10 @@ public class StageShop extends Stage {
 	@Override
 	public void draw(Graphics2D g2) {
 		g2.drawImage(background, 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, null);
-		g2.drawImage(coin, GamePanel.WIDTH - coin.getWidth() - 100, 7, coin.getWidth(), coin.getHeight(), null);
+		g2.drawImage(coin, GamePanel.WIDTH - coin.getWidth() - 105, 7, coin.getWidth(), coin.getHeight(), null);
 		g2.setFont(newFont(45));	//argument: font-size(float)
 		g2.drawString(PlayerData.playerData.getName(), 10, 37);
-		g2.drawString(String.valueOf(PlayerData.playerData.getCoins()), GamePanel.WIDTH - 93, 37);
+		g2.drawString(String.valueOf(PlayerData.playerData.getCoins()), GamePanel.WIDTH - 100, 37);
 		g2.setFont(new Font("Dialog", Font.PLAIN, 12));
 
 		for (int i = 0; i < items; i++) {
