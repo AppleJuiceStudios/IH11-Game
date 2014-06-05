@@ -11,9 +11,9 @@ It recived and will recieve some updates and new features thow.
 
 
 
-Last Version: Alpha 1.0
+Last Version: Alpha 2.0
 
-For older Versions you can have a look in the "Versions"-folder.
+For older Versions you can look in the "Versions"-folder.
 
 Credits:
 
@@ -21,7 +21,13 @@ Credits:
 Lead Programmer - Tobias Bodewig 
 
 
-Second Programmer - Philipp Auch 
+Web-Developer and Second Programmer - Philipp Auch 
 
 
 Main Artist and Third Programmer - Philipp van Kempen 
+
+
+Level Provider - Lewin Tönsfeuerborn
+
+
+Music by Philipp van Kempen, Gianluca Rubino and Marcel Thürmer
