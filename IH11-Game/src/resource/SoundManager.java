@@ -1,14 +1,22 @@
 package resource;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class SoundManager {
 
 	private static Map<String, Clip> staticClips;
 	private static Map<String, Clip> cacheClips;
+	
+	private static String soundPath = "res";
 	
 	public static void init(){
 		staticClips = new HashMap<>();
@@ -16,23 +24,53 @@ public class SoundManager {
 	}
 	
 	public static void loadStaticClips(){
-		
+		//loadStaticClip("chiptune", "/sounds/Chiptune.wav");
+		loadStaticClip("hit", "/sounds/Hit.wav");
+		loadStaticClip("orb", "/sounds/orb.wav");
+		loadStaticClip("jump", "/sounds/Jump.wav");
+		loadStaticClip("win", "/sounds/AirHorn.wav");
 	}
 	
 	public static void loadStaticClip(String id, String path){
-		
+		staticClips.put(id, loadClip(id, path));
 	}
 	
 	public static void loadClipInCache(String id, String path){
-		
+		cacheClips.put(id, loadClip(id, path));
+	}
+	
+	private static Clip loadClip(String id, String path){
+		Clip clip = null;
+		try {
+			clip = AudioSystem.getClip();
+			AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File(soundPath + path));
+			clip.open(audioIn);
+			audioIn.close();
+			System.out.println("[SoundManager] Loading Clip: " + id);
+			return clip;
+		} catch (LineUnavailableException e) {
+			e.printStackTrace();
+		} catch (UnsupportedAudioFileException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("[SoundManager] Can not load Clip: " + id + " | " + path);
+			e.printStackTrace();
+		}
+		return clip;
 	}
 	
 	public static void reloadStaticClip(String id, String path){
-		
+		stop(id);
+		staticClips.get(id).close();
+		loadStaticClip(id, path);
 	}
 	
 	public static void clearCache(){
-		
+		for(String id : cacheClips.keySet()){
+			stop(id);
+			cacheClips.get(id).close();
+		}
+		cacheClips.clear();
 	}
 	
 	public static void play(String id){
@@ -69,8 +107,22 @@ public class SoundManager {
 		}
 	}
 	
-	public static void stopAll(String id){
-		
+	public static void stopAll(){
+		for(String id : staticClips.keySet()){
+			stop(id);
+		}
+		for(String id : cacheClips.keySet()){
+			stop(id);
+		}
+	}
+	
+	public static void close(){
+		clearCache();
+		for(String id : staticClips.keySet()){
+			stop(id);
+			staticClips.get(id).close();
+		}
+		staticClips.clear();
 	}
 	
 }
