@@ -34,7 +34,7 @@ public class Level {
 	public void draw(Graphics2D g2, int xStart, int yStart, int xEnd, int yEnd) {
 		for (int x = xStart; x <= xEnd; x++) {
 			for (int y = yStart; y <= yEnd; y++) {
-				if (getTileID(x, y) != LevelTexture.AIR) {
+				if (isInTileSet(x, y) && (getTileID(x, y) != LevelTexture.AIR)) {
 					g2.drawImage(levelTexture.getTile(getTileID(x, y)), x * tileSize, y * tileSize, tileSize, tileSize,
 							null);
 				}

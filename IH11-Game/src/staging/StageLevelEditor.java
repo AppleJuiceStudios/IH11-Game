@@ -99,8 +99,8 @@ public class StageLevelEditor extends Stage {
 			g2.setTransform(tx);
 			int xStart = (int) (xMovement / level.getTileSize());
 			int yStart = (int) (yMovement / level.getTileSize());
-			int xEnd = xStart + Panel.WIDTH / level.getTileSize() + 1;
-			int yEnd = xStart + Panel.WIDTH / level.getTileSize() + 1;
+			int xEnd = xStart + GamePanel.WIDTH / level.getTileSize() + 1;
+			int yEnd = yStart + GamePanel.HEIGHT / level.getTileSize() + 1;
 			level.draw(g2, xStart, yStart, xEnd, yEnd);
 			int boxSize = level.getTileSize();
 			g2.setColor(Color.ORANGE);
