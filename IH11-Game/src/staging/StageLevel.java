@@ -16,7 +16,7 @@ import level.Item;
 import level.Level;
 import level.graphics.LevelTexture;
 import main.GamePanel;
-import sound.AudioPlayer;
+import resource.SoundManager;
 import data.PlayerData;
 import entity.EntityPlayer;
 
@@ -30,7 +30,6 @@ public class StageLevel extends Stage {
 	private double yMovement;
 
 	private Level level;
-	private AudioPlayer audio;
 	private BufferedImage background;
 	private BufferedImage clock;
 	private Thread updateThread;
@@ -47,9 +46,6 @@ public class StageLevel extends Stage {
 
 	public StageLevel(StageManager stageManager, Map<String, String> data) {
 		super(stageManager, data);
-		audio = new AudioPlayer();
-		audio.load(AudioPlayer.ORB);
-		audio.load(AudioPlayer.WIN);
 		level = JAXB.unmarshal(getClass().getResourceAsStream(chooseLevel()), Level.class);
 		player = new EntityPlayer(level, level.getStartPositionX(), level.getStartPositionY());
 		initItems();
@@ -61,9 +57,6 @@ public class StageLevel extends Stage {
 
 	public StageLevel(StageManager stageManager, Level level) {
 		super(stageManager, null);
-		audio = new AudioPlayer();
-		audio.load(AudioPlayer.ORB);
-		audio.load(AudioPlayer.WIN);
 		this.level = level;
 		player = new EntityPlayer(level, level.getStartPositionX(), level.getStartPositionY());
 		initItems();
@@ -159,19 +152,19 @@ public class StageLevel extends Stage {
 	}
 
 	private BufferedImage getItemImage() {
-		//		String mainPath = new File("").getAbsolutePath();
-		//		File file = new File(mainPath + "/bin/graphics/entity/coin/");
-		//		File[] fileArray = file.listFiles();
-		//		String str = fileArray[(int) (Math.random() * 10) % fileArray.length]
-		//				.getPath();
-		//		str = str.substring(mainPath.length() + 4);
-		//		str = str.replace('\\', '/');
-		//		try {
-		//			return ImageIO.read(getClass().getResourceAsStream(str));
-		//		} catch (IOException e) {
-		//			e.printStackTrace();
-		//			return null;
-		//		}
+		// String mainPath = new File("").getAbsolutePath();
+		// File file = new File(mainPath + "/bin/graphics/entity/coin/");
+		// File[] fileArray = file.listFiles();
+		// String str = fileArray[(int) (Math.random() * 10) % fileArray.length]
+		// .getPath();
+		// str = str.substring(mainPath.length() + 4);
+		// str = str.replace('\\', '/');
+		// try {
+		// return ImageIO.read(getClass().getResourceAsStream(str));
+		// } catch (IOException e) {
+		// e.printStackTrace();
+		// return null;
+		// }
 		BufferedImage img = null;
 		try {
 			img = ImageIO.read(getClass().getResourceAsStream("/graphics/entity/coin/coin.png"));
@@ -183,7 +176,7 @@ public class StageLevel extends Stage {
 
 	public void update() {
 		player.update();
-		if(player.getyPos() > level.getHeight() * level.getTileSize()){
+		if (player.getyPos() > level.getHeight() * level.getTileSize()) {
 			player.setyPos(0);
 		}
 		xMovement += (player.getxPos() - (GamePanel.WIDTH / 2) - xMovement) * movementSpeed;
@@ -201,7 +194,7 @@ public class StageLevel extends Stage {
 		for (int i = 0; i < items.size(); i++) {
 			if (items.get(i).canCollectCoin(player)) {
 				collectedItems++;
-				audio.play(AudioPlayer.ORB);
+				SoundManager.play("orb");
 				items.remove(i);
 				if (collectedItems == itemCount) {
 					winn();
@@ -212,12 +205,10 @@ public class StageLevel extends Stage {
 
 	public void close() {
 		updateThread.interrupt();
-		audio.close();
 		player.close();
 		player = null;
 		level = null;
 		updateThread = null;
-		audio = null;
 	}
 
 	public void draw(Graphics2D g2) {
@@ -270,7 +261,7 @@ public class StageLevel extends Stage {
 	}
 
 	public void winn() {
-		audio.play(AudioPlayer.WIN);
+		SoundManager.play("win");
 		hasWinn = true;
 		player.setWinn(true);
 		new Thread(new Runnable() {

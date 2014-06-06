@@ -7,8 +7,8 @@ import java.util.List;
 
 import javax.xml.bind.JAXB;
 
+import resource.SoundManager;
 import level.Level;
-import sound.AudioPlayer;
 import data.PlayerData;
 
 public class EntityPlayer extends Entity {
@@ -29,13 +29,9 @@ public class EntityPlayer extends Entity {
 	//	private boolean keyDown;
 	private boolean hasWinn;
 
-	private AudioPlayer audio;
-
 	public EntityPlayer(Level level, double x, double y) {
 		lookingRight = true;
 		this.level = level;
-		audio = new AudioPlayer();
-		audio.load(AudioPlayer.JUMP);
 		xPos = x;
 		yPos = y;
 		speed = 2.0;
@@ -75,7 +71,7 @@ public class EntityPlayer extends Entity {
 		if (yMoveMent < 0) {
 			action = ACTION_JUMP;
 			if (startJump) {
-				audio.play(AudioPlayer.JUMP);
+				SoundManager.play("jump");
 			}
 		} else if (yMoveMent > 0) {
 			action = ACTION_FALL;
@@ -133,7 +129,6 @@ public class EntityPlayer extends Entity {
 	}
 
 	public void close() {
-		audio.close();
 		level = null;
 	}
 

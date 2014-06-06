@@ -13,6 +13,7 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.xml.bind.JAXB;
 
+import resource.SoundManager;
 import level.Level;
 import level.LevelEditable;
 import level.graphics.LevelTexture;
@@ -400,6 +401,7 @@ public class StageLevelEditor extends Stage {
 		}
 
 		public void close() {
+			SoundManager.clearCache();
 			finishTesting();
 			levelStage.close();
 			levelStage = null;

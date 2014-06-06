@@ -14,15 +14,14 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
-import sound.AudioPlayer;
 import main.GamePanel;
+import resource.SoundManager;
 import data.PlayerData;
 
 public class StagShopBackgrounds extends Stage {
 
 	private BufferedImage background;
 	private BufferedImage coin;
-	private AudioPlayer audio;
 	List<Background> backgrounds;
 	private BufferedImage[][] buttons;
 	private Rectangle[] recs = new Rectangle[2];
@@ -35,8 +34,6 @@ public class StagShopBackgrounds extends Stage {
 
 	public StagShopBackgrounds(StageManager stageManager, Map<String, String> data) {
 		super(stageManager, null);
-		audio = new AudioPlayer();
-		audio.load(AudioPlayer.HIT);
 		PlayerData.load();
 		backgrounds = new ArrayList<>();
 		buttons = new BufferedImage[2][2];
@@ -156,7 +153,7 @@ public class StagShopBackgrounds extends Stage {
 			}
 		}
 		if (e.getKeyChar() == ' ') {
-			audio.play(AudioPlayer.HIT);
+			SoundManager.play("hit");
 			if (selectedButton == 0) {
 				getStageManager().setStatge(StageManager.STAGE_LEVEL, null);
 			} else if (selectedButton == 1) {

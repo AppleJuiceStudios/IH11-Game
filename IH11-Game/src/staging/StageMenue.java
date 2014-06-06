@@ -12,7 +12,6 @@ import javax.imageio.ImageIO;
 import main.GamePanel;
 import main.Main;
 import resource.SoundManager;
-import sound.AudioPlayer;
 import data.PlayerData;
 
 public class StageMenue extends Stage {
@@ -112,8 +111,8 @@ public class StageMenue extends Stage {
 				break;
 			}
 		}
-		
-		if(e.getKeyChar() == 'e'){
+
+		if (e.getKeyChar() == 'e') {
 			getStageManager().setStatge(StageManager.STAGE_LEVELEDITOR, null);
 		}
 	}
