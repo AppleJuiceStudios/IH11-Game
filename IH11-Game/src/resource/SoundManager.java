@@ -16,19 +16,20 @@ public class SoundManager {
 	private static Map<String, Clip> staticClips;
 	private static Map<String, Clip> cacheClips;
 	
-	private static String soundPath = "res";
+	private static String soundPath; // "GameData/sound/
 	
-	public static void init(){
+	public static void init(String soundPath){
 		staticClips = new HashMap<>();
 		cacheClips = new HashMap<>();
+		SoundManager.soundPath = soundPath;
 	}
 	
 	public static void loadStaticClips(){
-		//loadStaticClip("chiptune", "/sounds/Chiptune.wav");
-		loadStaticClip("hit", "/sounds/Hit.wav");
-		loadStaticClip("orb", "/sounds/orb.wav");
-		loadStaticClip("jump", "/sounds/Jump.wav");
-		loadStaticClip("win", "/sounds/AirHorn.wav");
+		//loadStaticClip("chiptune", "chiptune.wav");
+		loadStaticClip("hit", "hit.wav");
+		loadStaticClip("orb", "orb.wav");
+		loadStaticClip("jump", "jump.wav");
+		loadStaticClip("win", "win.wav");
 	}
 	
 	public static void loadStaticClip(String id, String path){
