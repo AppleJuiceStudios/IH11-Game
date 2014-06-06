@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
+import resource.SoundManager;
 import main.GamePanel;
 
 public class StageManager {
@@ -35,6 +36,8 @@ public class StageManager {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		SoundManager.init("GameData/sound/");
+		SoundManager.loadStaticClips();
 	}
 
 	public void setStatge(int stageID, Map<String, String> data) {
@@ -84,6 +87,7 @@ public class StageManager {
 	}
 
 	public void close() {
+		SoundManager.clearCache();
 		stage.close();
 		System.exit(0);
 	}

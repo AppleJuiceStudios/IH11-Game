@@ -16,7 +16,7 @@ public class SoundManager {
 	private static Map<String, Clip> staticClips;
 	private static Map<String, Clip> cacheClips;
 	
-	private static String soundPath; // "GameData/sound/
+	private static String soundPath; // "GameData/sound/"
 	
 	public static void init(String soundPath){
 		staticClips = new HashMap<>();
@@ -25,7 +25,6 @@ public class SoundManager {
 	}
 	
 	public static void loadStaticClips(){
-		//loadStaticClip("chiptune", "chiptune.wav");
 		loadStaticClip("hit", "hit.wav");
 		loadStaticClip("orb", "orb.wav");
 		loadStaticClip("jump", "jump.wav");
@@ -47,14 +46,14 @@ public class SoundManager {
 			AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File(soundPath + path));
 			clip.open(audioIn);
 			audioIn.close();
-			System.out.println("[SoundManager] Loading Clip: " + id);
+			System.out.println("[SoundManager] Loading clip: " + id);
 			return clip;
 		} catch (LineUnavailableException e) {
 			e.printStackTrace();
 		} catch (UnsupportedAudioFileException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			System.out.println("[SoundManager] Can not load Clip: " + id + " | " + path);
+			System.out.println("[SoundManager] Can not load clip: " + id + " | " + path);
 			e.printStackTrace();
 		}
 		return clip;
@@ -72,6 +71,7 @@ public class SoundManager {
 			cacheClips.get(id).close();
 		}
 		cacheClips.clear();
+		System.out.println("[SoundManger] Clearing cache.");
 	}
 	
 	public static void play(String id){
