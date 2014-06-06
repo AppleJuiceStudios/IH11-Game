@@ -123,7 +123,7 @@ public class StageLevel extends Stage {
 				long startTime = 0;
 				long delay = 0;
 				long waitTime = 1000 / 60;
-				while (!Thread.interrupted()) {
+				while (updateThread != null) {
 					startTime = System.currentTimeMillis();
 					update();
 					delay = waitTime - (System.currentTimeMillis() - startTime);
@@ -131,7 +131,7 @@ public class StageLevel extends Stage {
 						try {
 							Thread.sleep(delay);
 						} catch (InterruptedException e) {
-							updateThread.interrupt();
+							updateThread = null;
 						}
 					}
 				}
