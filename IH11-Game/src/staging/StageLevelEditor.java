@@ -2,6 +2,7 @@ package staging;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Panel;
 import java.awt.event.KeyEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
@@ -13,6 +14,7 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.xml.bind.JAXB;
 
+import resource.SoundManager;
 import level.Level;
 import level.LevelEditable;
 import level.graphics.LevelTexture;
@@ -95,7 +97,11 @@ public class StageLevelEditor extends Stage {
 			AffineTransform tx = new AffineTransform();
 			tx.translate(-xMovement, -yMovement);
 			g2.setTransform(tx);
-			level.draw(g2);
+			int xStart = (int) (xMovement / level.getTileSize());
+			int yStart = (int) (yMovement / level.getTileSize());
+			int xEnd = xStart + GamePanel.WIDTH / level.getTileSize() + 1;
+			int yEnd = yStart + GamePanel.HEIGHT / level.getTileSize() + 1;
+			level.draw(g2, xStart, yStart, xEnd, yEnd);
 			int boxSize = level.getTileSize();
 			g2.setColor(Color.ORANGE);
 			g2.drawRect(-1, -1, level.getWidth() * boxSize + 1, level.getHeight() * boxSize + 1);
@@ -400,6 +406,7 @@ public class StageLevelEditor extends Stage {
 		}
 
 		public void close() {
+			SoundManager.clearCache();
 			finishTesting();
 			levelStage.close();
 			levelStage = null;

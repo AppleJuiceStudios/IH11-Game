@@ -6,15 +6,14 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
 
-import sound.AudioPlayer;
 import main.GamePanel;
+import resource.SoundManager;
 import data.PlayerData;
 
 public class StageShop extends Stage {
@@ -26,12 +25,9 @@ public class StageShop extends Stage {
 	private int klicked = -1;
 	private BufferedImage[][] buttons = new BufferedImage[items][3];
 	private Rectangle[] recs = new Rectangle[items];
-	private AudioPlayer audio;
 
 	public StageShop(StageManager stageManager, Map<String, String> data) {
 		super(stageManager, data);
-		audio = new AudioPlayer();
-		audio.load(AudioPlayer.HIT);
 		try {
 			background = ImageIO.read(getClass().getResourceAsStream("/graphics/level/background/BlueBackgroundPixel.png"));
 			coin = ImageIO.read(getClass().getResourceAsStream("/graphics/entity/coin/coin.png"));
@@ -74,14 +70,13 @@ public class StageShop extends Stage {
 
 	@Override
 	public void close() {
-		audio.close();
 	}
 
 	@Override
 	public void draw(Graphics2D g2) {
 		g2.drawImage(background, 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, null);
 		g2.drawImage(coin, GamePanel.WIDTH - coin.getWidth() - 105, 7, coin.getWidth(), coin.getHeight(), null);
-		g2.setFont(newFont(45));	//argument: font-size(float)
+		g2.setFont(newFont(45)); // argument: font-size(float)
 		g2.drawString(PlayerData.playerData.getName(), 10, 37);
 		g2.drawString(String.valueOf(PlayerData.playerData.getCoins()), GamePanel.WIDTH - 100, 37);
 		g2.setFont(new Font("Dialog", Font.PLAIN, 12));
@@ -108,22 +103,22 @@ public class StageShop extends Stage {
 	@Override
 	public void keyReleased(KeyEvent e) {
 	}
-	
-	public Font newFont(float size){
+
+	public Font newFont(float size) {
 		Font font = null;
 		InputStream is = null;
 		is = StageShop.class.getResourceAsStream("/fonts/Perfect DOS VGA 437 Win.ttf");
-//		is = StageShop.class.getResourceAsStream("/fonts/BMgermar.ttf");
-//		is = StageShop.class.getResourceAsStream("/fonts/Minecraftia.ttf");
-	    try {
-	    	font = Font.createFont(Font.TRUETYPE_FONT, is);
-	    	font = font.deriveFont(Font.PLAIN, size);
+		// is = StageShop.class.getResourceAsStream("/fonts/BMgermar.ttf");
+		// is = StageShop.class.getResourceAsStream("/fonts/Minecraftia.ttf");
+		try {
+			font = Font.createFont(Font.TRUETYPE_FONT, is);
+			font = font.deriveFont(Font.PLAIN, size);
 		} catch (FontFormatException e) {
-			
+
 		} catch (IOException e) {
-			
+
 		}
-	    return font;
+		return font;
 	}
 
 	@Override
@@ -147,7 +142,7 @@ public class StageShop extends Stage {
 		}
 		if (e.getKeyChar() == ' ') {
 			klicked = selected;
-			audio.play(AudioPlayer.HIT);
+			SoundManager.play("hit");
 			try {
 				Thread.sleep(15);
 			} catch (InterruptedException e1) {

@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 
 import main.GamePanel;
 import main.Main;
-import sound.AudioPlayer;
+import resource.SoundManager;
 import data.PlayerData;
 
 public class StageMenue extends Stage {
@@ -21,14 +21,11 @@ public class StageMenue extends Stage {
 	private int items = 2;
 	private BufferedImage[][] buttons = new BufferedImage[items][3];
 	private BufferedImage background;
-	private AudioPlayer audio;
 
 	public StageMenue(StageManager stageManager, Map<String, String> data) {
 		super(stageManager, data);
-		audio = new AudioPlayer();
-		audio.load(AudioPlayer.CHIPTUNE);
-		audio.load(AudioPlayer.HIT);
-		audio.loop(AudioPlayer.CHIPTUNE);
+		SoundManager.loadClipInCache("chiptune", "chiptune.wav");
+		SoundManager.play("chiptune", true);
 		try {
 			background = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/MenueBackground.png"));
 			buttons[0][0] = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/PlayButtonSelected.png"));
@@ -45,7 +42,6 @@ public class StageMenue extends Stage {
 
 	@Override
 	public void close() {
-		audio.close();
 		PlayerData.save();
 	}
 
@@ -92,13 +88,13 @@ public class StageMenue extends Stage {
 		}
 
 		if (e.getKeyChar() == ' ') {
-			audio.stop(AudioPlayer.CHIPTUNE);
+			SoundManager.stop("chiptune");
 			try {
 				Thread.sleep(250);
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}
-			audio.play(AudioPlayer.HIT);
+			SoundManager.play("hit");
 			try {
 				Thread.sleep(10);
 			} catch (InterruptedException e1) {
@@ -115,8 +111,8 @@ public class StageMenue extends Stage {
 				break;
 			}
 		}
-		
-		if(e.getKeyChar() == 'e'){
+
+		if (e.getKeyChar() == 'e') {
 			getStageManager().setStatge(StageManager.STAGE_LEVELEDITOR, null);
 		}
 	}

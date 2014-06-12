@@ -31,11 +31,11 @@ public class Level {
 		return tileSet.get((int) (Math.random() * tileSet.size()));
 	}
 
-	public void draw(Graphics2D g2) {
-		for (int x = 0; x < tileSet.length; x++) {
-			for (int y = 0; y < tileSet[x].length; y++) {
-				if (tileSet[x][y] != LevelTexture.AIR) {
-					g2.drawImage(levelTexture.getTile(tileSet[x][y]), x * tileSize, y * tileSize, tileSize, tileSize,
+	public void draw(Graphics2D g2, int xStart, int yStart, int xEnd, int yEnd) {
+		for (int x = xStart; x <= xEnd; x++) {
+			for (int y = yStart; y <= yEnd; y++) {
+				if (isInTileSet(x, y) && (getTileID(x, y) != LevelTexture.AIR)) {
+					g2.drawImage(levelTexture.getTile(getTileID(x, y)), x * tileSize, y * tileSize, tileSize, tileSize,
 							null);
 				}
 			}
