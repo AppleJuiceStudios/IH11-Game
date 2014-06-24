@@ -9,14 +9,22 @@
     <character>/graphics/entity/TetrisPlayerAnimation.xml</character>
     <character>/graphics/entity/MCPlayerAnimation.xml</character>
     <character>/graphics/entity/TetrisPlayerANimation.xml</character>
-    <coins>120</coins>
+    <coins>1220</coins>
     <level>/data/levels/Level1.xml</level>
     <level>/data/levels/Level2.xml</level>
     <level>/data/levels/Level3.xml</level>
     <level>/data/levels/Level4.xml</level>
     <level>/data/levels/Level5.xml</level>
     <level>/data/levels/Level6.xml</level>
-    <name>Peter</name>
+    <level>/data/levels/Level13.xml</level>
+    <level>/data/levels/Level99.xml</level>
+    <level>/data/levels/Level17.xml</level>
+    <level>/data/levels/Level18.xml</level>
+    <level>/data/levels/Level21.xml</level>
+    <level>/data/levels/Level22.xml</level>
+    <level>/data/levels/Level23.xml</level>
+    <level>/data/levels/Level24.xml</level>
+    <name>Philipp</name>
     <tileSet>/graphics/level/tileSets/DirtGrassTileSet.png</tileSet>
     <tileSet>/graphics/level/tileSets/DirtGrassTileSet2.png</tileSet>
     <tileSet>/graphics/level/tileSets/DirtGrassTileSetBlury.png</tileSet>
