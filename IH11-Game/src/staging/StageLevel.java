@@ -1,7 +1,6 @@
 package staging;
 
 import java.awt.Graphics2D;
-import java.awt.Panel;
 import java.awt.event.KeyEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;

@@ -1,7 +1,12 @@
 package resource;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+import java.math.BigInteger;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 import com.mysql.jdbc.Statement;
 
@@ -58,17 +63,48 @@ public class PlayerData {
 		return false;
 	}
 
-	public static boolean loadLocal() {
-
-		isSaved = true;
-		isDBsynced = false;
+	public static boolean loadLocal(File file) {
+		try {
+			Scanner scan = new Scanner(file);
+			userName = scan.nextLine();
+			coins = scan.nextInt();
+			playtime = scan.nextLong();
+			lck_lvl = scan.nextBigInteger().toByteArray();
+			lck_bg = scan.nextBigInteger().toByteArray();
+			lck_chr = scan.nextBigInteger().toByteArray();
+			lck_msc = scan.nextBigInteger().toByteArray();
+			lck_til = scan.nextBigInteger().toByteArray();
+			lck_obj = scan.nextBigInteger().toByteArray();
+			scan.close();
+			isSaved = true;
+			isDBsynced = false;
+			return true;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 
-	public static boolean saveLocal() {
-
-		isSaved = true;
-		isDBsynced = false;
+	public static boolean saveLocal(File file) {
+		try {
+			PrintStream out = new PrintStream(file);
+			out.println(userName);
+			out.println(coins);
+			out.println(playtime);
+			out.println(new BigInteger(lck_lvl));
+			out.println(new BigInteger(lck_bg));
+			out.println(new BigInteger(lck_chr));
+			out.println(new BigInteger(lck_msc));
+			out.println(new BigInteger(lck_til));
+			out.println(new BigInteger(lck_obj));
+			out.flush();
+			out.close();
+			isSaved = true;
+			isDBsynced = false;
+			return true;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 

@@ -2,7 +2,6 @@ package staging;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Panel;
 import java.awt.event.KeyEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
@@ -14,11 +13,11 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.xml.bind.JAXB;
 
-import resource.SoundManager;
 import level.Level;
 import level.LevelEditable;
 import level.graphics.LevelTexture;
 import main.GamePanel;
+import resource.SoundManager;
 import data.PlayerData;
 
 public class StageLevelEditor extends Stage {
@@ -166,13 +165,13 @@ public class StageLevelEditor extends Stage {
 		if (x < 0) {
 			xMovement -= x * level.getTileSize();
 			selectedX -= x;
-			level.setStartPositionX(level .getStartPositionX() - x * 32);
+			level.setStartPositionX(level.getStartPositionX() - x * 32);
 			x = 0;
 		}
 		if (y < 0) {
 			yMovement -= y * level.getTileSize();
 			selectedY -= y;
-			level.setStartPositionY(level .getStartPositionY() - y * 32);
+			level.setStartPositionY(level.getStartPositionY() - y * 32);
 			y = 0;
 		}
 		if (update) {
@@ -282,10 +281,11 @@ public class StageLevelEditor extends Stage {
 					}
 				}
 			}
-			
+
 			if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE & isSpacePressed & isStrgPressed) {
-				level.setTileSet(level.resize(Math.max(selectionXstart, selectedX) + 1, Math.max(selectionYstart, selectedY) + 1, Math.min(selectionXstart, selectedX), Math.min(selectionYstart, selectedY)));
-				selectedX  = 0;
+				level.setTileSet(level.resize(Math.max(selectionXstart, selectedX) + 1, Math.max(selectionYstart, selectedY) + 1,
+						Math.min(selectionXstart, selectedX), Math.min(selectionYstart, selectedY)));
+				selectedX = 0;
 				selectedY = 0;
 				isSpacePressed = false;
 				isStrgPressed = false;
@@ -391,18 +391,18 @@ public class StageLevelEditor extends Stage {
 		}
 
 		public void draw(Graphics2D g2) {
-			try{
+			try {
 				if (levelStage != null) {
-				levelStage.draw(g2);
-			} else {
-				super.draw(g2);
-			}
-			} catch(NullPointerException e){
-				if (isTesting){
+					levelStage.draw(g2);
+				} else {
+					super.draw(g2);
+				}
+			} catch (NullPointerException e) {
+				if (isTesting) {
 					e.printStackTrace();
 				}
 			}
-			
+
 		}
 
 		public void close() {
