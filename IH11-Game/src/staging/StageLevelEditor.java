@@ -372,6 +372,88 @@ public class StageLevelEditor extends Stage {
 				testingManager = new TestingStageManager(level);
 				isTesting = true;
 			}
+
+			if (e.getKeyChar() == '#') {
+				System.out.println("X:" + selectedX + "  Y:" + selectedY);
+			}
+
+			if (e.getKeyChar() == 'Q') {
+				level.setTileID(selectedX, selectedY, (byte) 32);
+			} else if (e.getKeyChar() == 'W') {
+				level.setTileID(selectedX, selectedY, (byte) 33);
+			} else if (e.getKeyChar() == 'E') {
+				level.setTileID(selectedX, selectedY, (byte) 34);
+			} else if (e.getKeyChar() == 'R') {
+				level.setTileID(selectedX, selectedY, (byte) 35);
+			} else if (e.getKeyChar() == 'T') {
+				level.setTileID(selectedX, selectedY, (byte) 36);
+			} else if (e.getKeyChar() == 'Z') {
+				level.setTileID(selectedX, selectedY, (byte) 37);
+			} else if (e.getKeyChar() == 'U') {
+				level.setTileID(selectedX, selectedY, (byte) 38);
+			} else if (e.getKeyChar() == 'I') {
+				level.setTileID(selectedX, selectedY, (byte) 39);
+			} else if (e.getKeyChar() == 'O') {
+				level.setTileID(selectedX, selectedY, (byte) 40);
+			} else if (e.getKeyChar() == 'P') {
+				level.setTileID(selectedX, selectedY, (byte) 41);
+			} else if (e.getKeyChar() == 'Ü') {
+				level.setTileID(selectedX, selectedY, (byte) 42);
+			} else if (e.getKeyChar() == 'A') {
+				level.setTileID(selectedX, selectedY, (byte) 43);
+			} else if (e.getKeyChar() == 'S') {
+				level.setTileID(selectedX, selectedY, (byte) 44);
+			} else if (e.getKeyChar() == 'D') {
+				level.setTileID(selectedX, selectedY, (byte) 45);
+			} else if (e.getKeyChar() == 'F') {
+				level.setTileID(selectedX, selectedY, (byte) 46);
+			} else if (e.getKeyChar() == 'G') {
+				level.setTileID(selectedX, selectedY, (byte) 47);
+			} else if (e.getKeyChar() == 'H') {
+				level.setTileID(selectedX, selectedY, (byte) 48);
+			} else if (e.getKeyChar() == 'J') {
+				level.setTileID(selectedX, selectedY, (byte) 49);
+			} else if (e.getKeyChar() == 'K') {
+				level.setTileID(selectedX, selectedY, (byte) 50);
+			} else if (e.getKeyChar() == 'L') {
+				level.setTileID(selectedX, selectedY, (byte) 51);
+			} else if (e.getKeyChar() == 'Ö') {
+				level.setTileID(selectedX, selectedY, (byte) 52);
+			} else if (e.getKeyChar() == 'Ä') {
+				level.setTileID(selectedX, selectedY, (byte) 53);
+			} else if (e.getKeyChar() == 'Y') {
+				level.setTileID(selectedX, selectedY, (byte) 54);
+			} else if (e.getKeyChar() == 'X') {
+				level.setTileID(selectedX, selectedY, (byte) 55);
+			} else if (e.getKeyChar() == 'C') {
+				level.setTileID(selectedX, selectedY, (byte) 56);
+			} else if (e.getKeyChar() == 'V') {
+				level.setTileID(selectedX, selectedY, (byte) 57);
+			} else if (e.getKeyChar() == 'B') {
+				level.setTileID(selectedX, selectedY, (byte) 58);
+			} else if (e.getKeyChar() == 'N') {
+				level.setTileID(selectedX, selectedY, (byte) 59);
+			} else if (e.getKeyChar() == 'M') {
+				level.setTileID(selectedX, selectedY, (byte) 60);
+			} else if (e.getKeyChar() == '!') {
+				level.setTileID(selectedX, selectedY, (byte) 61);
+			} else if (e.getKeyChar() == '"') {
+				level.setTileID(selectedX, selectedY, (byte) 62);
+			} else if (e.getKeyChar() == '§') {
+				level.setTileID(selectedX, selectedY, (byte) 63);
+			} else if (e.getKeyChar() == '$') {
+				level.setTileID(selectedX, selectedY, (byte) 64);
+			} else if (e.getKeyChar() == '%') {
+				level.setTileID(selectedX, selectedY, (byte) 65);
+			} else if (e.getKeyChar() == '&') {
+				level.setTileID(selectedX, selectedY, (byte) 66);
+			} else if (e.getKeyChar() == '/') {
+				level.setTileID(selectedX, selectedY, (byte) 67);
+			} else if (e.getKeyChar() == '(') {
+				level.setTileID(selectedX, selectedY, (byte) 68);
+			} else if (e.getKeyChar() == ')') {
+				level.setTileID(selectedX, selectedY, (byte) 69);
+			}
 		}
 	}
 

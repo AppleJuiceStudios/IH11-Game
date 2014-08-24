@@ -1,5 +1,6 @@
 package level;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.io.File;
 import java.util.List;
@@ -22,7 +23,7 @@ public class Level {
 	private double startPositionY;
 
 	public Level() {
-		tileSet =  new byte[10][10];
+		tileSet = new byte[10][10];
 		levelTexture = new LevelTexture(chooseTileSet(), "TileSet");
 	}
 
@@ -32,17 +33,21 @@ public class Level {
 	}
 
 	public void draw(Graphics2D g2, int xStart, int yStart, int xEnd, int yEnd) {
+		g2.setColor(Color.RED);
 		for (int x = xStart; x <= xEnd; x++) {
 			for (int y = yStart; y <= yEnd; y++) {
 				if (isInTileSet(x, y) && (getTileID(x, y) != LevelTexture.AIR)) {
-					g2.drawImage(levelTexture.getTile(getTileID(x, y)), x * tileSize, y * tileSize, tileSize, tileSize,
-							null);
+					if (getTileID(x, y) < 10) {
+						g2.drawImage(levelTexture.getTile(getTileID(x, y)), x * tileSize, y * tileSize, tileSize, tileSize, null);
+					} else {
+						g2.drawString(getTileID(x, y) + "", x * tileSize, (y + 1) * tileSize);
+					}
 				}
 			}
 		}
 	}
-	
-	public boolean isInTileSet(int x, int y){
+
+	public boolean isInTileSet(int x, int y) {
 		return x >= 0 & x < getWidth() & y >= 0 & y < getHeight();
 	}
 
@@ -59,22 +64,22 @@ public class Level {
 	}
 
 	public byte getTileID(int x, int y) {
-		if(x < 0 | x >= getWidth()){
+		if (x < 0 | x >= getWidth()) {
 			return LevelTexture.CENTER;
-		} else if(y < 0){
+		} else if (y < 0) {
 			return LevelTexture.AIR;
-		} else if (y >= getHeight()){
-			if(tileSet[x][getHeight() - 1] == LevelTexture.AIR){
+		} else if (y >= getHeight()) {
+			if (tileSet[x][getHeight() - 1] == LevelTexture.AIR) {
 				return tileSet[x][0];
 			} else {
 				return LevelTexture.CENTER;
 			}
-			
+
 		} else {
 			return tileSet[x][y];
 		}
 	}
-	
+
 	@XmlElement(name = "TileSet")
 	public byte[][] getTileSet() {
 		return this.tileSet;
@@ -103,7 +108,7 @@ public class Level {
 	public int getTileSize() {
 		return tileSize;
 	}
-	
+
 	public void setTileDrawSize(int i) {
 		tileSize = i;
 	}
