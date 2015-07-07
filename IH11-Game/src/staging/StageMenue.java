@@ -24,7 +24,7 @@ public class StageMenue extends Stage {
 
 	public StageMenue(StageManager stageManager, Map<String, String> data) {
 		super(stageManager, data);
-		SoundManager.loadClipInCache("chiptune", "chiptune.wav");
+		SoundManager.loadClipInCache("chiptune", "Chiptune.wav");
 		SoundManager.play("chiptune", true);
 		try {
 			background = ImageIO.read(getClass().getResourceAsStream("/graphics/menue/MenueBackground.png"));
