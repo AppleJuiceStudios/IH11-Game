@@ -9,7 +9,7 @@
     <character>/graphics/entity/TetrisPlayerAnimation.xml</character>
     <character>/graphics/entity/MCPlayerAnimation.xml</character>
     <character>/graphics/entity/TetrisPlayerANimation.xml</character>
-    <coins>1520</coins>
+    <coins>1540</coins>
     <level>/data/levels/Level1.xml</level>
     <level>/data/levels/Level2.xml</level>
     <level>/data/levels/Level3.xml</level>

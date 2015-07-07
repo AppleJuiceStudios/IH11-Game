@@ -4,11 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.math.BigInteger;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Scanner;
-
-import com.mysql.jdbc.Statement;
 
 public class PlayerData {
 
@@ -24,44 +20,6 @@ public class PlayerData {
 
 	private static boolean isSaved = false;
 	private static boolean isDBsynced = false;
-
-	public static boolean loadDB(ResultSet res, String userName) {
-		try {
-			PlayerData.userName = userName;
-			coins = res.getInt("Coins");
-			playtime = res.getLong("Playtime");
-			lck_lvl = res.getString("lck_lvl").getBytes();
-			lck_bg = res.getString("lck_bg").getBytes();
-			lck_chr = res.getString("lck_chr").getBytes();
-			lck_msc = res.getString("lck_msc").getBytes();
-			lck_til = res.getString("lck_til").getBytes();
-			lck_obj = res.getString("lck_obj").getBytes();
-			isDBsynced = true;
-			isSaved = false;
-			return true;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
-
-	public static boolean saveDB(Statement st) {
-		try {
-			st.execute("UPDATE Player SET Coins='" + coins + "' WHERE Name='" + userName + "'");
-			st.execute("UPDATE Player SET Playtime='" + playtime + "' WHERE Name='" + userName + "'");
-			st.execute("UPDATE Player SET lck_lvl='" + lck_lvl + "' WHERE Name='" + userName + "'");
-			st.execute("UPDATE Player SET lck_bg='" + lck_bg + "' WHERE Name='" + userName + "'");
-			st.execute("UPDATE Player SET lck_chr='" + lck_chr + "' WHERE Name='" + userName + "'");
-			st.execute("UPDATE Player SET lck_msc='" + lck_msc + "' WHERE Name='" + userName + "'");
-			st.execute("UPDATE Player SET lck_til='" + lck_til + "' WHERE Name='" + userName + "'");
-			st.execute("UPDATE Player SET lck_obj='" + lck_obj + "' WHERE Name='" + userName + "'");
-			isDBsynced = true;
-			return true;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
 
 	public static boolean loadLocal(File file) {
 		try {

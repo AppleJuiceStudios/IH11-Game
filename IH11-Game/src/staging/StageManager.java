@@ -36,12 +36,12 @@ public class StageManager {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		SoundManager.init("GameData/sound/");
+		SoundManager.init("/sounds/");
 		SoundManager.loadStaticClips();
 	}
 
 	public void setStatge(int stageID, Map<String, String> data) {
-		if(this.mouseListener != null){
+		if (this.mouseListener != null) {
 			gamePanel.removeMouseListener(this.mouseListener);
 		}
 		startedLoadingTime = System.nanoTime();
@@ -68,9 +68,9 @@ public class StageManager {
 		System.out.println("[StageManager] Stage " + stageID + " took " + ((double) (System.nanoTime() - startedLoadingTime) / 1000000000)
 				+ " Seconds to load!");
 	}
-	
-	public void setMouseListener(MouseListener mouseListener){
-		if(this.mouseListener != null){
+
+	public void setMouseListener(MouseListener mouseListener) {
+		if (this.mouseListener != null) {
 			gamePanel.removeMouseListener(this.mouseListener);
 		}
 		this.mouseListener = mouseListener;

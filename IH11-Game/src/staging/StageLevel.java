@@ -1,5 +1,6 @@
 package staging;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.geom.AffineTransform;
@@ -231,6 +232,7 @@ public class StageLevel extends Stage {
 		player.draw(g2);
 		g2.setTransform(new AffineTransform());
 
+		g2.setColor(Color.WHITE);
 		g2.drawImage(itemImage, 5, 5, clock.getWidth(), clock.getHeight(), null);
 		g2.drawString(collectedItems + " / " + itemCount, itemImage.getWidth() + 10, itemImage.getHeight() / 2 + 10);
 		g2.drawImage(clock, 5, itemImage.getHeight() + 10, clock.getWidth(), clock.getHeight(), null);

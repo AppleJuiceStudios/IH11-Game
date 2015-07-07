@@ -1,5 +1,6 @@
 package staging;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics2D;
@@ -77,6 +78,7 @@ public class StageShop extends Stage {
 		g2.drawImage(background, 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, null);
 		g2.drawImage(coin, GamePanel.WIDTH - coin.getWidth() - 105, 7, coin.getWidth(), coin.getHeight(), null);
 		g2.setFont(newFont(45)); // argument: font-size(float)
+		g2.setColor(Color.WHITE);
 		g2.drawString(PlayerData.playerData.getName(), 10, 37);
 		g2.drawString(String.valueOf(PlayerData.playerData.getCoins()), GamePanel.WIDTH - 100, 37);
 		g2.setFont(new Font("Dialog", Font.PLAIN, 12));
